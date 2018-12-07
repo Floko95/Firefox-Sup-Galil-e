@@ -1,0 +1,20 @@
+.listeTopics {
+	margin:10%;
+
+  }
+  
+
+.ligne{
+background: #ffd699;	
+}  
+.bandeau{
+	background: #EA6018;
+	color: #102030;
+}
+.ligne>div{
+	display:inline;
+	margin:20px;
+	padding: 20px;
+	
+ }
+
