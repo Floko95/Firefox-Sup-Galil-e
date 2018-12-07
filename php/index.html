@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/design.css">
+</head>
+<body>
+
+<!-- Barre de navigation -->
+	<nav>
+		<ul>
+			<li><a href="#a"><img src="../img/accueil.png"><div class="titre">Accueil</div></a></li>
+			<li><a href="#a"><img src="../img/equipe.png" style="padding-top:2px">   <div class="titre">L'équipe</div></a></li>
+			<li><a href="#a">Clubs</a></li>
+			<li><a href="#a">Evénements</a></li>
+			<li><a href="#a">Boutique</a></li>
+			<li><a href="Forum.html">Forum</a></li>
+			<li id="li_contact"><a href="#a">Contact</a></li>
+			<li id="li_facebook"><a href="#a">F</a></li>
+			<li id="li_connexion" onclick="connexion()"><a href="#a">AA</a></li>
+		</ul>
+	</nav>
+
+	<div id="connexion"></div>
+
+<div style="top:0;z-index: -100;position: sticky;">
+<video width="100%"autoplay muted loop style="margin-top: -3%">
+    <source src="../img/composition_planete_tournante_compressé.mp4" type="video/mp4">
+</video> 
+</div>
+
+<script>
+i = false;
+function connexion(){
+	if (i == false){
+		document.getElementById("connexion").style.display = "block";
+		i = true;
+	}
+	else{
+		document.getElementById("connexion").style.display = "none";
+		i = false;
+	}
+}
+</script>
+
+</body>
+</html>

@@ -1,19 +1,40 @@
 <!DOCTYPE html>
+
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <title>BDE Sup Galilée</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/design.css">
+	<link rel="stylesheet" type="text/css" href="../css/Forum.css">
 </head>
-
 <body>
-  <header>
 
-  </header>
+<!-- Barre de navigation -->
+	<nav>
+		<ul>
+			<li><a href="#a"><img src="../img/accueil.png"><div class="titre">Accueil</div></a></li>
+			<li><a href="#a"><img src="../img/equipe.png" style="padding-top:2px">   <div class="titre">L'équipe</div></a></li>
+			<li><a href="#a">Clubs</a></li>
+			<li><a href="#a">Evénements</a></li>
+			<li><a href="#a">Boutique</a></li>
+			<li><a href="Forum.html">Forum</a></li>
+			<li id="li_contact"><a href="#a">Contact</a></li>
+			<li id="li_facebook"><a href="#a">F</a></li>
+			<li id="li_connexion" onclick="connexion()"><a href="#a">AA</a></li>
+		</ul>
+	</nav>
+
+	<div id="connexion"></div>
+
+<div style="top:0;z-index: -100;position: sticky;">
+<video width="100%"autoplay muted loop style="margin-top: -3%">
+    <source src="../img/composition_planete_tournante_compressé.mp4" type="video/mp4">
+</video> 
+</div>
+
   <div class="listeTopics" id = "forumGeneral">
-    <div class="ligne">
+    <div class="ligne bandeau">
         <div class= "tableHeader">
-               Forum Général     
+               Forum Général   
         </div>
         <div class= "tableHeader">
                 Auteur
@@ -24,7 +45,7 @@
     </div>
     <div class="ligne">
         <div class="nomTopic">
-            Horizon Japon
+            <a href="#a" >Horizon Japon</a>  
         </div>
         <div class="Auteur">
             Guillaume Hurvois
@@ -36,7 +57,7 @@
 
     <div class="ligne">
         <div class="nomTopic">
-            Le ski coûte trop cher!
+            <a href="#a" >Le ski coûte trop cher!</a>  
         </div>
         <div class="Auteur">
             Jean Neymar
@@ -48,19 +69,19 @@
 
     <div class="ligne">
         <div class="nomTopic">
-            J'ai perdu mon sac
+            <a href="#a" >J'ai perdu mon sac</a>  
         </div>
         <div class="Auteur">
-            Wahbi Ayoub
+           Wahbi Ayoub
         </div>
         <div class="DateModif">
-            19-11-2018
+           19-11-2018
         </div>
     </div>
 
     <div class="ligne">
         <div class="nomTopic">
-            Winter is coming
+            <a href="#a" >Winter is coming</a>  
         </div>
         <div class="Auteur">
             Jon Snow
@@ -77,9 +98,9 @@
 
 
 
-  </table>
-  <table class = "listeTopics" id = "forumParticulier">
-        <div class="ligne">
+  </div>
+  <div class = "listeTopics" id = "forumParticulier">
+        <div class="ligne bandeau">
             <div class= "tableHeader">
                 Forum Informatique    
             </div>
@@ -92,7 +113,7 @@
         </div>
         <div class="ligne">
             <div class="nomTopic">
-                Cours de big data
+                <a href="#a" >Cours de big data</a>  
             </div>
             <div class="Auteur">
                 Loïc Aulard
@@ -104,7 +125,7 @@
 
         <div class="ligne">
             <div class="nomTopic">
-                Info2: cours annulé
+                <a href="#a" >Info2: cours annulé</a>  
             </div>
             <div class="Auteur">
                 Thibaud carré
@@ -116,7 +137,7 @@
 
         <div class="ligne">
             <div class="nomTopic">
-                Logique: Partiel de l'année dernière?
+                <a href="#a" >Logique: Partiel de l'année dernière?</a>  
             </div>
             <div class="Auteur">
                 Ilan Bitton
@@ -126,7 +147,7 @@
             </div>
         </div>
 
-  </table>
+  </div>
 
 
 
