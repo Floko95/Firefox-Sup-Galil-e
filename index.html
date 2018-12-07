@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<title>BDE Sup Galilée</title>
+<link rel="icon" href="icone_7zf_icon.ico" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="w3-theme-black.css">
+<link rel="stylesheet" href="font.css">
+<body id="myPage">
+
+<?php include 'codeIgniter/index.php'; ?>
+<!-- Sidebar on click
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+    <i class="fa fa-remove"></i>
+  </a>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+  <a href="#" class="w3-bar-item w3-button">Link 5</a>
+</nav>
+ -->
+
+<!-- Navbar -->
+<div class="w3-top" >
+ <div class="w3-bar w3-left-align" style="background-color: #161743">
+  <a class="w3-bar-item w3-button w3-round-left w3-hide-large w3-right w3-hover-bde-orange" style="background-color: #EA6018" title="Menu" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="center w3-bar-item w3-button w3-hover-bde-beige" style="background-color: #F5D6B5"><i class="fa fa-home w3-margin-right"></i>Accueil</a>
+  <a href="#equipe" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018"><i class="fa fa-users w3-margin-right"></i>L'équipe</a>
+  <a href="#clubs" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018"><i class="fa fa-gamepad w3-margin-right"></i>Clubs & Assos</a>
+  <a href="#evenements" class="center w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018;"><i class="fa fa-calendar w3-margin-right"></i>Evènements</a>
+   <a href="#boutique" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018"><i class="fa fa-shopping-bag w3-margin-right"></i>Boutique</a>
+  <a href="#forum" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018"><i class="fa fa-comments w3-margin-right"></i>Forum</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-round-right w3-hide-small w3-hide-medium w3-hover-bde-orange" style="background-color: #EA6018" ><i class="fa fa-envelope w3-margin-right"></i>Contact</a>
+  <a class="w3-bar-item w3-button w3-bde-bleu w3-hover-bde-bleu" target="_blank" href="https://www.facebook.com/BdeSupGalilee/" title="Facebook"><i class="fa fa-facebook"></i></a>
+  <a class="w3-bar-item w3-button w3-round-left w3-hide-small w3-hide-medium w3-right w3-hover-bde-orange" style="background-color: #EA6018" title="Connexion" onclick="openConnexion()"><i class="fa fa-user-circle"></i></a>
+ </div>
+
+
+  <div id="navConnexion" class="w3-bar-block w3-hide w3-hide-small w3-hide-medium" style="margin-left: 83%">
+  <form methode="post" class="w3-container w3-card-4 w3-padding-16  w3-bde-orange2 w3-round-left" target="_blank">
+      <div class="w3-section w3-bde-orange2">      
+        <input class="w3-input2 w3-bde-beige2 w3-round-left" style="float: right" type="text" name="identifiant" id="identifiant" placeholder="Identifiant" required>
+      </div>
+      <div class="w3-section">      
+        <input class="w3-input2 w3-bde-beige2 w3-round-left" style="float: right" type="password" name="motdepasse"  id="motdepasse" placeholder="Mot de passe" required>
+      </div> 
+      <div>
+      <input class="w3-input3 w3-bde-bleu w3-round-xlarge" style="float: right" type="submit" name="Connexion" id="connexion">
+      </div>
+
+  </form>
+  <?php
+
+        if(isset($_POST['connexion'])){
+          echo "formulaire send"
+      }
+
+  ?>
+  </div>
+ 
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block  w3-theme-bde-orange w3-hide w3-hide-large">
+    <a href="#equipe" onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-users w3-margin-right"></i>L'équipe</a> 
+    <a href="#clubs"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-gamepad w3-margin-right"></i>Clubs & Assos</a> 
+    <a href="#evenements"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-calendar w3-margin-right"></i>Evènements</a>
+    <a href="#boutique"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-shopping-bag w3-margin-right"></i>Boutique</a>
+    <a href="#forum"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-comments w3-margin-right"></i>Forum</a>  
+    <a href="#contact"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-envelope w3-margin-right"></i>Contact</a>
+    <a href="#"  onclick="openNav()" class="w3-bar-item w3-button w3-hover-bde-orange"><i class="fa fa-user-circle w3-margin-right"></i>Connexion</a>
+  </div>
+</div>
+
+<!-- Fond Animé -->
+<div style="top:0;z-index: -100;position: sticky;">
+<video width="100%"autoplay muted loop style="margin-top: -3%">
+    <source src="images\composition_planete_tournante_compressé.mp4" type="video/mp4">
+</video> 
+</div>
+<!-- Equipe -->
+<div class="w3-padding-64 w3-center w3-bde-bleu" ;" id="equipe" style="margin-top: -3%">
+<h2>L'équipe du BDE Sup Galilée</h2>
+<p>2017-2018</p><br><br>
+
+<div class="w3-display-container w3-animate-opacity">
+  <img src="images/photo-BDE-teintée.jpg" alt="boat" style="width:100%;height:100%;">
+</div>
+
+<div class="w3-row"><br><br><br>
+
+  <div class="w3-third">
+    <img src="images/man.png" alt="Tresorier" style="width:45%" class="w3-circle w3-hover-opacity">
+    <h3>Axel Renard</h3>
+    <p>Trésorier</p>
+  </div>
+
+  <div class="w3-third">
+    <img src="images/girl.png" alt="Presidente" style="width:45%" class="w3-circle w3-hover-opacity">
+    <h3>Camille Traina</h3>
+    <p>Présidente</p>
+  </div>
+
+  <div class="w3-third">
+    <img src="images/man2.png" alt="SecretaireGeneral" style="width:45%" class="w3-circle w3-hover-opacity">
+    <h3>Marc Chou</h3>
+    <p>Secrétaire Général</p>
+  </div>
+
+</div>
+</div>
+
+<!-- Club & Assos -->
+<div class="w3-row-padding w3-padding-64 w3-bde-beige2" id="clubs">
+
+<div class="w3-quarter">
+<h2>Clubs</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/snow.jpg" alt="Snow" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 1</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 2</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 3</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+</div>
+<div class="w3-row-padding w3-padding-64 w3-bde-beige2" id="clubs">
+
+<div class="w3-quarter">
+<h2>Assos</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/snow.jpg" alt="Snow" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 1</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 2</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+<div class="w3-quarter">
+<div class="w3-card w3-white">
+  <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 3</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Container 
+<div class="w3-container" style="position:relative">
+  <a onclick="w3_open()" class="w3-button w3-xlarge w3-circle w3-teal"
+  style="position:absolute;top:-28px;right:24px">+</a>
+</div>
+ -->
+
+<!-- Evenements -->
+<div class="w3-row-padding w3-center w3-padding-64 w3-bde-orange" id="evenements">
+    <h2>Evènements</h2>
+    <p>Les évènements organisés par le BDE</p><br>
+      <div class="w3-display-container w3-animate-opacity">
+        <img src="images/calendrier.png" alt="boat" style="width:100%;height:40%;">
+      </div>
+
+    <p>Les évènements à ne pas manquer !</p><br>
+    <div class="w3-row"><br>
+      <div class="w3-third">
+        <img src="images/wei.jpg" alt="Wei" style="width:90%" class="w3-roundSquare w3-hover-opacity">
+        <h3>Le WEI</h3>
+        <p>En septembre</p>
+      </div>
+
+      <div class="w3-third">
+        <img src="images/Noel.jpg" alt="Noel" style="width:90%" class="w3-roundSquare w3-hover-opacity">
+        <h3>Le ski</h3>
+        <p>En décembre</p>
+      </div>
+
+      <div class="w3-third">
+        <img src="images/Ete.jpg" alt="Ete" style="width:90%" class="w3-roundSquare w3-hover-opacity">
+        <h3>La soirée de fin d'année</h3>
+        <p>En juin</p>
+      </div>
+    </div>
+</div>
+
+<!-- Contact Container -->
+<div class="w3-container w3-padding-64 w3-bde-bleu" id="contact">
+  <div class="w3-row">
+    <div class="w3-col m5">
+    <div class="w3-padding-16"><span class="w3-xlarge w3-border-bde-orange w3-bottombar">Contactez-nous !</span></div>
+      <p><a>Envoie-nous tes questions ou tes remarques !</a></p>
+      <p><a target="_blank" href="https://www.google.fr/maps/place/48%C2%B057'27.3%22N+2%C2%B020'22.6%22E/@48.957586,2.3386824,18z/data=!3m1!4b1!4m14!1m7!3m6!1s0x47e66922b383ba41:0x771c255ed2770a81!2s99+Avenue+Jean+Baptiste+Cl%C3%A9ment,+93430+Villetaneuse!3b1!8m2!3d48.9561507!4d2.3412626!3m5!1s0x0:0x0!7e2!8m2!3d48.9575858!4d2.3395956" style="text-decoration:none" title="Google Maps"><i style="margin-right: 20px;" class="fa fa-map-marker w3-text-bde-orange w3-xlarge"></i>99 Avenue Jean Baptiste Clément, 93430 Villetaneuse</a></p>
+      <p><a><i style="margin-right: 20px;" class="fa fa-envelope-o w3-text-bde-orange w3-xlarge"></i>bde.supgalilee@gmail.com</a></p>
+      <p><a target="_blank" href="https://www.facebook.com/BdeSupGalilee/" style="text-decoration:none" title="Facebook"><i style="margin-right: 20px;" class="fa fa-facebook w3-text-bde-orange w3-xlarge"></i>https://www.facebook.com/BdeSupGalilee</a></p>
+    </div>
+    <div class="w3-col m7">
+      <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/action_page.php" target="_blank">
+      <div class="w3-section">      
+        <label>Name</label>
+        <input class="w3-input" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">      
+        <label>Email</label>
+        <input class="w3-input" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">      
+        <label>Message</label>
+        <input class="w3-input" type="text" name="Message" required>
+      </div>  
+      <input class="w3-check" type="checkbox" checked name="Like">
+      <label>I Like it!</label>
+      <button type="submit" class="w3-button w3-right w3-theme">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-bde-bleu w3-center">
+  <p>Tous droits réservés à <a href="https://www.facebook.com/BdeSupGalilee" target="_blank">BDE Sup Galilée</a></p>
+
+  <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+   <!--  <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span> -->   
+    <a class="w3-button w3-bde-bleu w3-hover-bde-bleu" href="#myPage"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+</footer>
+
+<script>
+// Script for side navigation
+function w3_open() {
+    var x = document.getElementById("mySidebar");
+    x.style.width = "300px";
+    x.style.paddingTop = "10%";
+    x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+// Used to toggle connexion part on large screens when clicking on the connexion button
+function openConnexion() {
+    var x = document.getElementById("navConnexion");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
