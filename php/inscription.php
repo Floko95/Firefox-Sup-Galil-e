@@ -20,10 +20,14 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 
 	if (empty($_POST['prenom'])) {
 		$errors['prenom'] = "Prenom manquant";
+	} elseif (strlen($_POST['prenom']) > 30) {
+		$errors['prenom'] = "Le prénom doit faire moins de 30 caractères";
 	}
 
 	if (empty($_POST['nom'])) {
 		$errors['nom'] = "Nom manquant";
+	} elseif (strlen($_POST['nom']) > 30) {
+		$errors['nom'] = "Le nom doit faire moins de 30 caractères";
 	}
 
 	if (empty($_POST['numero'])) {
@@ -34,8 +38,10 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 
 	if (empty($_POST['mailUniv'])) {
 		$errors['mailUniv'] = "Adresse mail universitaire manquante";
-	} elseif (!preg_match('#^([a-z]+.[a-z]+@edu.univ-paris13.fr)$#', $_POST['mailUniv'])){
-		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@edu.univ-paris13.fr";
+	} elseif (!preg_match('#^([a-z]+.[a-z]+@univ-paris13.fr)$#', $_POST['mailUniv'])){
+		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@univ-paris13.fr";
+	} elseif (strlen($_POST['mailUniv']) > 70) {
+		$errors['mailUniv'] = "L'adresse mail universitaire doit faire moins de 30 caractères";
 	} else {
 		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ? AND etat > 0');
 		$req->execute(array($_POST['mailUniv']));
@@ -46,19 +52,21 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	}
 
 	if (!empty($_POST['mailPerso']) && !filter_var($_POST['mailPerso'], FILTER_VALIDATE_EMAIL)) {
-		$errors['mailPerso'] = "Laisser ce champ vide ou entrer une adresse mail valide ";
+		$errors['mailPerso'] = "Laisser le champ d'adresse mail personnelle vide ou entrer une adresse mail valide ";
+	} elseif (strlen($_POST['mailPerso']) > 70) {
+		$errors['mailPerso'] = "L'adresse personnelle doit faire moins de 30 caractères";
 	}
 
 	if (empty($_POST['mdp']) || strlen($_POST['mdp']) < 6) {
 		$errors['mdp'] = "Le mot de passe doit contenir au minimum 6 caractères";
-	} elseif ($_POST['mdp'] != $_POST['confirmation']){
+	} elseif ($_POST['mdp'] != $_POST['confirmation']) {
 		$errors['mdp'] = "Les deux mots de passe sont différents";
 	}
 
 	if (empty($errors)) {
 		require_once 'inc/fonctions.php';
 
-		$code = chaineAleatoire(50); //Unique ??? bof
+		$code = chaineAleatoire(50);
 		$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
 		$date = date('Y-m-d H:i:s');
 
