@@ -54,34 +54,50 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-
-		<h1>Choisir un nouveau mot de passe</h1>
-
-		<?php if(empty($errors['lienMort'])): ?>
-		<?php if(!empty($errors)): ?>
-		<div class="alerte rouge">
-			<p>La modification du mot de passe a échoué.</p>
-			<ul>
-				<?php foreach ($errors as $error): ?>
-					<li><?= $error; ?></li>
-				<?php endforeach; ?>
-			</ul>
+		<?php require_once ('navigation.html') ?>
+		<div class="row top-page">
+			<div class="offset-md-4 col-md-3 title">
+				<h1>Choisir un nouveau mot de passe</h1>
+			</div>
 		</div>
-		<?php endif; ?>
-
+		<?php if(empty($errors['lienMort'])): ?>
+			<div class="row">
+				<?php if(!empty($errors)): ?>						
+					<div class="offset-md-4 col-md-3">
+						<div class="alerte rouge">
+							<p>La modification du mot de passe a échoué.</p>
+							<ul>
+								<?php foreach ($errors as $error): ?>
+									<li><?= $error; ?></li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					</div>
+				<?php endif; ?>
+				
+		
 		<!-- Formulaire de modification du mot de passe -->
-		<form action="" method="post">
-			<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
-			<input type="password" name="confirmation" placeholder="Mot de passe" maxlength="30" required /><br>
-			<input type="submit" name="modification" value="Valider" />
-		</form>
-
+			<div class="row">
+				<div class="offset-md-4 col-md-3 block">
+					<form action="" method="post">
+						<label for="mdp">Mot de passe</label><br>
+						<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
+						<label for="confirmation">Confirmation du mot de passe</label><br>
+						<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
+						<input type="submit" name="modification" value="Valider" />
+					</form>
+				</div>
+			</div>
 		<?php else: ?>
-		<div class="alerte rouge">
-			<p>Ce lien n'est pas ou n'est plus valide.</p>
-			<a href="accueil.php">Retour à l'accueil</a>
+		<div class="row">
+			<div class="offset-md-4 col-md-3 block alerte rouge">
+				<p>Ce lien n'est pas ou n'est plus valide.</p>
+				<a href="accueil.php">Retour à l'accueil</a>
+			</div>
 		</div>
 		<?php endif; ?>
 

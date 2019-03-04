@@ -50,13 +50,17 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-
-		<div class="alerte rouge">
-			<p>Ce lien n'est pas ou n'est plus valide.</p>
-			<a href="accueil.php">Retour à l'accueil</a>
+		<?php require_once ('navigation.html') ?>
+		<div class="row top-page">
+			<div class="offset-md-4 col-md-3 block">
+				<div class="alerte rouge">
+					<p>Ce lien n'est pas ou n'est plus valide.</p>
+					<a href="accueil.php">Retour à l'accueil</a>
+				</div>
+			</div>
 		</div>
-
 	</body>
 </html>

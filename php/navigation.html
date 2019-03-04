@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" type="text/css" href="../css/navigation.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Barre de navigation 
+	<nav>
+		<div class="row">
+			<ul>
+				<div class="col-sm-1"><li><a href="#a"><span class="fa fa-home"></span> Accueil</a></li></div>
+				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-users"></span>L'équipe</a></li></div>
+				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-handshake"></span> Clubs</a></li></div>
+				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-calendar-alt"></span> Evénements</a></li></div>
+				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-shopping-cart"></span> Boutique</a></li></div>
+				<div class="col-sm-1"><li><a href="Forum.html"><span class="fas fa-comments"></span> Forum</a></li></div>
+				<div class="col-sm-1"><li id="li_contact"><a href="#a"><span class="fas fa-envelope"></span> Contact</a></li></div>
+				<div class="col-sm-1"><li id="li_facebook"><a href="#a"><span class="fab fa-facebook-f"  id="facebook_logo"></span></a></li></div>
+				<div class="col-sm-4">
+					<li id="li_connexion" onclick="connexion()"><a href="#a"><span class="fas fa-user-circle"></span></a>
+						<div id="connexion">
+							<form action="">
+								<!-- Se connecter
+								<form action="connexion.php" method="post">
+									<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required />
+									<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
+									<input type="submit" name="connexion" value="Valider" />
+								</form>
+								<?php if (isset($erreurConnexion)) echo $erreurConnexion; ?>
+							</form>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</div>
+		
+	</nav> -->
+<nav>
+	<div class="row nav">
+			<div class="col-sm-1 nav-tab "><a href="accueil.php"><span class="fa fa-home"></span> Accueil</a></div>
+			<div class="col-sm-1 nav-tab "><a href="#a"><span class="fas fa-users"></span>L'équipe</a></div>
+			<div class="col-sm-1 nav-tab "><a href="#a"><span class="fas fa-handshake"></span> Clubs</a></div>
+			<div class="col-sm-1 nav-tab "><a href="#a"><span class="fas fa-calendar-alt"></span> Evénements</a></div>
+			<div class="col-sm-1 nav-tab "><a href="#a"><span class="fas fa-shopping-cart"></span> Boutique</a></div>
+			<div class="col-sm-1 nav-tab "><a href="forum.html"><span class="fas fa-comments"></span> Forum</a></div>
+			<div class="col-sm-1 nav-tab " id="contact-tab"><a href="#a"><span class="fas fa-envelope"></span> Contact</a></div>
+			<div class="col-sm-1" id="facebook-tab"><a href="#a"><span class="fab fa-facebook-f"  id="facebook_logo"></span></a></div>
+			<div class="offset-sm-3 col-sm-1" id="connect-tab">
+				<a href="#a"  onclick="connexion()"><span class="fas fa-user-circle"></span></a>
+					<div id="connexion">
+						<form action="">
+							<!-- Se connecter-->
+							<form action="connexion.php" method="post">
+								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required />
+								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
+								<input type="submit" name="connexion" value="Valider" />
+							</form>
+							<?php if (isset($erreurConnexion)) echo $erreurConnexion; ?>
+						</form>
+					</div>
+				
+			</div>
+	</div>
+
+</nav>
+
+
+
+<script>
+i = false;
+function connexion(){
+	if (i == false){
+		document.getElementById("connexion").style.display = "block";
+		i = true;
+	}
+	else{
+		document.getElementById("connexion").style.display = "none";
+		i = false;
+	}
+}
+
+</script>
+
+
+</body>
+</html>

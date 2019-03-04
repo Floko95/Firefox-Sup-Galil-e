@@ -51,27 +51,41 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
 	</head>
 	<body>
-
-		<h1>Réinitialiser son mot de passe</h1>
+		<?php require_once ('navigation.html') ?>
+		<div class="row top-page">
+			<div class="offset-md-4 col-md-3 title">
+				<h1>Réinitialiser son mot de passe</h1>
+			</div>
+		</div>
 
 		<?php if(!empty($errors)): ?>
-		<div class="alerte rouge">
-			<p>La réinitialisation du mot de passe a échoué.</p>
-			<ul>
-				<?php foreach ($errors as $error): ?>
-					<li><?= $error; ?></li>
-				<?php endforeach; ?>
-			</ul>
+		<div class="row">
+			<div class="offset-md-4 col-md-3 block">
+				<div class="alerte rouge">
+					<p>La réinitialisation du mot de passe a échoué.</p>
+					<ul>
+						<?php foreach ($errors as $error): ?>
+							<li><?= $error; ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<?php endif; ?>
 
 		<!-- Formulaire de réinitialisation du mot de passe -->
-		<form action="" method="post">
-			<input type="mail" name="mailUniv" placeholder="Adresse mail universitaire" required /><br>
-			<input type="submit" name="reinitialisation" value="Valider" />
-		</form>
-
+		<div class="row">
+			<div class="offset-md-4 col-md-3 block">
+				<form action="" method="post">
+					<label for="mailUniv">Adresse mail universitaire</label><br>
+					<input type="mail" name="mailUniv" placeholder="jean.dupont@univ-paris13.fr" required /><br>
+					<input type="submit" name="reinitialisation" value="Valider" />
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

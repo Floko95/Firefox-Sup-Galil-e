@@ -104,48 +104,65 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-
-		<h1>S'inscrire</h1>
-
-		<?php if(!empty($errors)): ?>
-		<div class="alert alert-danger">
-			<p>Vous n'avez pas rempli le formulaire correctement.</p>
-			<ul>
-				<?php foreach ($errors as $error): ?>
-					<li><?= $error; ?></li>
-				<?php endforeach; ?>
-			</ul>
+		<?php require_once ('navigation.html') ?>
+		<div class="row top-page">
+			<div class="offset-md-4 col-md-3 title">
+				<h1>S'inscrire</h1>
+			</div>
 		</div>
-		<?php endif; ?>
-
+		<div class="offset-md-2 col-md-2">
+			<?php if(!empty($errors)): ?>
+			<div class="alert alert-danger">
+				<p>Vous n'avez pas rempli le formulaire correctement.</p>
+				<ul>
+					<?php foreach ($errors as $error): ?>
+						<li><?= $error; ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<?php endif; ?>
+		</div>
 		<!-- Formulaire d'inscription -->
-		<form action="inscription.php" method="post">
-			<input type="text" name="prenom" placeholder="Prénom" maxlength="30" required /><br>
-			<input type="text" name="nom" placeholder="Nom" maxlength="20" required /><br>
-			<input type="text" name="numero" placeholder="Numéro d'étudiant" minlength="8" maxlength="8" required /><br>
-			<input type="mail" name="mailUniv" placeholder="Adresse mail universitaire" required /><br>
-			<input type="mail" name="mailPerso" placeholder="Adresse mail personnelle" /><br>
-			<select name="formation" size="1">
-				<option>CP2I
-				<option>ENER
-				<option>INFO
-				<option>MACS
-				<option>TELE
-			</select>
-			<select name="promotion" size="1">
-				<option>2019
-				<option>2020
-				<option>2021
-				<option>2022
-				<option>2023
-			</select><br>
-			<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
-			<input type="password" name="confirmation" placeholder="Confirmer le mot de passe" maxlength="30" required /><br>
-			<input id="check" type="checkbox" name="regagree" value="valeur" /> Je certifie avoir pris connaissance du règlement<br>
-			<input type="submit" name="inscription" value="Valider" />
-		</form>
-
+		<div class="row ">
+			<div class="offset-md-4 col-md-3 block">
+			<form action="inscription.php" method="post">
+				<label for="prenom">Prénom</label><br>
+				<input type="text" name="prenom" placeholder="ex: Jean" maxlength="30" required /><br>
+				<label for="nom">Nom</label><br>
+				<input type="text" name="nom" placeholder="ex: Dupont" maxlength="20" required /><br>
+				<label for="numero">Numéro d'étudiant</label><br>
+				<input type="text" name="numero" placeholder="ex: 11****37" minlength="8" maxlength="8" required /><br>
+				<label for="mailUniv">Adresse mail universitaire</label><br>
+				<input type="mail" name="mailUniv" placeholder="ex: jean.dupond@univ-paris13.fr" required /><br>
+				<label for="mailPerso">Adresse mail personnelle</label><br>
+				<input type="mail" name="mailPerso" placeholder="ex: jean.dupond@hotmail.fr" /><br>
+				<label for="formation">Formation</label><br>
+				<select name="formation" size="1">
+					<option>CP2I
+					<option>ENER
+					<option>INFO
+					<option>MACS
+					<option>TELE
+				</select><br>
+				<label for="promotion">Promotion</label><br>
+				<select name="promotion" size="1">
+					<option>2019
+					<option>2020
+					<option>2021
+					<option>2022
+					<option>2023
+				</select><br>
+				<label for="mdp">Mot de passe</label>	<br>
+				<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
+				<label for="comfirmation">Confirmation du mot de passe</label><br>
+				<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
+				<input id="check" type="checkbox" name="regagree" value="valeur" /> Je certifie avoir pris connaissance du règlement<br>
+				<input type="submit" name="inscription" value="Valider" />
+			</form>
+			</div>
+		</div>
 	</body>
 </html>

@@ -52,27 +52,41 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 	<head>
 	</head>
 	<body>
-
-		<h1>Connexion</h1>
+	<?php require_once ('navigation.html') ?>
+	<div class="row top-page">
+			<div class="offset-md-4 col-md-3 title">
+				<h1>Connexion</h1>
+			</div>
+		</div>
 
 		<?php if(!empty($errors)): ?>
-		<div class="alerte rouge">
-			<p>La connexion a échoué.</p>
-			<ul>
-				<?php foreach ($errors as $error): ?>
-					<li><?= $error; ?></li>
-				<?php endforeach; ?>
-			</ul>
+		<div class="row">
+			<div class="offset-md-4 col-md-3 block">
+				<div class="alerte rouge">
+					<p>La connexion a échoué.</p>
+					<ul>
+						<?php foreach ($errors as $error): ?>
+							<li><?= $error; ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<?php endif; ?>
 
 		<!-- Formulaire de connexion -->
-		<form action="connexion.php" method="post">
-			<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
-			<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
-			<input type="submit" name="connexion" value="Valider" />
-		</form>
-		<a href="reinitialisation.php">J'ai oublié mon mot de passe</a>
+		<div class="row">
+			<div class="offset-md-4 col-md-3 block">
+				<form action="connexion.php" method="post">
+					<label for="mailUniv">Adresse mail universitaire</label><br>
+					<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
+					<label for="mdp">Mot de passe</label><br>
+					<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
+					<input type="submit" name="connexion" value="Valider" />
+				</form>
+				<a href="reinitialisation.php">J'ai oublié mon mot de passe</a>
+			</div>
+		</div>
 
 	</body>
 </html>

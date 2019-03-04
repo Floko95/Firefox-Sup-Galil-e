@@ -5,10 +5,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body>
-
+		<?php require_once ('navigation.html') ?><br><br><br><br>
 		<?php
 		if (isset($_SESSION['id'])) {
 			echo '
