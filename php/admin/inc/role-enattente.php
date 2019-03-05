@@ -4,6 +4,7 @@ require_once '../../inc/fonctions.php';
 $req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = 1');
 $req->execute();
 $etudiants = $req->fetchAll();
+$nbEtudiants = count($etudiants);
 ?>
 <form action="roles.php" method="post">
 	<table>
@@ -21,6 +22,11 @@ $etudiants = $req->fetchAll();
 		</tr>
 		<?php endforeach; ?>
 	</table>
-<button type="submit" name="refuserInscription" value="Valider">Refuser ces inscriptions</button>
-<button type="submit" name="validerInscription" value="Valider">Valider ces inscriptions</button>
+
+	<?php if ($nbEtudiants == 0): ?>
+		Aucun étudiant en attente de validation d'inscription
+	<?php else: ?>
+		<button type="submit" name="refuserInscription" value="Valider">Refuser ces inscriptions</button>
+		<button type="submit" name="validerInscription" value="Valider">Valider ces inscriptions</button>
+	<?php endif; ?>
 </form>

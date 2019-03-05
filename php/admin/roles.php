@@ -1,7 +1,7 @@
-<!-- LISTE DES ROLES -->
+ï»¿<!-- LISTE DES ROLES -->
 
 <?php
-# On redirige le visiteur s'il n'a rien à faire sur cette page
+# On redirige le visiteur s'il n'a rien Ã  faire sur cette page
 session_start();
 if (!isset($_SESSION['id'])) {
 	header ('Location: ../accueil.php');
@@ -21,7 +21,7 @@ require_once '../inc/fonctions.php';
 ?>
 
 <?php
-# On récupère les différents rôles pour les afficher
+# On rÃ©cupÃ¨re les diffÃ©rents rÃ´les pour les afficher
 $req = $bdd->prepare('SELECT * FROM ROLES'); // tous ceux qui ont un droit peuvent tout voir ? ORDER BY nb droits ?
 $req->execute();
 $roles = $req->fetchAll();
@@ -29,12 +29,12 @@ $nbRoles = count($roles);
 ?>
 
 <?php
-# On récupère les différents droits
+# On rÃ©cupÃ¨re les diffÃ©rents droits
 $req = $bdd->prepare('SELECT * FROM DROITS');
 $req->execute();
 $droits = $req->fetchAll();
 $nbDroits = count($droits);
-# Requête pour savoir si l'étudiant possède le droit i
+# RequÃªte pour savoir si l'Ã©tudiant possÃ¨de le droit i
 $reqDroit = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS NATURAL JOIN attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
 ?>
 
@@ -44,35 +44,35 @@ $success = array();
 ?>
 
 <?php
-# Création d'un rôle
+# CrÃ©ation d'un rÃ´le
 if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
-	# Si l'étudiant n'est pas autorisé à créer un rôle
+	# Si l'Ã©tudiant n'est pas autorisÃ© Ã  crÃ©er un rÃ´le
 	$reqDroit->execute(array($_SESSION['id'], 1));
 	$data = $reqDroit->fetch();
 	if ($data[0] == 0) {
-		$errors['droitCréationManquant'] = "Vous n'êtes pas autorisé à créer un rôle";
+		$errors['droitCrÃ©ationManquant'] = "Vous n'Ãªtes pas autorisÃ© Ã  crÃ©er un rÃ´le";
 	}
 	
-	# Si le nom du rôle est absent, déjà utilisé ou trop long
+	# Si le nom du rÃ´le est absent, dÃ©jÃ  utilisÃ© ou trop long
 	if (empty($_POST['nomRole'])) {
-		$errors['nomRole'] = "Nom de rôle manquant";
+		$errors['nomRole'] = "Nom de rÃ´le manquant";
 	} elseif (strlen($_POST['nomRole']) > 30) {
-		$errors['nomRole'] = "Le nom du rôle doit faire au plus 30 caractères";
+		$errors['nomRole'] = "Le nom du rÃ´le doit faire au plus 30 caractÃ¨res";
 	} else {
 		$req = $bdd->prepare('SELECT COUNT(*) FROM ROLES WHERE role = ?');
 		$req->execute(array($_POST['nomRole']));
 		$existeDeja = $req->fetch();
 		if ($existeDeja[0] != 0) {
-			$errors['nomRole'] = "Nom de rôle déjà utilisé";
+			$errors['nomRole'] = "Nom de rÃ´le dÃ©jÃ  utilisÃ©";
 		}
 	}
 	
 	# Si la description est trop longue
 	if (!empty($_POST['descriptionRole']) && strlen($_POST['descriptionRole']) > 255) {
-		$errors['descriptionRole'] = "La description du rôle doit faire au plus 255 caractères";
+		$errors['descriptionRole'] = "La description du rÃ´le doit faire au plus 255 caractÃ¨res";
 	}
 	
-	# Si l'étudiant crée un rôle et lui attribue un droit qu'il ne possède pas
+	# Si l'Ã©tudiant crÃ©e un rÃ´le et lui attribue un droit qu'il ne possÃ¨de pas
 	for ($i=1; $i <= $nbDroits; $i++) {
 		if (isset($_POST['droit'.$i])){
 			$reqDroit->execute(array($_SESSION['id'], $i));
@@ -84,7 +84,7 @@ if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
 		}
 	}
 	
-	# S'il n'y a pas d'erreur, on crée le rôle et on lui associe les droits
+	# S'il n'y a pas d'erreur, on crÃ©e le rÃ´le et on lui associe les droits
 	if (empty($errors)) {
 		$req = $bdd->prepare('INSERT INTO ROLES(role, descriptionRole, supprimable) VALUES(:role, :descriptionRole, 1)');
 		$req->execute(array(
@@ -102,8 +102,8 @@ if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
 					'idDroits' => $i));
 			}
 		}
-		$success['creationRole'] = "Le rôle a bien été créé";
-		# On met à jour les rôles
+		$success['creationRole'] = "Le rÃ´le a bien Ã©tÃ© crÃ©Ã©";
+		# On met Ã  jour les rÃ´les
 		$req = $bdd->prepare('SELECT * FROM ROLES');
 		$req->execute();
 		$roles = $req->fetchAll();
@@ -114,48 +114,48 @@ if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
 ?>
 
 <?php
-# Suppression d'un rôle
+# Suppression d'un rÃ´le
 for ($i=0; $i < $nbRoles; $i++) {
 	if (isset($_POST['suppressionRole'.$roles[$i]['idRoles']]) && $_POST['suppressionRole'.$roles[$i]['idRoles']] == 'Valider') {
-		# Si l'étudiant n'est pas autorisé à supprimer un rôle
+		# Si l'Ã©tudiant n'est pas autorisÃ© Ã  supprimer un rÃ´le
 		$reqDroit->execute(array($_SESSION['id'], 2));
 		$data = $reqDroit->fetch();
 		if ($data[0] == 0) {
-			$errors['droitSuppressionManquant'] = "Vous n'êtes pas autorisé à supprimer un rôle";
+			$errors['droitSuppressionManquant'] = "Vous n'Ãªtes pas autorisÃ© Ã  supprimer un rÃ´le";
 		}
 
-		# Si l'étudiant ne possède pas tous les droits conférés par le rôle qu'il souhaite supprimer
+		# Si l'Ã©tudiant ne possÃ¨de pas tous les droits confÃ©rÃ©s par le rÃ´le qu'il souhaite supprimer
 		$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS E WHERE E.id = ? 
-		AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A2 NATURAL JOIN attributionDroitsAuxRoles B2 WHERE A2.idRoles = ? 
-		AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A3 NATURAL JOIN attributionDroitsAuxRoles B3 WHERE A3.id = E.id))');
+			AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A2 NATURAL JOIN attributionDroitsAuxRoles B2 WHERE A2.idRoles = ? 
+			AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A3 NATURAL JOIN attributionDroitsAuxRoles B3 WHERE A3.id = E.id))');
 		$req->execute(array($_SESSION['id'], $roles[$i]['idRoles']));
 		$data = $req->fetch();
 		if ($data[0] == 0) {
-			$errors['droitManquant'] = "Vous ne possédez pas tous les droits de ce rôle";
+			$errors['droitManquant'] = "Vous ne possÃ©dez pas tous les droits de ce rÃ´le";
 		}
 		
-		# Si le rôle ne peut pas être supprimé
+		# Si le rÃ´le ne peut pas Ãªtre supprimÃ©
 		$req = $bdd->prepare('SELECT supprimable FROM ROLES WHERE idRoles = ?');
 		$req->execute(array($roles[$i]['idRoles']));
 		$data = $req->fetch();
 		if ($data['supprimable'] == 0) {
-			$errors['roleNonSupprimable'] = "Ce rôle est un rôle par défaut et ne peut pas être supprimé";
+			$errors['roleNonSupprimable'] = "Ce rÃ´le est un rÃ´le par dÃ©faut et ne peut pas Ãªtre supprimÃ©";
 		}
 		
-		# Si des étudiants possèdent encore ce rôle
+		# Si des Ã©tudiants possÃ¨dent encore ce rÃ´le
 		$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants WHERE idRoles = ?');
 		$req->execute(array($roles[$i]['idRoles']));
 		$data = $req->fetch();
 		if ($data[0] > 0) {
-			$errors['etudiantPossedantRole'] = "Ce rôle ne peut pas être supprimé car des étudiants le possèdent encore";
+			$errors['etudiantPossedantRole'] = "Ce rÃ´le ne peut pas Ãªtre supprimÃ© car des Ã©tudiants le possÃ¨dent encore";
 		}
 		
-		# S'il n'y a pas d'erreur, on supprime le rôle (ses droits sont supprimés en cascade)
+		# S'il n'y a pas d'erreur, on supprime le rÃ´le (ses droits sont supprimÃ©s en cascade)
 		if (empty($errors)) {
 			$req = $bdd->prepare('DELETE FROM ROLES WHERE idRoles = ?');
 			$req->execute(array($roles[$i]['idRoles']));
-			$success['roleSupprimé'] = "Ce rôle a bien été supprimé";
-			# On met à jour les rôles
+			$success['roleSupprimÃ©'] = "Ce rÃ´le a bien Ã©tÃ© supprimÃ©";
+			# On met Ã  jour les rÃ´les
 			$req = $bdd->prepare('SELECT * FROM ROLES');
 			$req->execute();
 			$roles = $req->fetchAll();
@@ -166,17 +166,69 @@ for ($i=0; $i < $nbRoles; $i++) {
 ?>
 
 <?php
-# Retrait de rôles
-	// Si on a pas le droit de retirer des roles
-	// Si on ne possède pas tous les droits que confèrent ce role
-	// Si c'est le role admin et qu'il n'en restera plus
+# Retrait d'un rÃ´le
+for ($i=0; $i < $nbRoles; $i++) {
+	if (isset($_POST['retirerRole'.$roles[$i]['idRoles']]) && $_POST['retirerRole'.$roles[$i]['idRoles']] == 'Valider') {
+		# Si l'Ã©tudiant n'est pas autorisÃ© Ã  retirer un rÃ´le
+		$reqDroit->execute(array($_SESSION['id'], 4));
+		$data = $reqDroit->fetch();
+		if ($data[0] == 0) {
+			$errors['droitRetraitManquant'] = "Vous n'Ãªtes pas autorisÃ© Ã  retirer un rÃ´le Ã  un Ã©tudiant";
+		}
+		
+		# Si l'Ã©tudiant ne possÃ¨de pas tous les droits confÃ©rÃ©s par le rÃ´le qu'il souhaite retirer Ã  un Ã©tudiant
+		$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS E WHERE E.id = ? 
+			AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A2 NATURAL JOIN attributionDroitsAuxRoles B2 WHERE A2.idRoles = ? 
+			AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A3 NATURAL JOIN attributionDroitsAuxRoles B3 WHERE A3.id = E.id))');
+		$req->execute(array($_SESSION['id'], $roles[$i]['idRoles']));
+		$data = $req->fetch();
+		if ($data[0] == 0) {
+			$errors['droitManquant'] = "Vous ne possÃ©dez pas tous les droits de ce rÃ´le";
+		}
+		
+		# On met dans un tableau la liste des id d'Ã©tudiants dont on souhaite retirer le rÃ´le
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS E WHERE EXISTS (SELECT * FROM attributionRolesAuxEtudiants aRAE WHERE aRAE.id = E.id)');
+		$req->execute();
+		$etudiantsPossedantUnRole = $req->fetchAll();
+		$retirerA = array();
+		foreach ($etudiantsPossedantUnRole as $etudiantPossedantUnRole){
+			if (isset($_POST['retirer'.$etudiantPossedantUnRole['id']])){
+				$retirerA[] = $etudiantPossedantUnRole['id'];
+			}
+		}
+		
+		# Si aucun Ã©tudiant n'a Ã©tÃ© sÃ©lectionnÃ©s
+		if (count($retirerA) == 0) {
+			$errors['aucuneSÃ©lection'] = "Vous devez sÃ©lectionner au moins un Ã©tudiant";
+		}
+		
+		# Si c'est le rÃ´le administrateur, il faut toujours qu'il reste au moins un Ã©tudiant possÃ¨dant ce rÃ´le
+		if ($roles[$i]['idRoles'] == 1) {
+			$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants WHERE idRoles = 1');
+			$req->execute();
+			$data = $req->fetch();
+			if ($data[0] == count($retirerA)) {
+				$errors['administrateurNecessaire'] = "Il doit toujours y avoir au moins un administrateur";
+			}
+		}
+		
+		# S'il n'y a pas d'erreur, on retire le rÃ´le aux Ã©tudiants sÃ©lectionnÃ©s
+		if (empty($errors)) {
+			foreach ($retirerA as $id){
+				$req = $bdd->prepare('DELETE FROM attributionRolesAuxEtudiants WHERE idRoles = ? AND id = ?');
+				$req->execute(array($roles[$i]['idRoles'], $id));
+				$success['roleSupprimÃ©'] = 'Le rÃ´le \"'.$roles[$i]['role'].'" a bien Ã©tÃ© retirÃ© aux Ã©tudiants selectionnÃ©s';
+			}
+		}
+	}
+}
 ?>
 
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="fr">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="../../css/admin.css" />
 	</head>
 	<body>
@@ -184,11 +236,11 @@ for ($i=0; $i < $nbRoles; $i++) {
 			<img src="menu.png" style="padding: 20px">
 			<nav>
 				<ul>
-					<li id="menu-role"></li><hr>
-					<li id="menu-etudiant"></li>
-					<li id="menu-calendrier"></li>
-					<li id="menu-boutique"></li>
-					<li id="menu-minijeu"></li>
+					<a href="roles.php"><li id="menu-role"></li></a><hr>
+					<a href="etudiant.php"><li id="menu-etudiant"></li></a>
+					<a href="calendrier.php"><li id="menu-calendrier"></li></a>
+					<a href="boutique.php"><li id="menu-boutique"></li></a>
+					<a href="mini-jeu.php"><li id="menu-minijeu"></li></a>
 				</ul>
 			</nav>
 		</div>
@@ -198,7 +250,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 				Accueil
 			</div>
 			<div id="title">
-				Rôles
+				RÃ´les
 			</div>
 			
 			<?php if(!empty($errors)): ?>
@@ -224,12 +276,12 @@ for ($i=0; $i < $nbRoles; $i++) {
 			?>
 			<div id="contenu">
 				<div id ="creerRoleTitle">
-					Créer un nouveau rôle
+					CrÃ©er un nouveau rÃ´le
 				</div>
 				<div id="creerRoleMiddle">
 					<br>
 					<form action="roles.php" method="post">
-						<label>Nom du rôle :</label><br>
+						<label>Nom du rÃ´le :</label><br>
 						<input type="text" name="nomRole" /><br>
 						<label>Description :</label><br>
 						<textarea name="descriptionRole"></textarea><br><br>
@@ -253,9 +305,9 @@ for ($i=0; $i < $nbRoles; $i++) {
 								echo '</tr>';
 							endforeach;
 							?>
-						</table><br>
-						<button type="submit" name="creationRole" value="Valider">Créer ce rôle</button>
-					</form><br>
+						</table>
+						<button type="submit" name="creationRole" value="Valider">CrÃ©er ce rÃ´le</button>
+					</form>
 				</div>
 			</div>
 			<?php endif; ?>

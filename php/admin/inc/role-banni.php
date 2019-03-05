@@ -4,6 +4,7 @@ require_once '../../inc/fonctions.php';
 $req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = -1');
 $req->execute();
 $etudiants = $req->fetchAll();
+$nbEtudiants = count($etudiants);
 ?>
 <form action="roles.php" method="post">
 	<table>
@@ -21,6 +22,12 @@ $etudiants = $req->fetchAll();
 		</tr>
 		<?php endforeach; ?>
 	</table>
-<button type="submit" name="supprimerCompte" value="Valider">Supprimer ces comptes</button>
-<button type="submit" name="réhabiliterCompte" value="Valider">Réhabiliter ces étudiants</button>
+	
+	<?php if ($nbEtudiants == 0): ?>
+		Aucun étudiant n'a son compte banni
+	<?php else: ?>
+		<button type="submit" name="supprimerCompte" value="Valider">Supprimer ces comptes</button>
+		<button type="submit" name="réhabiliterCompte" value="Valider">Réhabiliter ces étudiants</button>
+	<?php endif; ?>
+
 </form>
