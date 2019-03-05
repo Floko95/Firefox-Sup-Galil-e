@@ -1,3 +1,8 @@
+html{
+	position: relative;
+	min-height: 100%;
+}
+
 html body{
 	position: absolute;
 	box-sizing: border-box;
@@ -8,7 +13,9 @@ html body{
 	background-color: #171943;
 	color: black;
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-variant: small-caps;
+	/* font-variant: small-caps; */
+	min-height: 100%;
+	word-break: break-all;
 }
 
 html body .top-page{
@@ -21,6 +28,7 @@ html body .block{
 	border-radius : 20px;
 	text-align: center;
 	padding: 20px;
+	margin-bottom: 15px;
 }
 
 html body .title{
