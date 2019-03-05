@@ -1,39 +1,32 @@
+<?php require_once("inc/serveur.php"); ?>
+
+<?php session_start(); ?>
+
 <!DOCTYPE html>
-
 <html>
-<head>
-	<!--<link rel="stylesheet" type="text/css" href="../css/design.css">-->
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
-</head>
-<body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+		<?php require_once ('navigation.html') ?><br><br><br><br>
+		<?php
+		if (isset($_SESSION['id'])) {
+			echo '
+					<a href="deconnexion.php">Deconnexion</a>
+			';
+		}
+		else {
+			echo '
+			<a href="inscription.php">Inscription</a>
+					<a href="connexion.php">Connexion</a>
+					<a href="verification.php">Verification</a>
+					<a href="reinitialisation.php">Reinitialisation</a>
+					<a href="modification.php">Modification</a>
+			';
+		}
+		?>
+					
 
-	<?php require_once ('navigation.html') ?>
-
-
-	<div id="connexion"></div>
-
-	<div style="top:0;z-index: -100;position: sticky;">
-		<video width="100%"autoplay muted loop style="margin-top: -3%">
-    		<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
-		</video> 
-	</div>>
-
-
-<script>
-i = false;
-function connexion(){
-	if (i == false){
-		document.getElementById("connexion").style.display = "block";
-		i = true;
-	}
-	else{
-		document.getElementById("connexion").style.display = "none";
-		i = false;
-	}
-}
-
-</script>
-
-
-</body>
+	</body>
 </html>
