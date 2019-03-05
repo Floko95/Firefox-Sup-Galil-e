@@ -1,19 +1,19 @@
 
-html body {
-    background-color: #102030;
-}
 .page-footer
 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     text-align: center;
     background-color: #EA6018;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-    margin-left: 3%;
+    /* margin-left: 3%;
     margin-right: 3%;
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    */padding-top: 2%;/*
+    padding-bottom: 2%; */
 }
 
 .page-footer .col-sm-4
@@ -24,13 +24,12 @@ html body {
 
 .page-footer br
 {
-    margin-top: 1em; 
+    /* margin-top: 1em;  */
    
 }
 
-.page-footer .planDuSite br
-{
-    margin-top: 0em; 
+.page-footer .retour {
+    margin-top: 12px; 
    
 }
 
@@ -46,7 +45,7 @@ html body {
     }   
 
 .page-footer h4
-    {
+  {
     text-align: center;
 }
 
