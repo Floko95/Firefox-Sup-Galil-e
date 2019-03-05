@@ -147,7 +147,7 @@ p
 #contenu
 {
 	box-sizing: border-box;
-	background: #444;
+	background: #27293D;
 	height: auto;
 	width: 90%;
 	padding-left: 30px;
@@ -163,13 +163,9 @@ p
 {
 	height: auto;
 	width: 100%;
-	
-	
-	
 	font-size: 25px;
 	color: #CCC;
 	cursor: pointer;
-	
 }
 
 #creerRoleMiddle
@@ -183,6 +179,7 @@ p
 	color: #FFF;
 	font-size: 18px;
 	text-align: center;
+	color: #DDD;
 }
 
 label{
@@ -300,6 +297,14 @@ button{
 button:hover{
 	cursor: pointer;
 	background: #A9AAC7;
+}
+
+input[type=text], textarea{
+	box-sizing: border-box;
+	width: 200px;
+	background: #474B70;
+	
+	border: 1px solid #CCC;
 }
 
 
