@@ -1,0 +1,303 @@
+html>body
+{
+	position: absolute;
+	box-sizing: border-box;
+	width: 100%;
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+	border-top: 2px solid #EA6018;
+	background: #1E1E2E;
+	font-variant: small-caps;
+	font-family: Andale Mono, monospace;
+}
+
+#menu
+{
+	position: fixed;
+	float: left;
+	height: 100%;
+	width: 130px;
+	text-align: center;
+}
+
+hr
+{
+	width: 50px;
+	padding:0px;
+	border: 1px solid #EA6018;
+}
+
+nav{
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 85px;
+	height: calc(100% - 100px);
+	background: #FFF;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px 1px #111;
+	color: #FFF;
+}
+
+nav ul{
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+nav li{
+	width: 100%;
+	height: 60px;
+	list-style-type: none;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#menu-role{
+	background-image: url(../img/organigram.png);
+}
+#menu-role:hover{
+	background-image: url(../img/organigram-blue.png);
+}
+#menu-etudiant{
+	background-image: url(../img/id-card.png);
+}
+#menu-etudiant:hover{
+	background-image: url(../img/id-card-blue.png);
+}
+#menu-calendrier{
+	background-image: url(../img/calendar.png);
+}
+#menu-calendrier:hover{
+	background-image: url(../img/calendar-blue.png);
+}
+#menu-boutique{
+	background-image: url(../img/shopping-cart.png);
+}
+#menu-boutique:hover{
+	background-image: url(../img/shopping-cart-blue.png);
+}
+#menu-minijeu{
+	background-image: url(../img/console-controller.png);
+}
+#menu-minijeu:hover{
+	background-image: url(../img/console-controller-blue.png);
+}
+
+#page
+{
+	float: right;
+	height: auto;
+	width: calc(100% - 130px);
+}
+
+#head
+{
+	box-sizing: border-box;
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	height: 70px;
+	width: 100%;
+	color: #FFF;
+	font-size: 25px;
+}
+
+#title
+{
+	box-sizing: border-box;
+	height: auto;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	background: #EA6018;
+	color: #1E1E2E;
+	font-size: 30px;
+	padding-left: 20px;
+	margin-bottom: 10px;
+	box-shadow: 0px 0px 2px 1px #111;
+}
+
+p
+{
+	box-sizing: border-box;
+	height: auto;
+	width: auto;
+	display: inline-block;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	color: #000;
+	font-size: 18px;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-shadow: 0px 0px 2px 1px #111;
+}
+
+.red{
+	background: #f23434;
+}
+
+.green{
+	background: #34a234;
+}
+
+#contenu
+{
+	box-sizing: border-box;
+	background: #444;
+	height: auto;
+	width: 90%;
+	padding-left: 30px;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 1px 1px #222;
+}
+
+#creerRoleTitle
+{
+	height: auto;
+	width: 100%;
+	
+	
+	
+	font-size: 25px;
+	color: #CCC;
+	cursor: pointer;
+	
+}
+
+#creerRoleMiddle
+{
+	display: none;
+	box-sizing: border-box;
+	height: auto;
+	width: calc(100% - 20px);
+	margin-left: auto;
+	margin-right: auto;
+	color: #FFF;
+	font-size: 18px;
+	text-align: center;
+}
+
+label{
+	color: #EA6018;
+}
+
+.role
+{
+	box-sizing: border-box;
+	height: auto;
+	width: 90%;
+	
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	
+	text-align: center;
+}
+
+.role + .role{
+	margin-top: 10px;
+}
+
+.roleTop
+{
+	height: 25px;
+	width: 100%;
+	
+	border-radius: 5px;
+	color: #EA6018;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.roleTitle
+{
+	float: left;
+	height: 100%;
+	width: calc(100% - 100px);
+	border-radius: 5px;
+	background: #fff;
+	cursor: pointer;
+}
+
+.roleDescription
+{
+	float: left;
+	height: 100%;
+	width: 30px;
+	margin-left: 10px;
+	cursor: help;
+}
+
+.roleNumber
+{
+	float: left;
+	height: 100%;
+	width: 50px;
+	margin-left: 10px;
+	background: #EA6018;
+	border-radius: 5px;
+	color: #FFF;
+}
+
+.roleMiddle
+{
+	display: none;
+	height: auto;
+	width: 500px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin-left: calc((100% - 600px) / 2);
+	background: #27293D;
+	color: #DDD;
+}
+
+.roleBottom
+{
+	height: 5px;
+	width: 500px;
+	margin-left: calc((100% - 600px) / 2);
+	background: #EA6018;
+	border-radius: 0px 0px 5px 5px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th{
+	color: #1E1E2E;
+	font-size: 22px;
+}
+
+tr + tr{
+	border-top: 1px solid #1E1E2E;
+}
+
+tr:hover td{
+	color: #EA6018;
+}
+
+button{
+	box-shadow: 0px 0px 2px 1px #111;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	color: #1E1E2E;
+	background: #9294B8;
+}
+
+button:hover{
+	cursor: pointer;
+	background: #A9AAC7;
+}
+
+
