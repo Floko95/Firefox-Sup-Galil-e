@@ -8,6 +8,6 @@ function chaineAleatoire($taille){
   return $code;
 }
 
-function connexionCookie(){
-
+function text($chaine){
+	return htmlspecialchars($chaine, ENT_QUOTES, 'UTF-8', false);
 }
