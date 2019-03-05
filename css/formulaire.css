@@ -15,3 +15,8 @@ border-top-color:#e4b9c0
 html body form {
     color: black;
 }
+
+html body input:required:invalid{
+	background-color:#FF0000;
+	color: white;
+}

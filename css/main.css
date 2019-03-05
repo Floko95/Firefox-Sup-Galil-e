@@ -33,6 +33,7 @@ html body .block{
 html body .title{
 	text-align: center;
 	color: #797979;
+	word-break: normal;
 }
 
 @media screen and (max-width: 728px) {
