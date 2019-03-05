@@ -39,6 +39,28 @@ html body .message-content{
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px;
 }
+
+.info-categorie{
+	margin-bottom: 15px;
+	/*border :solid  4px black;*/
+}
+
+.topic{
+	margin: 4px;
+	border :solid  2px black;
+	border-radius:  4px;
+	/* background-color:#797dd6; */
+	background-color:#cfa551;
+}
+
+.topic a{
+	color: black;
+}
+
+.tag{
+	font-style: italic;
+	font-weight: 100;
+}
 /* 
 .Topics th {
  background-color: #EA6018;
