@@ -61,6 +61,16 @@ html body .message-content{
 	font-style: italic;
 	font-weight: 100;
 }
+
+.add-topic{
+	margin-bottom: 5px;
+}
+
+
+.add-topic btn{
+	background-color: #cfa551;
+}
+
 /* 
 .Topics th {
  background-color: #EA6018;
