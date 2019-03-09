@@ -35,7 +35,7 @@ $req->execute();
 $droits = $req->fetchAll();
 $nbDroits = count($droits);
 # Requête pour savoir si l'étudiant possède le droit i
-$reqDroit = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS NATURAL JOIN attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
+$reqDroit = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
 ?>
 
 <?php
@@ -217,7 +217,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 			foreach ($retirerA as $id){
 				$req = $bdd->prepare('DELETE FROM attributionRolesAuxEtudiants WHERE idRoles = ? AND id = ?');
 				$req->execute(array($roles[$i]['idRoles'], $id));
-				$success['roleSupprimé'] = 'Le rôle \"'.$roles[$i]['role'].'" a bien été retiré aux étudiants selectionnés';
+				$success['roleSupprimé'] = 'Le rôle "'.$roles[$i]['role'].'" a bien été retiré aux étudiants selectionnés';
 			}
 		}
 	}
@@ -232,18 +232,8 @@ for ($i=0; $i < $nbRoles; $i++) {
 		<link rel="stylesheet" href="../../css/admin.css" />
 	</head>
 	<body>
-		<div id="menu">
-			<img src="menu.png" style="padding: 20px">
-			<nav>
-				<ul>
-					<a href="roles.php"><li id="menu-role"></li></a><hr>
-					<a href="etudiant.php"><li id="menu-etudiant"></li></a>
-					<a href="calendrier.php"><li id="menu-calendrier"></li></a>
-					<a href="boutique.php"><li id="menu-boutique"></li></a>
-					<a href="mini-jeu.php"><li id="menu-minijeu"></li></a>
-				</ul>
-			</nav>
-		</div>
+	
+		<?php require_once '/inc/menu.php'; ?>
 
 		<div id="page">
 			<div id="head">
@@ -253,20 +243,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 				Rôles
 			</div>
 			
-			<?php if(!empty($errors)): ?>
-			<p class="red">
-				<?php foreach ($errors as $error): ?>
-					<?= $error; ?><br>
-				<?php endforeach; ?>
-			</p>
-			<?php endif; ?>
-			<?php if(!empty($success)): ?>
-			<p class="green">
-				<?php foreach ($success as $succes): ?>
-					<?= $succes; ?><br>
-				<?php endforeach; ?>
-			</p>
-			<?php endif; ?>
+			<?php require_once '/inc/erreurs.php'; ?>
 			
 			
 			<?php 
