@@ -275,17 +275,17 @@ for ($i=0; $i < $nbRoles; $i++) {
 			if($data[0] > 0): 
 			?>
 			<div id="contenu">
-				<div id ="creerRoleTitle">
+				<div id ="contenuTitle">
 					Créer un nouveau rôle
 				</div>
 				<div id="creerRoleMiddle">
 					<br>
 					<form action="roles.php" method="post">
-						<label>Nom du rôle :</label><br>
+						<label><u>Nom du rôle</u> :</label><br>
 						<input type="text" name="nomRole" /><br>
-						<label>Description :</label><br>
+						<label><u>Description</u> :</label><br>
 						<textarea name="descriptionRole"></textarea><br><br>
-						<table style="text-align: center;border: 1px solid #1E1E1E">
+						<table>
 							<?php
 							$req = $bdd->prepare('SELECT * FROM DROITS');
 							$req->execute();
@@ -294,8 +294,8 @@ for ($i=0; $i < $nbRoles; $i++) {
 								$reqDroit->execute(array($_SESSION['id'], $tousDroit['idDroits']));
 								$data = $reqDroit->fetch();
 								echo '<tr>';
-								echo '<td style="border-right: 1px solid #1E1E1E">'.$tousDroit['droit'].'</td>';
-								echo '<td style="border-right: 1px solid #1E1E1E"><i>'.$tousDroit['descriptionDroit'].'</i></td>';
+								echo '<td>'.$tousDroit['droit'].'</td>';
+								echo '<td><i>'.$tousDroit['descriptionDroit'].'</i></td>';
 								if ($data[0] > 0) {
 									echo '<td><input type="checkbox" name="droit'.$tousDroit['idDroits'].'"/></td>';
 								}
