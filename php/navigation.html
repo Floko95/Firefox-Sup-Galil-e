@@ -16,37 +16,7 @@
 </head>
 <body>
 
-<!-- Barre de navigation 
-	<nav>
-		<div class="row">
-			<ul>
-				<div class="col-sm-1"><li><a href="#a"><span class="fa fa-home"></span> Accueil</a></li></div>
-				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-users"></span>L'équipe</a></li></div>
-				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-handshake"></span> Clubs</a></li></div>
-				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-calendar-alt"></span> Evénements</a></li></div>
-				<div class="col-sm-1"><li><a href="#a"><span class="fas fa-shopping-cart"></span> Boutique</a></li></div>
-				<div class="col-sm-1"><li><a href="Forum.html"><span class="fas fa-comments"></span> Forum</a></li></div>
-				<div class="col-sm-1"><li id="li_contact"><a href="#a"><span class="fas fa-envelope"></span> Contact</a></li></div>
-				<div class="col-sm-1"><li id="li_facebook"><a href="#a"><span class="fab fa-facebook-f"  id="facebook_logo"></span></a></li></div>
-				<div class="col-sm-4">
-					<li id="li_connexion" onclick="connexion()"><a href="#a"><span class="fas fa-user-circle"></span></a>
-						<div id="connexion">
-							<form action="">
-								<!-- Se connecter
-								<form action="connexion.php" method="post">
-									<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required />
-									<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
-									<input type="submit" name="connexion" value="Valider" />
-								</form>
-								<?php if (isset($erreurConnexion)) echo $erreurConnexion; ?>
-							</form>
-						</div>
-					</li>
-				</div>
-			</ul>
-		</div>
-		
-	</nav> -->
+
 <nav>
 	<div class="row nav">
 			<div class="col-sm-1 nav-tab "><a href="index.php"><span class="fa fa-home"></span> Accueil</a></div>
@@ -60,15 +30,13 @@
 			<div class="offset-sm-3 col-sm-1" id="connect-tab">
 				<a href="#a"  onclick="connexion()"><span class="fas fa-user-circle"></span></a>
 					<div id="connexion">
-						<form action="">
-							<!-- Se connecter-->
+
 							<form action="connexion.php" method="post">
 								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required />
 								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
 								<input type="submit" name="connexion" value="Valider" />
 							</form>
-							<?php if (isset($erreurConnexion)) echo $erreurConnexion; ?>
-						</form>
+
 					</div>
 				
 			</div>
