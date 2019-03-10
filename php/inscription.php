@@ -3,7 +3,7 @@
 <? php
 session_start();
 if (isset($_SESSION['id'])) {
-	header ('Location: accueil.php');
+	header ('Location: index.php');
 	exit();
 }
 ?>
@@ -92,7 +92,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$id = $etudiant['id'];
 		mail($_POST['mailUniv'], "BDE : Validation de votre compte", "Afin de valider votre compte, veuillez cliquer sur ce lien\n\nhttp:://verification.php?id=$id&code=$code");
 
-		header('Location: accueil.php');
+		header('Location: index.php');
 		exit('Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire');
 	}
 

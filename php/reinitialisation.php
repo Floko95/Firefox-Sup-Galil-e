@@ -3,7 +3,7 @@
 <? php
 session_start();
 if (isset($_SESSION['id'])) {
-	header ('Location: accueil.php');
+	header ('Location: index.php');
 	exit();
 }
 ?>
@@ -38,7 +38,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 			mail($_POST['mailUniv'], "BDE : réinitialisation de votre mot de passe", "Afin de choisir un nouveau mot de passe, veuillez cliquer sur ce lien\n\nhttp:://modification.php?id=$id&code=$code");
 
 			# On redirige l'étudiant vers la page d'accueil
-			header('Location: accueil.php');
+			header('Location: index.php');
 			exit('Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire');
 		}
 	}

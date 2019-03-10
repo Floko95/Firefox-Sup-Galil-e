@@ -3,7 +3,7 @@
 <? php
 session_start();
 if (isset($_SESSION['id'])) {
-	header ('Location: accueil.php');
+	header ('Location: index.php');
 	exit();
 }
 ?>
@@ -35,7 +35,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 			$_SESSION['formation'] = $etudiant['formation'];
 			$_SESSION['promotion'] = $etudiant['promotion'];
 			$_SESSION['etat'] = $etudiant['etat'];
-			header('Location: accueil.php');
+			header('Location: index.php');
 			exit();
 		} else {
 			$errors['identifiants'] = "Identifiants invalides";
