@@ -34,7 +34,7 @@
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum Général</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
-			<div class=" col-md-2 date-categorie">Date de dernière modifiaction</div>
+			<div class=" col-md-2 date-categorie">Date de dernière modification</div>
 		</div>
 		<div class="row topic">
             <div class=" col-md-6 topic-subject"><a href="#">Horizon Japon</a></div>
