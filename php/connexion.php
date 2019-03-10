@@ -50,6 +50,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 <!DOCTYPE html>
 <html>
 	<head>
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
 	<?php require_once ('navigation.html') ?>
@@ -59,6 +60,15 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 			</div>
 		</div>
 
+		<?php if (isset($_SESSION['flash'])): ?>
+			<?php foreach($_SESSION['flash'] as $type => $message): ?>
+				<p class="green">
+					<?= $message; ?>
+				</p>
+			<?php endforeach; ?>
+			<?php unset($_SESSION['flash']); ?>
+		<?php endif; ?>
+		
 		<?php if(!empty($errors)): ?>
 		<div class="row">
 			<div class="offset-md-4 col-md-3 block">

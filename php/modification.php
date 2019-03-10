@@ -35,8 +35,10 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 				$req = $bdd->prepare('UPDATE ETUDIANTS SET code = NULL, typeCode = 0, dateMail = NULL WHERE id = ?');
 				$req->execute(array($_GET['id']));
 
+				session_start();
+				$_SESSION['flash']['alerte'] = 'Le mot de passe a bien été modifié, vous pouvez désormais vous connecter';
 				header('Location: connexion.php');
-				exit('Le mot de passe a bien été modifié, vous pouvez désormais vous connecter');
+				exit();
 			}
 
 		}

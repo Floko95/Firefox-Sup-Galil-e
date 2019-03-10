@@ -10,7 +10,20 @@
 	</head>
 	<body>
 		<?php require_once ('navigation.html') ?><br><br><br><br>
+		
+		<?php if (isset($_SESSION['flash'])): ?>
+			<?php foreach($_SESSION['flash'] as $type => $message): ?>
+				<p class="green">
+					<?= $message; ?>
+				</p>
+			<?php endforeach; ?>
+			<?php unset($_SESSION['flash']); ?>
+		<?php endif; ?>
+		
 		<?php
+		
+		
+		
 		if (isset($_SESSION['id'])) {
 			echo '
 					<a href="deconnexion.php">Deconnexion</a>
