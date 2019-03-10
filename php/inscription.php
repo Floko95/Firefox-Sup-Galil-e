@@ -155,7 +155,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 					<option>2022
 					<option>2023
 				</select><br>
-				<label for="mdp">Mot de passe</label>	<br>
+				<label for="mdp">Mot de passe (8 caractère minimum)</label>	<br>
 				<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
 				<label for="comfirmation">Confirmation du mot de passe</label><br>
 				<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
@@ -165,4 +165,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 			</div>
 		</div>
 	</body>
+	<footer>
+ 	   <?php require_once ('footer.html') ?>
+  </footer>
 </html>

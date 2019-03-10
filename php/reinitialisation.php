@@ -88,4 +88,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 			</div>
 		</div>
 	</body>
+	<footer>
+    	<?php require_once ('footer.html') ?>
+  </footer>
 </html>

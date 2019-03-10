@@ -102,4 +102,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 		<?php endif; ?>
 
 	</body>
+	<footer>
+    	<?php require_once ('footer.html') ?>
+  </footer>
 </html>

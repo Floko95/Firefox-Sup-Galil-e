@@ -9,24 +9,27 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body>
-		<?php require_once ('navigation.html') ?><br><br><br><br>
-		<?php
-		if (isset($_SESSION['id'])) {
-			echo '
-					<a href="deconnexion.php">Deconnexion</a>
-			';
-		}
-		else {
-			echo '
-			<a href="inscription.php">Inscription</a>
-					<a href="connexion.php">Connexion</a>
-					<a href="verification.php">Verification</a>
-					<a href="reinitialisation.php">Reinitialisation</a>
-					<a href="modification.php">Modification</a>
-			';
-		}
-		?>
-					
+		<?php require_once ('navigation.html') ?>
+		<div style="top:0;z-index: -100;position: sticky;">
+			<video width="100%"autoplay muted loop style="margin-top: -3%">
+				<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
+			</video> 
+		</div>
+
+		<div class="row bue-row " id="Equipe">
+			<div class="col-md-12">
+
+			</div>
+		</div>
+		<div class="row orange-row" id="Evenements">
+			
+		</div>
+		<div class="row bue-row" id="Clubs">
+			
+		</div>
 
 	</body>
+	<footer>
+		<?php require_once ('footer.html') ?>
+	</footer>
 </html>
