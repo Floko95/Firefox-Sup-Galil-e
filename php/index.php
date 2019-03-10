@@ -26,6 +26,7 @@
 		
 		if (isset($_SESSION['id'])) {
 			echo '
+			<a href="admin/roles.php">Admin</a>
 					<a href="deconnexion.php">Deconnexion</a>
 			';
 		}
@@ -36,6 +37,7 @@
 					<a href="verification.php">Verification</a>
 					<a href="reinitialisation.php">Reinitialisation</a>
 					<a href="modification.php">Modification</a>
+					
 			';
 		}
 		?>
