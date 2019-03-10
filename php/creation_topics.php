@@ -19,6 +19,14 @@
 				<form action="connexion.php" method="post">
 					<label for="title">Titre du topic</label><br>
 					<input type="text" name="title" required ><br>
+					<label for="categorie">Catégorie du topic</label><br>
+					<select name="categorie" size="1">
+						<option>Générale
+						<option>Energétique
+						<option>Informatique
+						<option>Mathématiques
+						<option>Télécommunication
+					</select><br>
 					<label for="msg">Votre message</label><br>
 					<textarea required> Message</textarea><br>
 					<input type="submit" name="connexion" value="Valider" />
