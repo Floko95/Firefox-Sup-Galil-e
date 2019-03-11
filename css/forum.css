@@ -31,6 +31,7 @@ html body .user-info{
 html body .message-date{
 	text-align: center;
 	padding-top: 7px;
+	word-break: normal;
 }
 
 html body .message-content{
@@ -69,6 +70,26 @@ html body .message-content{
 
 .add-topic btn{
 	background-color: #cfa551;
+}
+
+button{
+	background-color: transparent;
+	border: none;
+}
+
+.new-message button{
+	background-color: gray;
+	border-radius: 5px;
+}
+
+
+.new-message textarea{
+	border-radius: 10px;
+
+}
+
+.new-message{
+	margin-bottom: 30px;
 }
 
 /* 
