@@ -139,7 +139,7 @@ if (isset($_POST['bannir'])) {
 	</head>
 	<body>
 		
-		<?php require_once '/inc/menu.php'; ?>
+		<?php require_once 'inc/menu.php'; ?>
 
 		<div id="page">
 			<div id="head">
@@ -149,7 +149,7 @@ if (isset($_POST['bannir'])) {
 				Etudiant
 			</div>
 
-			<?php require_once '/inc/erreurs.php'; ?>
+			<?php require_once 'inc/erreurs.php'; ?>
 			
 			<?php if(isset($id)): ?>
 				<div id="contenu">
