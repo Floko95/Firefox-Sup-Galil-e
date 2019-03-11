@@ -8,7 +8,7 @@
 </head>
 <body>
   
-<?php require_once ('navigation.html') ?>
+<?php require_once ('navigation.php') ?>
   <div class="container top-page">
         <div class="row">
             <div class="col">

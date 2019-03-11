@@ -60,7 +60,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-		<?php require_once ('navigation.html') ?>
+		<?php require_once ('navigation.php') ?>
 		<div class="row top-page">
 			<div class="offset-md-4 col-md-3 title">
 				<h1>Choisir un nouveau mot de passe</h1>

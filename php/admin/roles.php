@@ -233,7 +233,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 	</head>
 	<body>
 	
-		<?php require_once '/inc/menu.php'; ?>
+		<?php require_once 'inc/menu.php'; ?>
 
 		<div id="page">
 			<div id="head">
@@ -243,7 +243,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 				Rôles
 			</div>
 			
-			<?php require_once '/inc/erreurs.php'; ?>
+			<?php require_once 'inc/erreurs.php'; ?>
 			
 			
 			<?php 

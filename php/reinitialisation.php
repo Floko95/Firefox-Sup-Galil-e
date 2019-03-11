@@ -57,7 +57,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
 	</head>
 	<body>
-		<?php require_once ('navigation.html') ?>
+		<?php require_once ('navigation.php') ?>
 		<div class="row top-page">
 			<div class="offset-md-4 col-md-3 title">
 				<h1>Réinitialiser son mot de passe</h1>

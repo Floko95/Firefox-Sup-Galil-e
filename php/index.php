@@ -10,12 +10,22 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body>
-		<?php require_once ('navigation.html') ?>
+		<?php require_once ('navigation.php') ?>
+		
 		<div style="top:0;z-index: -100;position: sticky;">
 			<video width="100%"autoplay muted loop style="margin-top: -3%">
 				<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
 			</video> 
 		</div>
+		
+		<?php if (isset($_SESSION['flash'])): ?>
+			<?php foreach($_SESSION['flash'] as $type => $message): ?>
+				<p class="green top-page">
+					<?= $message; ?>
+				</p>
+			<?php endforeach; ?>
+			<?php unset($_SESSION['flash']); ?>
+		<?php endif; ?>
 
 		<div class="row blue-row " id="Equipe">
 			<div class="col-md-12">

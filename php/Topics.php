@@ -8,11 +8,14 @@
 </head>
 
 <body>
-<?php require_once ('navigation.html') ?>
+<?php require_once 'inc/serveur.php' ?>
+<?php session_start(); ?>
+
+<?php require_once ('navigation.php') ?>
 <!-- Barre de navigation -->
 
 
-<?php require_once 'inc/serveur.php' ?>
+
 <!-- ------------------------------------FORUM GENERAL------------------------- -->
 <?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=1 ORDER BY dateCreation DESC');
 	$req->execute();
@@ -42,8 +45,8 @@
 				<form method="post" action="Forum.php">
 				<input type="hidden" value="
 				<?php echo $topic['idTopics']; ?>" name="a_recup"/>
-				<input type="submit" value="
-				<?php echo $topic['topic']; ?>"/>
+				<button type="submit" value="
+				<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></button>
 			
 				</form>
 			</div>
@@ -74,7 +77,7 @@
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum Informatique</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
-			<div class=" col-md-2 date-categorie">Date de dernière modifiaction</div>
+			<div class=" col-md-2 date-categorie">Date de création</div>
 		</div>
 		
 		
@@ -88,8 +91,8 @@
             <div class=" col-md-6 topic-subject"><form method="post" action="Forum.php">
 			<input type="hidden" value="
 			<?php echo $topic['idTopics']; ?>" name="a_recup"/>
-			<input type="submit" value="
-			<?php echo $topic['topic']; ?>"/>
+			<button type="submit" value="
+			<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></</button>
 			
 			</form></div>
 			<div class="col-md-2 tag">

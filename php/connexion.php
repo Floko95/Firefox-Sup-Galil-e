@@ -54,7 +54,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
                 <link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-	<?php require_once ('navigation.html') ?>
+	<?php require_once ('navigation.php') ?>
 	<div class="row top-page">
 			<div class="offset-md-4 col-md-3 title">
 				<h1>Connexion</h1>
@@ -92,7 +92,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 					<label for="mailUniv">Adresse mail universitaire</label><br>
 					<input type="mail" name="mailUniv" placeholder="jean.dupont@univ-paris13.fr" required pattern="[a-z]+[0-9]?.?[a-z]+@univ-paris13.fr"/><br>
 					<label for="mdp">Mot de passe</label><br>
-					<input type="password" name="mdp" placeholder="********" maxlength="30" required pattern=".{8,}"/><br>
+					<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
 					<input type="submit" name="connexion" value="Valider" />
 				</form>
 				<a href="reinitialisation.php">J'ai oublié mon mot de passe</a>
