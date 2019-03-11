@@ -30,16 +30,14 @@
 			<div class="offset-sm-3 col-sm-1" id="connect-tab">
 				<a  onclick="connexion()"><span class="fas fa-user-circle"></span></a>
 					<div id="connexion">
-						<form action="">
-							<!-- Se connecter-->
+
 							<form action="connexion.php" method="post">
 								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
 								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
 								<input type="submit" name="connexion" value="Valider" /><br>
 								<a href="inscription.php">S'inscrire</a>
 							</form>
-							<?php if (isset($erreurConnexion)) echo $erreurConnexion; ?>
-						</form>
+
 					</div>
 				
 			</div>

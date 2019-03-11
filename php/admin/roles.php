@@ -4,7 +4,7 @@
 # On redirige le visiteur s'il n'a rien à faire sur cette page
 session_start();
 if (!isset($_SESSION['id'])) {
-	header ('Location: ../accueil.php');
+	header ('Location: ../index.php');
 	exit();
 }
 else {
@@ -13,7 +13,7 @@ else {
 	$req->execute(array($_SESSION['id'], $_SESSION['id']));
 	$data = $req->fetch();
 	if (!$data) {
-		header ('Location: ../accueil.php');
+		header ('Location: ../index.php');
 		exit();
 	}
 }

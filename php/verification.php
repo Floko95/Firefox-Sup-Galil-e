@@ -3,7 +3,7 @@
 <? php
 session_start();
 if (isset($_SESSION['id'])) {
-	header ('Location: accueil.php');
+	header ('Location: index.php');
 	exit();
 }
 ?>
@@ -39,7 +39,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 		$_SESSION['formation'] = $etudiant['formation'];
 		$_SESSION['promotion'] = $etudiant['promotion'];
 		$_SESSION['etat'] = $etudiant['etat'];
-		header('Location: accueil.php');
+		header('Location: index.php');
 		exit();
 	}
 }
@@ -58,7 +58,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 			<div class="offset-md-4 col-md-3 block">
 				<div class="alerte rouge">
 					<p>Ce lien n'est pas ou n'est plus valide.</p>
-					<a href="accueil.php">Retour à l'accueil</a>
+					<a href="index.php">Retour à l'accueil</a>
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
 <? php
 session_start();
 if (isset($_SESSION['id'])) {
-	header ('Location: accueil.php');
+	header ('Location: index.php');
 	exit();
 }
 ?>
@@ -35,8 +35,10 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 				$req = $bdd->prepare('UPDATE ETUDIANTS SET code = NULL, typeCode = 0, dateMail = NULL WHERE id = ?');
 				$req->execute(array($_GET['id']));
 
+				session_start();
+				$_SESSION['flash']['alerte'] = 'Le mot de passe a bien été modifié, vous pouvez désormais vous connecter';
 				header('Location: connexion.php');
-				exit('Le mot de passe a bien été modifié, vous pouvez désormais vous connecter');
+				exit();
 			}
 
 		}
@@ -96,7 +98,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 		<div class="row">
 			<div class="offset-md-4 col-md-3 block alerte rouge">
 				<p>Ce lien n'est pas ou n'est plus valide.</p>
-				<a href="accueil.php">Retour à l'accueil</a>
+				<a href="index.php">Retour à l'accueil</a>
 			</div>
 		</div>
 		<?php endif; ?>

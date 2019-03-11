@@ -49,7 +49,7 @@ for (i = 0; i < roles.length; i++) {
 													}*/
 												}); // roles[i].addEventListener("click", 
 }
-$('#creerRoleTitle').click(function(){
+$('#contenuTitle').click(function(){
 	if (document.getElementById('creerRoleMiddle').style.display == 'block'){
 		document.getElementById('creerRoleMiddle').style.display = 'none';
 	}

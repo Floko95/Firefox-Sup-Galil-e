@@ -86,6 +86,7 @@ a:hover #facebook_logo{
 
 #connexion{
 	font-size: 14px;
+<<<<<<< HEAD
 /* 	width: 190px;
  */}
 
@@ -101,9 +102,8 @@ a:hover #facebook_logo{
 /* html body nav [class|=row]
 {
 	border: 5px white solid;
+=======
+ 	width: 190px;
+>>>>>>> c70c8052497d11a698fed136e0f68f2da43255ee
 }
-*/
-/* html body nav [class|=col]
-{
-	border: 5px black solid;
-}  */
+
