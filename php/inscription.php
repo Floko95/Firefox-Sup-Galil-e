@@ -81,7 +81,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 			'formation' => $_POST['formation'],
 			'promotion' => $_POST['promotion'],
 			'dateInscription' => $date,
-			'code' => $code,
+			'code' => "",
 			'typeCode' => 1,
 			'dateMail' => $date));
 
@@ -92,7 +92,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$id = $etudiant['id'];
 		mail($_POST['mailUniv'], "BDE : Validation de votre compte", "Afin de valider votre compte, veuillez cliquer sur ce lien\n\nhttp:://verification.php?id=$id&code=$code");
 
-		header('Location: accueil.php');
+		header('Location: index.php');
 		exit('Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire');
 	}
 

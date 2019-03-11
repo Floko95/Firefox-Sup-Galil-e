@@ -4,7 +4,7 @@ nav{
 	position: fixed;
 	z-index: 10;
 	width: 100%;
-	background-color: #171943;
+	background-color: #271e53;
 	font-size: 16px;
 	text-align: center;
 	margin-bottom: 10px
@@ -90,6 +90,11 @@ a:hover #facebook_logo{
  */}
 
 
+ @media screen and (max-width: 728px) {
+	nav {
+		position: relative;
+	}
+}
 /*Debug*/
 
 

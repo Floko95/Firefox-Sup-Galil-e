@@ -8,13 +8,12 @@ html body{
 	height:100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: #171943;
+	background-color: #271e53;
 	color: black;
 	font-family: 'Open Sans Condensed', sans-serif;
 	/* font-variant: small-caps; */
-	word-break: break-all;
-
-	
+	word-break: initial;
+	word-wrap: break-word;
 }
 
 html body .top-page{
@@ -39,7 +38,7 @@ html body .title{
 @media screen and (max-width: 728px) {
 
 	html body .top-page{
-		margin-top: 22rem;
+		margin-top: 0px;;
 		text-align: center;
 	}
 }

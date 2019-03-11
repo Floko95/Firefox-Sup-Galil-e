@@ -1,16 +1,4 @@
 
-
-
-
-<!-- A ne pas utiliser !!-->
-
-<!-- Suppression future-->
-
-
-
-
-
-
 <!DOCTYPE html>
 
 <html>
