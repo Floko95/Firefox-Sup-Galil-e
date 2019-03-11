@@ -27,10 +27,21 @@
                     </div>
 
                     <!--Content of the message-->
-                    <div class="col-md-9 message-content">
-                            Bla Bla Bla
+                    <div class="col-md-9  message-content">
+                        <div class="row message-title">
+                            <div class="col title">
+                                Titre
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Bla Bla Bla
+                            </div>
+                        </div>
+                            
                     </div>
                 </div>
+                <!--A message-->
                 <div class="row message">
                     <!--Information about the message-->
                     <div  class="col-md-2 user-info ">
@@ -44,67 +55,58 @@
                     </div>
 
                     <!--Content of the message-->
-                    <div class="col-md-9 message-content">
-                            Bla Bla Bla
+                    <div class="col-md-9  message-content">
+                        <div class="row message-title">
+                            <div class="col title">
+                                Titre
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Bla Bla Bla
+                            </div>
+                        </div>
+                            
                     </div>
                 </div>
-            </div>
-        </div>
-  </div>
 
+                <div class="row new-message">
+                    <div class="col">
+                        <textarea name="new-message" placeholder="Nouveau message" cols="80" rows="7"></textarea>
+                        <button type="subit">Poster</button>
+                    </div>
+                </div>
 
+                <!--Navigation par page-->
+                <div class="row">
+                    <div class="offset-md-1 col-md-2">
+                        <form action="">
+                            <label for="nb_page">Nombre de messages par page</label>
+                            <select name="nb_page" size="1">
+                                <option>20
+                                <option>50
+                                <option>100
+                            </select><br>
+                        </form>
+                    </div>
+                    <div class="offset-md-2 col-mad-1">
+                        prev<br>
+                        <button><</button>
+                    </div>
+                    <div class="offset-md-1 col-mad-1">
+                        next<br>
+                        <button>></button>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
 
-  <!--
-  <div class = "listeTopics" id = "forumParticulier">
-        <div class="ligne bandeau">
-            <div class= "tableHeader">
-                Forum Informatique    
-            </div>
-            <div class= "tableHeader">
-                Auteur
-            </div>
-            <div class= "tableHeader">
-                Date Dernière Modif.
-            </div>
-        </div>
-        <div class="ligne">
-            <div class="nomTopic">
-                <a href="#a" >Cours de big data</a>  
-            </div>
-            <div class="Auteur">
-                Loïc Aulard
-            </div>
-            <div class="DateModif">
-                1-12-2018
-            </div>
-        </div>
-
-        <div class="ligne">
-            <div class="nomTopic">
-                <a href="#a" >Info2: cours annulé</a>  
-            </div>
-            <div class="Auteur">
-                Thibaud carré
-            </div>
-            <div class="DateModif">
-                4-12-2018
-            </div>
-        </div>
-
-        <div class="ligne">
-            <div class="nomTopic">
-                <a href="#a" >Logique: Partiel de l'année dernière?</a>  
-            </div>
-            <div class="Auteur">
-                Ilan Bitton
-            </div>
-            <div class="DateModif">
-                1-12-2018
             </div>
         </div>
 
   </div>
--->
+
 
 
 
