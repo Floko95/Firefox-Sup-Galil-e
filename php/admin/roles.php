@@ -217,9 +217,116 @@ for ($i=0; $i < $nbRoles; $i++) {
 			foreach ($retirerA as $id){
 				$req = $bdd->prepare('DELETE FROM attributionRolesAuxEtudiants WHERE idRoles = ? AND id = ?');
 				$req->execute(array($roles[$i]['idRoles'], $id));
-				$success['roleSupprimé'] = 'Le rôle "'.$roles[$i]['role'].'" a bien été retiré aux étudiants selectionnés';
+			}
+			$success['roleSupprimé'] = 'Le rôle "'.$roles[$i]['role'].'" a bien été retiré aux étudiants selectionnés';
+		}
+	}
+}
+?>
+
+<?php
+# Supprimer le compte d'étudiants bannis
+if (isset($_POST['supprimerCompte']) && $_POST['supprimerCompte'] == 'Valider') {
+	# Si on n'a pas le droit de supprimer un compte
+	$reqDroit->execute(array($_SESSION['id'], 9));
+	$data = $reqDroit->fetch();
+	if ($data[0] == 0) {
+		$errors['droitManquant'] = "Vous n'avez pas le droit de supprimer des comptes";
+	}
+	
+	# S'il n'y a pas d'erreur, on supprime le compte des étudiants bannis sélectionnés
+	if (empty($errors)) {
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = -1');
+		$req->execute();
+		$etudiantsBannis = $req->fetchAll();
+		foreach ($etudiantsBannis as $etudiantBanni){
+			if (isset($_POST['banni'.$etudiantBanni['id']])){
+				$req = $bdd->prepare('DELETE FROM ETUDIANTS WHERE id = ?');
+				$req->execute(array($etudiantBanni['id']));
 			}
 		}
+		$success['comptesSupprimés'] = 'Les comptes des étudiants selectionnés ont bien été supprimés';
+	}
+}
+// Accepter
+// Refuser
+?>
+
+<?php
+# Réhabiliter un étudiant banni
+if (isset($_POST['réhabiliterCompte']) && $_POST['réhabiliterCompte'] == 'Valider') {
+	# Si on n'a pas le droit de bannir / débannir un étudiant
+	$reqDroit->execute(array($_SESSION['id'], 8));
+	$data = $reqDroit->fetch();
+	if ($data[0] == 0) {
+		$errors['droitManquant'] = "Vous n'avez pas le droit de débannir des étudiants";
+	}
+	
+	# S'il n'y a pas d'erreur, on réhabilite les étudiants sélectionnés
+	if (empty($errors)) {
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = -1');
+		$req->execute();
+		$etudiantsBannis = $req->fetchAll();
+		foreach ($etudiantsBannis as $etudiantBanni){
+			if (isset($_POST['banni'.$etudiantBanni['id']])){
+				$req = $bdd->prepare('UPDATE ETUDIANTS SET etat = 2 WHERE id = ?');
+				$req->execute(array($etudiantBanni['id']));
+			}
+		}
+		$success['étudiantsRéhabilités'] = 'Les étudiants sélectionnés ont bien été réhabilités';
+	}
+}
+?>
+
+<?php
+# Valider l'inscription d'étudiants
+if (isset($_POST['validerInscription']) && $_POST['validerInscription'] == 'Valider') {
+	# Si on n'a pas le droit de valider l'inscription d'étudiants
+	$reqDroit->execute(array($_SESSION['id'], 5));
+	$data = $reqDroit->fetch();
+	if ($data[0] == 0) {
+		$errors['droitManquant'] = "Vous n'avez pas le droit de valider l'inscription d'étudiants";
+	}
+	
+	# S'il n'y a pas d'erreur, on valide l'inscription des étudiants sélectionnés
+	if (empty($errors)) {
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = 1');
+		$req->execute();
+		$etudiantsEnAttente = $req->fetchAll();
+		foreach ($etudiantsEnAttente as $etudiantEnAttente){
+			if (isset($_POST['enAttente'.$etudiantEnAttente['id']])){
+				echo '12';
+				$req = $bdd->prepare('UPDATE ETUDIANTS SET etat = 2 WHERE id = ?');
+				$req->execute(array($etudiantEnAttente['id']));
+			}
+		}
+		$success['étudiantsValidés'] = 'Les inscriptions des étudiants sélectionnés ont bien été validées';
+	}
+}
+?>
+
+<?php
+# Refuser l'inscription d'étudiants
+if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Valider') {
+	# Si on n'a pas le droit de refuser l'inscription d'étudiants
+	$reqDroit->execute(array($_SESSION['id'], 6));
+	$data = $reqDroit->fetch();
+	if ($data[0] == 0) {
+		$errors['droitManquant'] = "Vous n'avez pas le droit de refuser l'inscription d'étudiants";
+	}
+	
+	# S'il n'y a pas d'erreur, on valide l'inscription des étudiants sélectionnés
+	if (empty($errors)) {
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE etat = 1');
+		$req->execute();
+		$etudiantsEnAttente = $req->fetchAll();
+		foreach ($etudiantsEnAttente as $etudiantEnAttente){
+			if (isset($_POST['enAttente'.$etudiantEnAttente['id']])){
+				$req = $bdd->prepare('DELETE FROM ETUDIANTS WHERE id = ?');
+				$req->execute(array($etudiantEnAttente['id']));
+			}
+		}
+		$success['étudiantsRefusés'] = 'Les inscriptions des étudiants sélectionnés ont bien été refusées';
 	}
 }
 ?>
@@ -233,7 +340,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 	</head>
 	<body>
 	
-		<?php require_once 'inc/menu.php'; ?>
+		<?php require_once '/inc/menu.php'; ?>
 
 		<div id="page">
 			<div id="head">
@@ -243,7 +350,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 				Rôles
 			</div>
 			
-			<?php require_once 'inc/erreurs.php'; ?>
+			<?php require_once '/inc/erreurs.php'; ?>
 			
 			
 			<?php 

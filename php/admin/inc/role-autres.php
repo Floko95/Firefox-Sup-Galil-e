@@ -1,7 +1,9 @@
 <?php
+session_start();
 require_once '../../inc/serveur.php';
 require_once '../../inc/fonctions.php';
-session_start();
+# Requête pour savoir si l'étudiant possède le droit i
+$reqDroit = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
 if (isset($_GET['idRoles'])) {
 	$i = intval($_GET['idRoles']);
 	$req = $bdd->prepare('SELECT * FROM ETUDIANTS NATURAL JOIN attributionRolesAuxEtudiants WHERE idRoles = ?');
@@ -14,7 +16,7 @@ if (isset($_GET['idRoles'])) {
 		AND EXISTS (SELECT * FROM attributionRolesAuxEtudiants A4 NATURAL JOIN attributionDroitsAuxRoles B4 WHERE B4.idDroits = 2 AND A4.id = E.id)');
 	$req->execute(array($_SESSION['id'], $i));
 	$data = $req->fetch();
-	?>
+?>
 	
 	<form action="roles.php" method="post">
 		<table>
@@ -30,9 +32,21 @@ if (isset($_GET['idRoles'])) {
 		</table>
 	<?php if ($nbEtudiants == 0 && $i != 1): ?>
 		Ce rôle n'est attribué à personne
-		<button type="submit" name=<?php echo 'suppressionRole'.$i; ?> value="Valider">Supprimer ce rôle</button>
+		<?php
+			$reqDroit->execute(array($_SESSION['id'], 2));
+			$data = $reqDroit->fetch();
+			if ($data[0] > 0):
+		?>
+			<button type="submit" name=<?php echo 'suppressionRole'.$i; ?> value="Valider">Supprimer ce rôle</button>
+		<?php endif; ?>
 	<?php else: ?>
-		<button type="submit" name=<?php echo 'retirerRole'.$i; ?> value="Valider">Retirer le rôle aux étudiants sélectionnés</button>
+		<?php
+			$reqDroit->execute(array($_SESSION['id'], 4));
+			$data = $reqDroit->fetch();
+			if ($data[0] > 0):
+		?>
+			<button type="submit" name=<?php echo 'retirerRole'.$i; ?> value="Valider">Retirer le rôle aux étudiants sélectionnés</button>
+		<?php endif; ?>
 	<?php endif; ?>
 	</form>
 	
