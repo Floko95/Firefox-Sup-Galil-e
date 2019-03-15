@@ -10,7 +10,7 @@ formation varchar(4) ,
 promotion year(4) ,
 dateInscription timestamp NOT NULL,
 etat int(1) DEFAULT 0,
-code varchar(50),
+code varchar(255),
 typeCode int(1) NOT NULL,
 dateMail timestamp
 );
@@ -90,10 +90,11 @@ INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(6, 'Refuser une inscription', ''),
 	(7, 'Modifier le profil d\'un étudiant', 'Permet de modifier les informations entrées lors de l\'inscription d\un étudiant'),
 	(8, 'Bannir un étudiant', 'L\'étudiant ne pourra plus accéder à son compte'),
-	(9, 'Accéder à tout le forum', 'L\'étudiant pourra voir toutes les sections du forum, et pas seulement celles de sa formation'),
-	(10, 'Rendre muet un étudiant', 'L\'étudiant ne pourra plus discuter sur le forum, mais pourra toujours voir les messages'),
-	(11, 'Supprimer un topic du forum', ''),
-	(12, 'Supprimer un message du forum', '');
+	(9, 'Supprimer un compte', 'Permet de supprimer le compte d\'un étudiant banni'),
+	(10, 'Accéder à tout le forum', 'L\'étudiant pourra voir toutes les sections du forum, et pas seulement celles de sa formation'),
+	(11, 'Rendre muet un étudiant', 'L\'étudiant ne pourra plus discuter sur le forum, mais pourra toujours voir les messages'),
+	(12, 'Supprimer un topic du forum', ''),
+	(13, 'Supprimer un message du forum', '');
 	
 
 INSERT INTO ROLES (idRoles, role, descriptionRole) VALUES 
@@ -116,5 +117,6 @@ INSERT INTO attributionDroitsAuxRoles (idRoles, idDroits) VALUES
 	(1, 9),
 	(1, 10),
 	(1, 11),
-	(1, 12);
+	(1, 12),
+	(1, 13);
 	
