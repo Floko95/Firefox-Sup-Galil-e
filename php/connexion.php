@@ -22,19 +22,31 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 	}
 
 	if (empty($errors)) {
-		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ? AND etat > 0');
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ?');
 		$req->execute(array($_POST['mailUniv']));
 		$etudiant = $req->fetch();
 		if ($etudiant && password_verify($_POST['mdp'], $etudiant['mdp'])) {
-			session_start();
-			$_SESSION['id'] = $etudiant['id'];
-			$_SESSION['prenom'] = $etudiant['prenom'];
-			$_SESSION['nom'] = $etudiant['nom'];
-			$_SESSION['formation'] = $etudiant['formation'];
-			$_SESSION['promotion'] = $etudiant['promotion'];
-			$_SESSION['etat'] = $etudiant['etat'];
-			header('Location: index.php');
-			exit();
+			# Si l'étudiant est banni
+			if ($etudiant['etat'] == -1) {
+				$errors['banni'] = "Vous avez été banni, vous ne pouvez plus vous connecter sur ce compte";
+			}
+			# Si l'étudiant n'a pas encore validé son adresse mail
+			elseif ($etudiant['etat'] == 0) {
+				$errors['enattente'] = "Vous devez d'abord valider votre adresse mail universitaire avant de pouvoir vous connecter";
+			}
+			else {
+				session_start();
+				$_SESSION['id'] = $etudiant['id'];
+				$_SESSION['prenom'] = $etudiant['prenom'];
+				$_SESSION['nom'] = $etudiant['nom'];
+				$_SESSION['formation'] = $etudiant['formation'];
+				$_SESSION['promotion'] = $etudiant['promotion'];
+				if ($etudiant['etat'] == 1) {
+					$_SESSION['flash']['alerte'] = 'Votre inscription n\'a pas encore été validée par un administrateur.<br>Par conséquent, vous ne pourrez pas poster de message sur le forum';
+				}
+				header('Location: index.php');
+				exit();
+			}
 		} else {
 			$errors['identifiants'] = "Identifiants invalides";
 		}
