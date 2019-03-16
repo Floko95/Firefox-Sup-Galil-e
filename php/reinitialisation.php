@@ -1,6 +1,4 @@
-<!-- REINITIALISATION D'UN MOT DE PASSE -->
-
-<? php
+<?php
 session_start();
 if (isset($_SESSION['id'])) {
 	header ('Location: index.php');
@@ -26,7 +24,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 		} else {
 			# On génère un code de confirmation
 			require_once 'inc/fonctions.php';
-			$code = chaineAleatoire(50);
+			$code = chaineAleatoire(15);
 			$date = date('Y-m-d H:i:s');
 
 			# On insère ce code dans la table étudiants

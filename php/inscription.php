@@ -1,6 +1,4 @@
-<!-- INSCRIPTION -->
-
-<? php
+<?php
 session_start();
 if (isset($_SESSION['id'])) {
 	header ('Location: index.php');
@@ -66,7 +64,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	if (empty($errors)) {
 		require_once 'inc/fonctions.php';
 
-		$code = chaineAleatoire(50);
+		$code = chaineAleatoire(15);
 		$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
 		$date = date('Y-m-d H:i:s');
 
@@ -81,7 +79,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 			'formation' => $_POST['formation'],
 			'promotion' => $_POST['promotion'],
 			'dateInscription' => $date,
-			'code' => "",
+			'code' => $code,
 			'typeCode' => 1,
 			'dateMail' => $date));
 

@@ -1,6 +1,5 @@
-<?php require_once("inc/serveur.php"); ?>
-
 <?php session_start(); ?>
+<?php require_once("inc/serveur.php"); ?>
 
 <!DOCTYPE html>
 <html>

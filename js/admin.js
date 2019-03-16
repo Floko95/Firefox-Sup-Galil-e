@@ -58,15 +58,9 @@ $('#contenuTitle').click(function(){
 	}
 });
 
-
-function cocherTout(role)
-{
-   var cases = document.getElementsByTagName('input');   // on recupere tous les INPUT
-   for(var i=0; i<cases.length; i++)     // on les parcourt
-      if(cases[i].type == 'checkbox')     // si on a une checkbox...
-         cases[i].checked = true;     // ... on la coche
-}
-
+$('#alert-content').click(function(){
+	document.getElementById('alert').style.display = 'none';
+});
 
 
 // AJAX :

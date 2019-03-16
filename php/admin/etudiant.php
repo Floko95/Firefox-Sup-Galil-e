@@ -1,5 +1,3 @@
-<!-- FICHE ETUDIANT -->
-
 <?php
 # On redirige le visiteur s'il n'a rien à faire sur cette page
 session_start();
@@ -136,6 +134,7 @@ if (isset($_POST['bannir'])) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="../../css/admin.css" />
+		<link rel="stylesheet" href="../../css/alerte.css" />
 	</head>
 	<body>
 		
@@ -310,5 +309,8 @@ if (isset($_POST['bannir'])) {
 				</div>
 			<?php endif; ?>
 		</div>
+		
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/admin.js"></script>
 	</body>
 </html>

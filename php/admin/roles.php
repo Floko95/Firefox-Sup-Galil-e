@@ -1,6 +1,4 @@
-﻿<!-- LISTE DES ROLES -->
-
-<?php
+﻿<?php
 # On redirige le visiteur s'il n'a rien à faire sur cette page
 session_start();
 if (!isset($_SESSION['id'])) {
@@ -337,10 +335,13 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="../../css/admin.css" />
+		<link rel="stylesheet" href="../../css/alerte.css" />
 	</head>
 	<body>
-	
+
+		<?php require_once '/inc/erreurs.php'; ?>
 		<?php require_once '/inc/menu.php'; ?>
+		
 
 		<div id="page">
 			<div id="head">
@@ -350,7 +351,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 				Rôles
 			</div>
 			
-			<?php require_once '/inc/erreurs.php'; ?>
+			
 			
 			
 			<?php 
@@ -445,5 +446,6 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 
 		<script type="text/javascript" src="../../js/jquery.js"></script>
 		<script type="text/javascript" src="../../js/admin.js"></script>
+		
 	</body>
 </html>
