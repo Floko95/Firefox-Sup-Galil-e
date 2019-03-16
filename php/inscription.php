@@ -36,8 +36,8 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 
 	if (empty($_POST['mailUniv'])) {
 		$errors['mailUniv'] = "Adresse mail universitaire manquante";
-	} elseif (!preg_match('#^([a-z]+.[a-z]+@univ-paris13.fr)$#', $_POST['mailUniv'])){
-		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@univ-paris13.fr";
+	} elseif (!preg_match('#^([a-z]+.[a-z]+@edu.univ-paris13.fr)$#', $_POST['mailUniv'])){
+		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@edu.univ-paris13.fr";
 	} elseif (strlen($_POST['mailUniv']) > 70) {
 		$errors['mailUniv'] = "L'adresse mail universitaire doit faire moins de 30 caractères";
 	} else {
@@ -138,7 +138,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 				<label for="numero">Numéro d'étudiant</label><br>
 				<input type="text" name="numero" placeholder="ex: 11****37" minlength="8" maxlength="8" required /><br>
 				<label for="mailUniv">Adresse mail universitaire</label><br>
-				<input type="mail" name="mailUniv" placeholder="ex: jean.dupond@univ-paris13.fr" required /><br>
+				<input type="mail" name="mailUniv" placeholder="ex: jean.dupond@edu.univ-paris13.fr" required /><br>
 				<label for="mailPerso">Adresse mail personnelle</label><br>
 				<input type="mail" name="mailPerso" placeholder="ex: jean.dupond@hotmail.fr" /><br>
 				<label for="formation">Formation</label><br>
@@ -157,7 +157,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 					<option>2022
 					<option>2023
 				</select><br>
-				<label for="mdp">Mot de passe (8 caractère minimum)</label>	<br>
+				<label for="mdp">Mot de passe (6 caractère minimum)</label>	<br>
 				<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
 				<label for="comfirmation">Confirmation du mot de passe</label><br>
 				<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
