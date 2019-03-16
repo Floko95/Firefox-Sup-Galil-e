@@ -370,6 +370,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 	</head>
 	<body>
 		
+		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once '/inc/menu.php'; ?>
 
 		<div id="page">
@@ -380,7 +381,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 				Etudiant
 			</div>
 
-			<?php require_once '/inc/erreurs.php'; ?>
+			
 			
 			<?php if(isset($id)): ?>
 				<div id="contenu">

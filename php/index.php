@@ -6,9 +6,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<link rel="stylesheet" type="text/css" href="../css/alerte.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body>
+	
 		<?php require_once ('navigation.php') ?>
 		
 		<div style="top:0;z-index: -100;position: sticky;">
@@ -16,15 +18,8 @@
 				<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
 			</video> 
 		</div>
-		
-		<?php if (isset($_SESSION['flash'])): ?>
-			<?php foreach($_SESSION['flash'] as $type => $message): ?>
-				<p class="green top-page">
-					<?= $message; ?>
-				</p>
-			<?php endforeach; ?>
-			<?php unset($_SESSION['flash']); ?>
-		<?php endif; ?>
+
+		<?php require_once 'inc/erreurs.php'; ?>
 
 		<div class="row blue-row " id="Equipe">
 			<div class="col-md-12">
@@ -97,7 +92,8 @@
 				</div>
 			</div>
 		</div>
-
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/alerte.js"></script>
 	</body>
 	<footer>
 		<?php require_once ('footer.html') ?>

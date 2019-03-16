@@ -339,7 +339,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 	</head>
 	<body>
 
-		<?php require_once '/inc/erreurs.php'; ?>
+		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once '/inc/menu.php'; ?>
 		
 
