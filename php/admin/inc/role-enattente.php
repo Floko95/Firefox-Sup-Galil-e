@@ -13,14 +13,10 @@ $reqDroit = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NAT
 	<table>
 		<?php foreach ($etudiants as $etudiant): ?>
 		<tr>
-			
-			<td><?php echo strtoupper(text($etudiant['nom'])) ?></td>
-			<td><?php echo text($etudiant['prenom']) ?></td>
+			<td><?php echo strtoupper(text($etudiant['nom'])) ?><br><?php echo text($etudiant['prenom']) ?></td>
 			<td><?php echo text($etudiant['numero']) ?></td>
-			<td><?php echo text($etudiant['mailUniv']) ?></td>
-			<td><?php echo text($etudiant['mailPerso']) ?></td>
-			<td><?php echo text($etudiant['formation']) ?></td>
-			<td><?php echo text($etudiant['promotion']) ?></td>
+			<td><?php echo text($etudiant['mailUniv']) ?><br><?php echo text($etudiant['mailPerso']) ?></td>
+			<td><?php echo text($etudiant['formation']) ?><br><?php echo text($etudiant['promotion']) ?></td>
 			<td><input type="checkbox" name=<?php echo 'enAttente'.$etudiant['id']; ?> /></td>
 		</tr>
 		<?php endforeach; ?>
