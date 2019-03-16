@@ -446,6 +446,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 
 		<script type="text/javascript" src="../../js/jquery.js"></script>
 		<script type="text/javascript" src="../../js/admin.js"></script>
+		<script type="text/javascript" src="../../js/alerte.js"></script>
 		
 	</body>
 </html>
