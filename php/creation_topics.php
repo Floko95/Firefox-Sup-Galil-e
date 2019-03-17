@@ -19,6 +19,8 @@
 				<form action="connexion.php" method="post">
 					<label for="title">Titre du topic</label><br>
 					<input type="text" name="title" required ><br>
+					<label for="tags">Tags</label><br>
+					<input type="text" name="tags" required ><br
 					<label for="categorie">Catégorie du topic</label><br>
 					<input type="radio" name="categorie" value="general"> <br>
 					<input type="radio" name="categorie" value="filliere"><br>
