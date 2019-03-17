@@ -93,7 +93,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$req->execute(array($_POST['mailUniv']));
 		$etudiant = $req->fetch();
 		$id = $etudiant['id'];
-		mail($_POST['mailUniv'], "BDE : Validation de votre compte", "Afin de valider votre compte, veuillez cliquer sur ce lien\n\nhttp:://verification.php?id=$id&code=$code");
+		envoyerMail($_POST['mailUniv'], $id, 1, $code);
 
 		session_start();
 		$_SESSION['flash']['alerte'] = 'Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire';
