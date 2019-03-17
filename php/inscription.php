@@ -67,6 +67,11 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$code = chaineAleatoire(15);
 		$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
 		$date = date('Y-m-d H:i:s');
+		
+		if (isset($_POST['etudiant']) && $_POST['etudiant'] == "non") {
+			$_POST['formation'] = NULL;
+			$_POST['promotion'] = NULL;
+		}
 
 		$req = $bdd->prepare('INSERT INTO ETUDIANTS(mailUniv, mailPerso, nom, prenom, numero, mdp, formation, promotion, dateInscription, code, typeCode, dateMail) VALUES(:mailUniv, :mailPerso, :nom, :prenom, :numero, :mdp, :formation, :promotion, :dateInscription, :code, :typeCode, :dateMail)');
 		$req->execute(array(
@@ -110,64 +115,102 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	
 		<?php require_once ('navigation.php') ?>
 		
-		<div class="row top-page">
-			<div class="offset-md-4 col-md-3 title">
-				<h1>S'inscrire</h1>
-			</div>
-		</div>
-		<div class="offset-md-2 col-md-2">
-			<?php if(!empty($errors)): ?>
-			<div class="alert alert-danger">
-				<p>Vous n'avez pas rempli le formulaire correctement.</p>
-				<ul>
-					<?php foreach ($errors as $error): ?>
-						<li><?= $error; ?></li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-			<?php endif; ?>
-		</div>
-		<!-- Formulaire d'inscription -->
-		<div class="row ">
-			<div class="offset-md-4 col-md-3 block">
+
+			
+		
+		<div id="formulaire-responsive" class="clearfix inscription-form">
 			<form action="inscription.php" method="post">
-				<label for="prenom">Prénom</label><br>
-				<input type="text" name="prenom" placeholder="ex: Jean" maxlength="30" required /><br>
-				<label for="nom">Nom</label><br>
-				<input type="text" name="nom" placeholder="ex: Dupont" maxlength="20" required /><br>
-				<label for="numero">Numéro d'étudiant</label><br>
-				<input type="text" name="numero" placeholder="ex: 11****37" minlength="8" maxlength="8" required /><br>
-				<label for="mailUniv">Adresse mail universitaire</label><br>
-				<input type="mail" name="mailUniv" placeholder="ex: jean.dupond@edu.univ-paris13.fr" required /><br>
-				<label for="mailPerso">Adresse mail personnelle</label><br>
-				<input type="mail" name="mailPerso" placeholder="ex: jean.dupond@hotmail.fr" /><br>
-				<label for="formation">Formation</label><br>
-				<select name="formation" size="1">
-					<option>CP2I
-					<option>ENER
-					<option>INFO
-					<option>MACS
-					<option>TELE
-				</select><br>
-				<label for="promotion">Promotion</label><br>
-				<select name="promotion" size="1">
-					<option>2019
-					<option>2020
-					<option>2021
-					<option>2022
-					<option>2023
-				</select><br>
-				<label for="mdp">Mot de passe (6 caractère minimum)</label>	<br>
-				<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
-				<label for="comfirmation">Confirmation du mot de passe</label><br>
-				<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
-				<input id="check" type="checkbox" name="regagree" value="valeur" /> Je certifie avoir pris connaissance du règlement<br>
-				<input type="submit" name="inscription" value="Valider" />
+				<h3>S'inscrire</h3>
+				
+				<?php if(!empty($errors)): ?>
+					<div class="alert alert-danger">
+						<p>Vous n'avez pas rempli le formulaire correctement.</p>
+						<ul>
+							<?php foreach ($errors as $error): ?>
+								<li><?= $error; ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endif; ?>
+				
+				<div class="rang-form">
+					<div class="demi-colonne">
+						<label for="prenom">Prénom :</label>
+						<input type="text" name="prenom" placeholder="Jean" maxlength="30" required />
+					</div>
+					<div class="demi-colonne">
+						<label for="nom">Nom :</label>
+						<input type="text" name="nom" placeholder="Dupont" maxlength="30" required />
+					</div>
+				</div>
+
+				<div class="rang-form">
+					<div class="colonne">
+						<label for="numero">Numéro d'étudiant :</label>
+						<input type="text" name="numero" placeholder="12345678" pattern="^([0-9]{8})$" required />
+					</div>
+				</div>
+
+				<div class="rang-form">
+					<div class="demi-colonne">
+						<label for="mailUniv">Adresse mail universitaire :</label>
+						<input type="mail" name="mailUniv" maxlength="70" placeholder="prenom.nom@edu.univ-paris13.fr" required />
+					</div>
+					<div class="demi-colonne">
+						<label for="mailPerso">Adresse mail personnelle :</label>
+						<input type="mail" name="mailPerso" maxlength="70" />
+					</div>
+				</div>
+
+				<div class="rang-form">
+					<div class="demi-colonne">
+						<label for="formation">Formation :</label>
+						<select name="formation" size="1">
+							<option>
+							<option>CP2I
+							<option>ENER
+							<option>INFO
+							<option>MACS
+							<option>TELE
+						</select>
+					</div>
+					<div class="demi-colonne">
+						<label for="promotion">Promotion :</label>
+						<select name="promotion" size="1">
+							<option>
+							<option>2019
+							<option>2020
+							<option>2021
+							<option>2022
+							<option>2023
+						</select>
+					</div>
+				</div>
+
+				<div class="rang-form">
+					<div class="demi-colonne">
+						<label for="mdp">Mot de passe :</label>
+						<input type="password" name="mdp" placeholder="******" maxlength="30" required />
+					</div>
+					<div class="demi-colonne">
+						<label for="comfirmation">Confirmation du mot de passe :</label>
+						<input type="password" name="confirmation" placeholder="******" maxlength="30" required />
+					</div>
+				</div>
+
+				<div class="rang-form">
+					<div class="colonne">
+						<input id="check" type="checkbox" name="regagree" value="valeur" /> J'ai lu et j'accepte les <a href="">CGU</a><br>
+						<input type="submit" name="inscription" value="Valider" disabled />
+					</div>
+				</div>
 			</form>
-			</div>
 		</div>
+		
+		<br>
+		
+
+		<script type="text/javascript" src="../js/index.js"></script>
 	</body>
-	<footer>
- 	   <?php require_once ('footer.html') ?>
-  </footer>
+	
 </html>

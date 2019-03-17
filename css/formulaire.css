@@ -1,22 +1,121 @@
-.alert-danger{
-color:#a94442;
-background-color:#f2dede;
-border-color:#ebccd1;
-}
-.alert-danger hr{
-border-top-color:#e4b9c0
-}
-
-.alert{padding:15px;margin-bottom:20px;border:1px solid transparent;border-radius:4px}
-.alert h4{margin-top:0;color:inherit}
-.alert .alert-link{font-weight:700}
-.alert>p,.alert>ul{margin-bottom:0}
-
-html body form {
-    color: black;
+h3 {
+	font-size: 20px;
+	width: 90%;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #EA6018;
+	box-shadow: 0px 0px 2px 1px #111;
+	border-radius: 5px;
+	text-align: center;
+	font-variant: small-caps;
+	font-family: Andale Mono, monospace;
+	color: #1E1E2E;
 }
 
-html body input:required:invalid{
-	background-color:#FF0000;
-	color: white;
+label {
+	padding-left: 10px;
+	font-size: 15px;
+	color: #1E1E2E;
+}
+
+::placeholder {
+	padding-left: 10px;
+	opacity: 0.5;
+	font-size: 14px;
+}
+
+input[type=text], input[type=mail], input[type=password] {
+	box-sizing: border-box;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	background: #FFF;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	color: #000;
+	display: block;
+	margin-top: -10px;
+}
+
+
+input:focus {
+	outline: none;
+}
+
+
+.inscription-form input:required {
+ background-image: radial-gradient(#EA6018 18%, transparent 20%);
+  background-size: 1em 1em;
+  background-position: right;
+  background-repeat: no-repeat
+}
+
+.inscription-form input[type=text]:focus:invalid, .inscription-form input[type=mail]:focus:invalid, .inscription-form input[type=password]:focus:invalid {
+	border: 1px solid #f23434;
+	box-shadow:inset 0px 0px 1px 1px #f23434;
+}
+
+.inscription-form input[type=text]:focus:valid {
+	border: 1px solid #34a234;
+	box-shadow:inset 0px 0px 1px 1px #34a234;
+}
+
+.inscription-form input:valid {
+	background-image: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#formulaire-responsive {
+	max-width:600px /*-- à modifier en fonction de la largeur désirée --*/;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+    width:95%;
+	background: #ddd;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+}
+.rang-form {
+	width: 100%;
+}
+.demi-colonne, .colonne {
+	box-sizing: border-box;
+	float: left;
+	position: relative;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width:100%;
+}
+
+.colonne {
+	text-align: center;
+}
+
+
+/**---------------- Media query ----------------**/
+@media only screen and (min-width: 800px) { 
+	.demi-colonne {
+		width: 50%;
+	}
 }

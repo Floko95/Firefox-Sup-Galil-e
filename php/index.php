@@ -14,7 +14,7 @@
 		<?php require_once ('navigation.php') ?>
 		
 		<div style="top:0;z-index: -100;position: sticky;">
-			<video width="100%"autoplay muted loop style="margin-top: -3%">
+			<video width="100%" autoplay muted loop style="margin-top: -3%">
 				<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
 			</video> 
 		</div>

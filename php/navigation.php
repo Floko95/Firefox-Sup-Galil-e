@@ -35,13 +35,19 @@
 			<?php else:?>
 				<div class="offset-sm-3 col-sm-2" id="connect-tab">
 			<?php endif;?>
-					<a  onclick="connexion()"><span class="fas fa-user-circle"></span></a>
-					
+			<a  onclick="connexion()"><span class="fas fa-user-circle"></span></a>			
+			</div>
+	</div>
+	
+
+</nav>
+
 					<div id="connexion">
 							<?php if(!isset($_SESSION['id'])): ?>
 							<form action="connexion.php" method="post">
 								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
-								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required /><br>
+								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
+								<a href=reinitialisation.php">Mot de passe oublié</a><br>
 								<input type="submit" name="connexion" value="Valider" /><br>
 								<a href="inscription.php">S'inscrire</a>
 							</form>
@@ -50,12 +56,6 @@
 							<?php endif; ?>
 
 					</div>
-				
-			</div>
-	</div>
-
-</nav>
-
 
 
 <script>
