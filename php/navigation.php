@@ -47,8 +47,8 @@
 							<form action="connexion.php" method="post">
 								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
 								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
-								<a href=reinitialisation.php">Mot de passe oublié</a><br>
-								<input type="submit" name="connexion" value="Valider" /><br>
+								<a href="reinitialisation.php">Mot de passe oublié</a><br>
+								<input type="submit" name="connexion" value="Valider" /><br><br>
 								<a href="inscription.php">S'inscrire</a>
 							</form>
 							<?php else: ?>

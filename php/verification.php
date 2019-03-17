@@ -48,17 +48,22 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-		<?php require_once ('navigation.html') ?>
-		<div class="row top-page">
-			<div class="offset-md-4 col-md-3 block">
-				<div class="alerte rouge">
-					<p>Ce lien n'est pas ou n'est plus valide.</p>
+	
+		<?php require_once ('navigation.php') ?>
+		<?php require_once 'inc/erreurs.php'; ?>
+		
+		<div id="formulaire-responsive" class="clearfix">
+			<div class="rang-form">
+				<div class="colonne">
+					<p>Ce lien n'est pas ou n'est plus valide.</p><br>
 					<a href="index.php">Retour à l'accueil</a>
 				</div>
 			</div>
 		</div>
+
 	</body>
 </html>
