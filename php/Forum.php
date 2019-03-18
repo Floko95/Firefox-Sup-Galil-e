@@ -16,9 +16,9 @@
 //RECUPERATION MESSAGE POSTE--------------------------------------------------
 	if(isset($_POST['ecriture']) and isset($_POST['a_recup']) and trim($_POST['ecriture']!=''))
 	{
-		$req = $bdd->prepare('INSERT INTO `messages`(`id`, `idTopics`, `message`, `dateEnvoi`) VALUES (:id,:indtopic,:mess,:date)');// a changer
+		$req = $bdd->prepare('INSERT INTO `messages`(`id`, `idTopics`, `message`, `dateEnvoi`) VALUES (:id,:indtopic,:mess,:date)');
 			$req->execute(array(
-			// en attendant que le systeme de connexion remarche, on met le 1 en brut
+			
 			'id' => intval($_SESSION['id']),
 			'indtopic' => intval($_POST['a_recup']),
 			'mess' => $_POST['ecriture'],
