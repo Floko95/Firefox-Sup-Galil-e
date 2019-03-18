@@ -20,7 +20,7 @@
 <nav>
 	<div class="row nav">
 			<div class="col-sm-1 nav-tab "><a href="index.php"><span class="fa fa-home"></span> Accueil</a></div>
-			<div class="col-sm-1 nav-tab "><a href="#Equipe"><span class="fas fa-users"></span> L'équipe</a></div>
+			<div class="col-sm-1 nav-tab "><a href="index.php#Equipe"><span class="fas fa-users"></span> L'équipe</a></div>
 			<div class="col-sm-1 nav-tab "><a href="#Clubs"><span class="fas fa-handshake"></span> Clubs</a></div>
 			<div class="col-sm-1 nav-tab "><a href="#Evenements"><span class="fas fa-calendar-alt"></span> Evénements</a></div>
 			<div class="col-sm-1 nav-tab "><a href="#a"><span class="fas fa-shopping-cart"></span> Boutique</a></div>
@@ -47,9 +47,11 @@
 							<form action="connexion.php" method="post">
 								<input type="mail" name="mailUniv" placeholder="Adresse universitaire" required /><br>
 								<input type="password" name="mdp" placeholder="Mot de passe" maxlength="30" required />
+								<a href="inscription.php">S'inscrire</a><br>
 								<a href="reinitialisation.php">Mot de passe oublié</a><br>
-								<input type="submit" name="connexion" value="Valider" /><br><br>
-								<a href="inscription.php">S'inscrire</a>
+								
+								<input type="submit" name="connexion" value="Valider" />
+								
 							</form>
 							<?php else: ?>
 								<a href="deconnexion.php">Déconnexion</a>
