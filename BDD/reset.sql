@@ -1,5 +1,1 @@
-DROP TABLE etudiants;
-DROP TABLE droits;
-DROP TABLE roles;
-DROP TABLE attributionDroitsAuxRoles;
-DROP TABLE attributionRolesAuxEtudiants;
+DROP DATABASE IF EXISTS bde;

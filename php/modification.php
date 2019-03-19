@@ -58,17 +58,19 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
+	
 		<?php require_once ('navigation.php') ?>
-		<div class="row top-page">
-			<div class="offset-md-4 col-md-3 title">
-				<h1>Choisir un nouveau mot de passe</h1>
-			</div>
-		</div>
-		<?php if(empty($errors['lienMort'])): ?>
-			<div class="row">
-				<?php if(!empty($errors)): ?>						
-					<div class="offset-md-4 col-md-3">
-						<div class="alerte rouge">
+		
+		<div id="formulaire-responsive" class="clearfix">
+			
+				
+			<?php if(empty($errors['lienMort'])): ?>
+				<form action="" method="post">
+					<h3>Choisir un nouveau mot de passe</h3>
+					
+					<!-- Affichage des erreurs -->
+					<?php if(!empty($errors)): ?>
+						<div class="alert alert-danger">
 							<p>La modification du mot de passe a échoué.</p>
 							<ul>
 								<?php foreach ($errors as $error): ?>
@@ -76,31 +78,40 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 								<?php endforeach; ?>
 							</ul>
 						</div>
-					</div>
-				<?php endif; ?>
+					<?php endif; ?>
 				
 		
-		<!-- Formulaire de modification du mot de passe -->
-			<div class="row">
-				<div class="offset-md-4 col-md-3 block">
-					<form action="" method="post">
-						<label for="mdp">Mot de passe</label><br>
-						<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
-						<label for="confirmation">Confirmation du mot de passe</label><br>
-						<input type="password" name="confirmation" placeholder="********" maxlength="30" required /><br>
-						<input type="submit" name="modification" value="Valider" />
-					</form>
+					<!-- Formulaire de modification du mot de passe -->
+					<div class="rang-form">
+						<div class="colonne">
+							<label for="mdp">Nouveau mot de passe :</label>
+							<input type="password" name="mdp" placeholder="******" maxlength="30" required />
+						</div>
+					</div>
+					
+					<div class="rang-form">
+						<div class="colonne">
+							<label for="confirmation">Confirmation du mot de passe :</label>
+							<input type="password" name="confirmation" placeholder="********" maxlength="30" required />
+						</div>
+					</div>
+					
+					<div class="rang-form">
+						<div class="colonne">
+							<input type="submit" name="modification" value="Valider" />
+						</div>
+					</div>
+				</form>
+			<?php else: ?>
+				<div class="rang-form">
+					<div class="colonne">
+						<p>Ce lien n'est pas ou n'est plus valide.</p><br>
+						<a href="index.php">Retour à l'accueil</a>
+					</div>
 				</div>
-			</div>
-		<?php else: ?>
-		<div class="row">
-			<div class="offset-md-4 col-md-3 block alerte rouge">
-				<p>Ce lien n'est pas ou n'est plus valide.</p>
-				<a href="index.php">Retour à l'accueil</a>
-			</div>
-		</div>
-		<?php endif; ?>
-
+			<?php endif; ?>		
+		</div>	
+			
 	</body>
 	<footer>
     	<?php require_once ('footer.html') ?>

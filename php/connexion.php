@@ -64,50 +64,60 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
                 <link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
-	<?php require_once ('navigation.php') ?>
-	<div class="row top-page">
-			<div class="offset-md-4 col-md-3 title">
-				<h1>Connexion</h1>
-			</div>
-		</div>
+	
+		<?php require_once ('navigation.php') ?>
+	
+		<div id="formulaire-responsive" class="clearfix">
+			<form action="connexion.php" method="post">
+				<h3>Se connecter</h3>
+				
+				<!-- Affichage des erreurs -->
+				<?php if (isset($_SESSION['flash'])): ?>
+					<?php foreach($_SESSION['flash'] as $type => $message): ?>
+						<p class="green">
+							<?= $message; ?>
+						</p>
+					<?php endforeach; ?>
+					<?php unset($_SESSION['flash']); ?>
+				<?php endif; ?>
+				
+				<?php if(!empty($errors)): ?>
+					<div class="alert alert-danger">
+						<p>La connexion a échoué.</p>
+						<ul>
+							<?php foreach ($errors as $error): ?>
+								<li><?= $error; ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endif; ?>
 
-		<?php if (isset($_SESSION['flash'])): ?>
-			<?php foreach($_SESSION['flash'] as $type => $message): ?>
-				<p class="green">
-					<?= $message; ?>
-				</p>
-			<?php endforeach; ?>
-			<?php unset($_SESSION['flash']); ?>
-		<?php endif; ?>
-		
-		<?php if(!empty($errors)): ?>
-		<div class="row">
-			<div class="offset-md-4 col-md-3 block">
-				<div class="alerte rouge">
-					<p>La connexion a échoué.</p>
-					<ul>
-						<?php foreach ($errors as $error): ?>
-							<li><?= $error; ?></li>
-						<?php endforeach; ?>
-					</ul>
+				<!-- Formulaire de connexion -->
+				<div class="rang-form">
+					<div class="colonne">
+						<label for="mailUniv">Adresse mail universitaire :</label>
+						<input type="mail" name="mailUniv" placeholder="prenom.nom@edu.univ-paris13.fr" required pattern="[a-z]+[0-9]?.?[a-z]+@edu.univ-paris13.fr"/>
+					</div>
 				</div>
-			</div>
+				
+				<div class="rang-form">
+					<div class="colonne">
+						<label for="mdp">Mot de passe :</label>
+						<input type="password" name="mdp" placeholder="******" maxlength="30" required />
+					</div>
+				</div>
+				
+				<div class="rang-form">
+					<div class="colonne">
+						<a href="reinitialisation.php">J'ai oublié mon mot de passe</a><br>
+						<a href="inscription.php">Je ne suis pas encore inscrit</a><br>
+						<input type="submit" name="connexion" value="Valider" />
+					</div>
+				</div>
+			</form>
 		</div>
-		<?php endif; ?>
+				
 
-		<!-- Formulaire de connexion -->
-		<div class="row">
-			<div class="offset-md-4 col-md-3 block">
-				<form action="connexion.php" method="post">
-					<label for="mailUniv">Adresse mail universitaire</label><br>
-					<input type="mail" name="mailUniv" placeholder="jean.dupont@univ-paris13.fr" required pattern="[a-z]+[0-9]?.?[a-z]+@univ-paris13.fr"/><br>
-					<label for="mdp">Mot de passe</label><br>
-					<input type="password" name="mdp" placeholder="********" maxlength="30" required /><br>
-					<input type="submit" name="connexion" value="Valider" />
-				</form>
-				<a href="reinitialisation.php">J'ai oublié mon mot de passe</a>
-			</div>
-		</div>
 
 	</body>
 	<footer>

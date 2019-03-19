@@ -16,6 +16,41 @@
 
 
 
+
+<!-----------------------------------CREATION TOPIC---------------------------------------->
+<?php if(isset($_POST['ecriture']) and isset($_POST['categorie']) and trim($_POST['ecriture']!='') and isset($_POST['title']) and trim($_POST['title']!=''))
+{
+	if($_POST['categorie'] == 'general')
+	{
+		$req = $bdd->prepare('INSERT INTO `topics`(`id`, `topic`, `dateCreation`, `general`) VALUES (:id,:top,:date,1)');
+	}
+	elseif ($_POST['categorie'] == 'filliere') 
+	{
+		$req = $bdd->prepare('INSERT INTO `topics`(`id`, `topic`, `dateCreation`, `general`) VALUES (:id,:top,:date,0)');
+	}
+	$req->execute(array(
+			
+			'id' => intval($_SESSION['id']),
+			'top' =>$_POST['title'],
+			'date' => date('Y-m-d H:i:s')
+			));
+		$id = $bdd->lastInsertId();
+	//Creation premier message----------------------------
+	$req = $bdd->prepare('INSERT INTO `messages`(`id`, `idTopics`, `message`, `dateEnvoi`) VALUES (:id,:indtopic,:mess,:date)');
+			$req->execute(array(
+			
+			'id' => intval($_SESSION['id']),
+			'indtopic' => $id,
+			'mess' => $_POST['ecriture'],
+			'date' => date('Y-m-d H:i:s')
+			));
+	
+			
+}
+?>
+
+
+
 <!-- ------------------------------------FORUM GENERAL------------------------- -->
 <?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=1 ORDER BY dateCreation DESC');
 	$req->execute();

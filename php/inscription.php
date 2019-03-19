@@ -93,7 +93,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$req->execute(array($_POST['mailUniv']));
 		$etudiant = $req->fetch();
 		$id = $etudiant['id'];
-		mail($_POST['mailUniv'], "BDE : Validation de votre compte", "Afin de valider votre compte, veuillez cliquer sur ce lien\n\nhttp:://verification.php?id=$id&code=$code");
+		envoyerMail($_POST['mailUniv'], $id, 1, $code);
 
 		session_start();
 		$_SESSION['flash']['alerte'] = 'Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire';
@@ -115,13 +115,11 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	
 		<?php require_once ('navigation.php') ?>
 		
-
-			
-		
 		<div id="formulaire-responsive" class="clearfix inscription-form">
 			<form action="inscription.php" method="post">
 				<h3>S'inscrire</h3>
 				
+				<!-- Affichage des erreurs -->
 				<?php if(!empty($errors)): ?>
 					<div class="alert alert-danger">
 						<p>Vous n'avez pas rempli le formulaire correctement.</p>
@@ -133,6 +131,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 					</div>
 				<?php endif; ?>
 				
+				<!-- Formulaire d'inscription -->
 				<div class="rang-form">
 					<div class="demi-colonne">
 						<label for="prenom">Prénom :</label>
@@ -150,7 +149,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 						<input type="text" name="numero" placeholder="12345678" pattern="^([0-9]{8})$" required />
 					</div>
 				</div>
-
+				
 				<div class="rang-form">
 					<div class="demi-colonne">
 						<label for="mailUniv">Adresse mail universitaire :</label>
