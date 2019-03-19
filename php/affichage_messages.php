@@ -75,4 +75,5 @@ else {
 				endif;
 				$i++;
 				endforeach;?>
+				<script> init_totm(<?php echo $totm;?>);</script>
 				 
