@@ -23,8 +23,11 @@
 
 <div class ="top-page"></div>
 <div class="row">
-    <div class="offset-md-2 col-md-8 add-topic">
+    <div class="offset-md-2 col-md-2 add-topic">
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
+    </div>
+	<div class="offset-md-4 col-md-2 add-topic">
+        <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> ??</a>
     </div>
 </div>
 <div class="row">
