@@ -6,7 +6,7 @@ function afficheEtudiants(role){
 		document.getElementById('middle'+role).style.display = 'block';
 		if (!rolesDejaOuvert[role]){
 			rolesDejaOuvert[role] = true;
-			$('#middle'+role).html('<img src="../../img/ajax-loader.gif">');
+			$('#middle'+role).html('<div class="loader"></div>');
 			switch (role) {
 				case 'role2':
 					$('#middle'+role).load("inc/role-etudiant.php"); break;
