@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
-                <link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
 	<?php require_once 'inc/serveur.php' ;?>
