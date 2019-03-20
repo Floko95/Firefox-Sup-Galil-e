@@ -59,7 +59,13 @@ if(isset($_SESSION['id'])) {
 					<a href="index.php#contact" id="contact"><li><span>Contact</span></li></a>
 				</div>
 				<div id="right">
-					<li href="" id="profil"></li>
+					<li href="" id="profil"><?php if(isset($_SESSION['id'])):
+													$req = $bdd->prepare('SELECT nom, prenom FROM etudiants WHERE id = ?');
+													$req->execute(array($_SESSION['id']));
+													$data = $req->fetch();
+													echo (' '.strtoupper($data[0]).' '.$data[1]);
+											endif;?>
+					</li>
 				</div>
 			</ul>
 		</nav>
