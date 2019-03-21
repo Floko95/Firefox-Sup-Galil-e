@@ -414,8 +414,21 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 							$req->execute();
 							$nb = $req->fetch();
 						} elseif ($role['idRoles'] == 3) {
-							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat >= 2 AND formation IS NULL');
-							$req->execute();
+							$annee = date("Y");
+							$annee1 = $annee;
+							$annee2 = $annee;
+							if (date("m") >= 10) {
+								$annee1++;
+							}
+							if (date("m") >= 8) {
+								$annee2++;
+							}
+							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat >= 2 AND
+								((formation = "CP2I" AND promotion < ?)
+								OR
+								(formation != "CP2I" AND promotion < ?))
+							');
+							$req->execute(array($annee1, $annee2));
 							$nb = $req->fetch();
 						} elseif ($role['idRoles'] == 5) {
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat = 1');
