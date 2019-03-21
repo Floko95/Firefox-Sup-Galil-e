@@ -13,8 +13,10 @@ function afficheEtudiants(role){
 				case 'role3':
 					$('#middle'+role).load("inc/role-ancienetudiant.php"); break;
 				case 'role4':
-					$('#middle'+role).load("inc/role-enattente.php"); break;
+					$('#middle'+role).load("inc/role-anciencp2i.php"); break;
 				case 'role5':
+					$('#middle'+role).load("inc/role-enattente.php"); break;
+				case 'role6':
 					$('#middle'+role).load("inc/role-banni.php"); break;
 				default:
 					i = 0;
