@@ -1,5 +1,4 @@
-﻿
-DROP TABLE IF EXISTS etudiants;
+﻿DROP TABLE IF EXISTS etudiants;
 CREATE TABLE etudiants (
 id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 mailUniv varchar(70) NOT NULL,
@@ -51,14 +50,13 @@ ON DELETE CASCADE,
 CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles)
 ON DELETE CASCADE
 );
--- 
 
 --
--- Structure de la table topics
+-- Structure de la table `topics`
 --
 
 DROP TABLE IF EXISTS topics;
-CREATE TABLE IF NOT EXISTS topics (
+CREATE TABLE topics (
   idTopics int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   id int(10) UNSIGNED NOT NULL,
   topic varchar(255) NOT NULL,
@@ -71,8 +69,9 @@ CREATE TABLE IF NOT EXISTS topics (
 --
 -- Déchargement des données de la table topics
 --
--- vidé
+--vidé
 --
+
 DROP TABLE IF EXISTS tags;
 CREATE TABLE IF NOT EXISTS tags (
   idTags int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -83,10 +82,11 @@ CREATE TABLE IF NOT EXISTS tags (
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table tags
+-- Déchargement des données de la table `tags`
 --
--- vidé
+--vidé
 --
+
 INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(1, 'Créer un rôle', 'Permet de créer un rôle et de lui attribuer des droits'),
 	(2, 'Supprimer un rôle', 'Permet de supprimer un rôle précédemment créé'),
@@ -107,8 +107,9 @@ INSERT INTO ROLES (idRoles, role, descriptionRole) VALUES
 	(1, 'Administrateur', 'Possède tous les droits'),
 	(2, 'Etudiant', 'Simple étudiant'),
 	(3, 'Ancien étudiant', 'Etudiant ayant obtenu son diplôme'),
-	(4, 'En attente', 'Etudiant ayant confirmé son adresse mail, son inscription doit maintenant être validée par un étudiant possédant les droits requis'),
-	(5, 'Banni', 'Etudiant ou ancien étudiant dont le compte a été banni');
+	(4, 'Ancien CP2I', 'Etudiant qui a terminé sa CP2I'),
+	(5, 'En attente', 'Etudiant ayant confirmé son adresse mail, son inscription doit maintenant être validée par un étudiant possédant les droits requis'),
+	(6, 'Banni', 'Etudiant ou ancien étudiant dont le compte a été banni');
 	
 	
 INSERT INTO attributionDroitsAuxRoles (idRoles, idDroits) VALUES
