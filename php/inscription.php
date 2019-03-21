@@ -39,7 +39,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	} elseif (!preg_match('#^([a-z]+.[a-z]+@edu.univ-paris13.fr)$#', $_POST['mailUniv'])){
 		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@edu.univ-paris13.fr";
 	} elseif (strlen($_POST['mailUniv']) > 70) {
-		$errors['mailUniv'] = "L'adresse mail universitaire doit faire moins de 30 caractères";
+		$errors['mailUniv'] = "L'adresse mail universitaire doit faire moins de 70 caractères";
 	} else {
 		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ? AND etat > 0');
 		$req->execute(array($_POST['mailUniv']));
@@ -52,7 +52,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 	if (!empty($_POST['mailPerso']) && !filter_var($_POST['mailPerso'], FILTER_VALIDATE_EMAIL)) {
 		$errors['mailPerso'] = "Laisser le champ d'adresse mail personnelle vide ou entrer une adresse mail valide ";
 	} elseif (strlen($_POST['mailPerso']) > 70) {
-		$errors['mailPerso'] = "L'adresse personnelle doit faire moins de 30 caractères";
+		$errors['mailPerso'] = "L'adresse personnelle doit faire moins de 70 caractères";
 	}
 
 	if (empty($_POST['mdp']) || strlen($_POST['mdp']) < 6) {
@@ -87,6 +87,17 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 			'code' => $code,
 			'typeCode' => 1,
 			'dateMail' => $date));
+			
+		# Si l'étudiant est passé par la CP2I de Sup Galilée
+		if ($_POST['ancienCP2I'] == 'oui' && $_POST['formation'] != "CP2I") {
+			$req = $bdd->prepare('SELECT MAX(id) FROM ETUDIANTS WHERE mailUniv = ?');
+			$req->execute(array($_POST['mailUniv']));
+			$id = $req->fetch();
+			$req = $bdd->prepare('INSERT INTO attributionRolesAuxEtudiants(id, idRoles) VALUES(:id, :idRoles)');
+			$req->execute(array(
+				'id' => $id[0],
+				'idRoles' => 4));
+		}
 
 		# On envoie un mail à l'étudiant contenant le code de validation d'inscription
 		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ? ORDER BY dateInscription DESC');
@@ -165,28 +176,35 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 				<div class="rang-form">
 					<div class="demi-colonne">
 						<label for="formation">Formation :</label>
-						<select name="formation" size="1">
-							<option>
+						<select name="formation" id="formation" size="1">
 							<option>CP2I
 							<option>ENER
 							<option>INFO
 							<option>MACS
 							<option>TELE
+							<option>INST
 						</select>
 					</div>
 					<div class="demi-colonne">
 						<label for="promotion">Promotion :</label>
-						<select name="promotion" size="1">
-							<option>
-							<option>2019
-							<option>2020
-							<option>2021
-							<option>2022
-							<option>2023
-						</select>
+						<?php 
+						$annee = date("Y");
+						if (date("m") >= 7) {
+							$annee++;
+						}
+						?>
+						<input type="number" min="2000" max=<?php echo $annee+4 ?>  step="1" value=<?php echo $annee ?> />
 					</div>
 				</div>
 
+				<div class="rang-form" id="rangAncienCP2I">
+					<div class="colonne">
+						<label><i>J'ai fais une CP2I à Sup Galilée :</i></label><br>
+						<input type="radio" id="oui" name="ancienCP2I" value="oui">Oui</input><br>
+						<input type="radio" id="non" name="ancienCP2I" value="non" checked>Non</input>
+					</div>
+				</div>
+				
 				<div class="rang-form">
 					<div class="demi-colonne">
 						<label for="mdp">Mot de passe :</label>
@@ -200,7 +218,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 
 				<div class="rang-form">
 					<div class="colonne">
-						<input id="check" type="checkbox" name="regagree" value="valeur" /> J'ai lu et j'accepte les <a href="">CGU</a><br>
+						<input id="check" type="checkbox" name="regagree" value="valeur" /> <b>J'ai lu et j'accepte les <a href="">CGU</a></b><br>
 						<input type="submit" name="inscription" value="Valider" disabled />
 					</div>
 				</div>
@@ -209,8 +227,8 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		
 		<br>
 		
-
-		<script type="text/javascript" src="../js/index.js"></script>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/inscription.js"></script>
 	</body>
 	
 </html>

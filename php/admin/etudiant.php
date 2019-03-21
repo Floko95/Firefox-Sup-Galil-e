@@ -7,10 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 else {
 	require_once '../inc/serveur.php';
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND EXISTS (SELECT * FROM attributionRolesAuxEtudiants WHERE id = ?)'); // tous ceux qui ont un droit ?
-	$req->execute(array($_SESSION['id'], $_SESSION['id']));
+	$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ?');
+	$req->execute(array($_SESSION['id']));
 	$data = $req->fetch();
-	if (!$data) {
+	if ($data[0] == 0) {
 		header ('Location: ../index.php');
 		exit();
 	}
@@ -26,7 +26,7 @@ if (isset($_GET['id'])){
 	$etudiant = $req->fetch();
 	if ($etudiant) {
 		$id = intval($_GET['id']);
-		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?');
+		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?'); // Par odre de nb de droits possédés
 		$req->execute(array($id));
 		$rolesPossedes = $req->fetchAll();
 	}

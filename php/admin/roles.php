@@ -7,10 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 else {
 	require_once '../inc/serveur.php';
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND EXISTS (SELECT * FROM attributionRolesAuxEtudiants WHERE id = ?)'); // tous ceux qui ont un droit ?
-	$req->execute(array($_SESSION['id'], $_SESSION['id']));
+	$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ?');
+	$req->execute(array($_SESSION['id']));
 	$data = $req->fetch();
-	if (!$data) {
+	if ($data[0] == 0) {
 		header ('Location: ../index.php');
 		exit();
 	}
@@ -417,11 +417,11 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat >= 2 AND formation IS NULL');
 							$req->execute();
 							$nb = $req->fetch();
-						} elseif ($role['idRoles'] == 4) {
+						} elseif ($role['idRoles'] == 5) {
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat = 1');
 							$req->execute();
 							$nb = $req->fetch();
-						} elseif ($role['idRoles'] == 5) {
+						} elseif ($role['idRoles'] == 6) {
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat = -1');
 							$req->execute();
 							$nb = $req->fetch();
