@@ -47,3 +47,21 @@ function chaineAleatoire($taille) {
 function text($chaine) {
 	return htmlspecialchars($chaine, ENT_QUOTES, 'UTF-8', false);
 }
+
+function validationAutomatique($nom, $prenom, $mail) {
+	# Chargement du fichier Excel
+	$objPHPExcel = PHPExcel_IOFactory::load("../ListeSupGalilee.xlsx");
+	# Première page du fichier
+	$sheet = $objPHPExcel->getSheet(0);
+	$lastRow = $sheet->getHighestRow();
+	
+	for ($i=2; $i<=$lastRow; $i++) {
+		$a = strtoupper(text($sheet->getCell('A'.$i)->getValue()));
+		$b = strtoupper(text($sheet->getCell('B'.$i)->getValue()));
+		$d = text($sheet->getCell('D'.$i)->getValue());
+		if ($nom == $a && $prenom == $b && $mail == $d) {
+			return 2;
+		}
+	}
+	return 1;
+}

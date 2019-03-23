@@ -17,9 +17,13 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 	if ($etudiant) {
 		# On vérifie que le code soit bon
 		if (password_verify($_GET['code'], $etudiant['code'])) {
-			# On met l'état de l'étudiant à 1 (en attente de validation de l'inscription par un admin)
-			$req = $bdd->prepare('UPDATE ETUDIANTS SET etat = 1 WHERE id = ?');
-			$req->execute(array($_GET['id']));
+			# On regarde si l'étudiant est dans le fichier excel, auquel cas son inscription n'aura pas besoin d'être validée par un administrateur
+			require_once 'inc/fonctions.php';
+			include '../Classes/PHPExcel.php';
+			include '../Classes/PHPExcel/Writer/Excel2007.php';
+			$etat = validationAutomatique(strtoupper($etudiant['nom']), strtoupper($etudiant['prenom']), $etudiant['mailUniv']);
+			$req = $bdd->prepare('UPDATE ETUDIANTS SET etat = ? WHERE id = ?');
+			$req->execute(array($etat, $_GET['id']));
 
 			# On supprime tous les comptes qui ont la même adresse universitaire et sont encore dans l'état 0 (en attente de validation de l'inscription par un l'étudiant)
 			# Il peut en effet y avoir plusieurs entrées dans la table ETUDIANTS avec la même adresse universitaire
@@ -37,7 +41,10 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 			$_SESSION['nom'] = $etudiant['nom'];
 			$_SESSION['formation'] = $etudiant['formation'];
 			$_SESSION['promotion'] = $etudiant['promotion'];
-			$_SESSION['etat'] = $etudiant['etat'];
+			$_SESSION['etat'] = $etat;
+			if ($etat == 1) {
+					$_SESSION['flash']['alerte'] = 'Votre inscription n\'a pas encore été validée par un administrateur.<br>Par conséquent, vous ne pourrez pas poster de message sur le forum';
+				}
 			header('Location: index.php');
 			exit();
 		}

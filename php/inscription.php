@@ -225,7 +225,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		</div>
 		
 		<br>
-		
+
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript" src="../js/inscription.js"></script>
 	</body>
