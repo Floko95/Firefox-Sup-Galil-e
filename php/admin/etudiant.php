@@ -371,7 +371,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 	<body>
 		
 		<?php require_once '../inc/erreurs.php'; ?>
-		<?php require_once '/inc/menu.php'; ?>
+		<?php require_once 'inc/menu.php'; ?>
 
 		<div id="page">
 			<div id="head">
