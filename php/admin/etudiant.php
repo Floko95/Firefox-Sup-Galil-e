@@ -370,13 +370,12 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 	</head>
 	<body>
 		
+		<?php require_once '../navigation.php'; ?>
 		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once 'inc/menu.php'; ?>
 
 		<div id="page">
-			<div id="head">
-				Accueil
-			</div>
+
 			<div id="title">
 				Etudiant
 			</div>
@@ -406,19 +405,19 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						?>
 						<?php 
 						echo text($etudiant['prenom']).' '.strtoupper(text($etudiant['nom']));
-						if ($droit7[0] > 0 && $etudiant['etat'] >= 1) {
-							echo ' <button><img src="../../img/gears.png"></button>';
+						if ($droit7[0] > 0) {
+							echo ' <button><img src="../../img/modifier.png"></button>';
 						}
 						?> 
 						<?php 
 						if ($etudiant['etat'] == 0 || $etudiant['etat'] == 1) {
-							echo '<img src="../../img/sands-of-time.png">';
+							echo '<img src="../../img/etat-1.png">';
 						} elseif ($etudiant['etat'] == 2) {
-							echo '<img src="../../img/speaker.png">';
+							echo '<img src="../../img/etat-2.png">';
 						} elseif ($etudiant['etat'] == 3) {
-							echo '<img src="../../img/speaker-off32.png">';
+							echo '<img src="../../img/etat-3.png">';
 						} else {
-							echo '<img src="../../img/padlock.png">';
+							echo '<img src="../../img/etat--1.png">';
 						}
 						echo '<br><form action="" method="post">';
 						if ($droit8[0] > 0 && $etudiant['etat'] >= 2 && $droitTout[0] == 0) {

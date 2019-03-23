@@ -20,7 +20,7 @@ $nbEtudiants = count($etudiants);
 				<td><?php echo text($etudiant['prenom']) ?></td>
 				<td><?php echo text($etudiant['formation']) ?></td>
 				<td><?php echo text($etudiant['promotion']) ?></td>
-				<td><a href="etudiant.php?id=<?php echo $etudiant['id']; ?>"><img src="../../img/id-card.png"></a></td>
+				<td class="identite"><a href="etudiant.php?id=<?php echo $etudiant['id']; ?>"><img src="../../img/id-card.png"></a></td>
 				<?php if ($data[0] == 1): ?><td><input type="checkbox" name=<?php echo 'retirer'.$etudiant['id']; ?> /></td><?php endif; ?>
 			</tr>
 			<?php endforeach; ?>

@@ -357,7 +357,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 			if($data[0] > 0): 
 			?>
 			<div id="contenu">
-				<div id ="contenuTitle">
+				<div class="plus" id ="contenuTitle">
 					Créer un nouveau rôle
 				</div>
 				<div id="creerRoleMiddle">
