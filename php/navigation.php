@@ -20,7 +20,7 @@ require_once 'inc/fonctions.php';
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="/bde/css/navigation.css">
+		<link rel="stylesheet" type="text/css" href="/Firefox-Sup-Galil-e/css/navigation.css">
 
 	</head>
 	<body>
@@ -28,37 +28,39 @@ require_once 'inc/fonctions.php';
 		<nav>
 			<ul>
 				<div id="left">
-					<a href="/bde/php/index.php" id="accueil"><li><span>Accueil</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php" id="accueil"><li><span>Accueil</span></li></a>
 					<li id="hamburger">
 						<ul>
-							<a href="/bde/php/index.php#equipe" id="h-equipe"><li><span>L'équipe</span></li></a>
-							<a href="/bde/php/index.php#actualites" id="h-actualites"><li><span>Actualités</span></li></a>
-							<a href="/bde/php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="h-equipe"><li><span>L'équipe</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="h-actualites"><li><span>Actualités</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
 							<?php if(isset($_SESSION['id'])): ?>
-							<a href="/bde/php/Topics.php" id="h-forum"><li><span>Forum</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="h-forum"><li><span>Forum</span></li></a>
 							<?php if($possedeRole == true): ?>
-							<a href="/bde/php/admin/roles.php" id="h-admin"><li><span>Gérer</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="h-admin"><li><span>Gérer</span></li></a>
 							<?php endif; ?>
 							<?php endif; ?>
-							<a href="/bde/php/index.php#contact" id="h-contact"><li><span>Contact</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="h-contact"><li><span>Contact</span></li></a>
 						</ul>
 					</li>
-					<a href="/bde/php/index.php#equipe" id="equipe"><li><span>L'équipe</span></li></a>
-					<a href="/bde/php/index.php#actualites" id="actualites"><li><span>Actualités</span></li></a>
-					<a href="/bde/php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="equipe"><li><span>L'équipe</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="actualites"><li><span>Actualités</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
 					<?php if(isset($_SESSION['id'])): ?>
-					<a href="/bde/php/Topics.php" id="forum"><li><span>Forum</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="forum"><li><span>Forum</span></li></a>
 					<?php if($possedeRole == true): ?>
-					<a href="/bde/php/admin/roles.php" id="admin"><li><span>Gérer</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="admin"><li><span>Gérer</span></li></a>
 					<?php endif; ?>
 					<?php endif; ?>
-					<a href="/bde/php/index.php#contact" id="contact"><li><span>Contact</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="contact"><li><span>Contact</span></li></a>
 				</div>
 				<div id="right">
 					<li id="profil">
-						<div id="bonjour">
-							<?php if(isset($_SESSION['prenom'])): echo 'Bonjour '.text($_SESSION['prenom']); endif;?>
-						</div>
+						<?php if(isset($_SESSION['prenom'])): ?>
+							<div id="bonjour">
+								<?php echo 'Bonjour '.text($_SESSION['prenom']); ?>
+							</div>
+						<?php endif;?>
 					</li>
 				</div>
 			</ul>
@@ -75,11 +77,11 @@ require_once 'inc/fonctions.php';
 					<input type="submit" name="connexion" value="Valider" />						
 				</form>
 			<?php else: ?>
-				<a href="deconnexion.php">Déconnexion</a>
+				<a href="/Firefox-Sup-Galil-e/php/deconnexion.php">Déconnexion</a>
 			<?php endif; ?>
 		</div>
 		
-		<script type="text/javascript" src="/bde/js/jquery.js"></script>
-		<script type="text/javascript" src="/bde/js/navigation.js"></script>
+		<script type="text/javascript" src="/Firefox-Sup-Galil-e/js/jquery.js"></script>
+		<script type="text/javascript" src="/Firefox-Sup-Galil-e/js/navigation.js"></script>
 	</body>
 </html>
