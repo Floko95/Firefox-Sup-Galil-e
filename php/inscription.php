@@ -67,11 +67,6 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$code_hash = password_hash($code, PASSWORD_BCRYPT);
 		$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
 		$date = date('Y-m-d H:i:s');
-		
-		if (isset($_POST['etudiant']) && $_POST['etudiant'] == "non") {
-			$_POST['formation'] = NULL;
-			$_POST['promotion'] = NULL;
-		}
 
 		$req = $bdd->prepare('INSERT INTO ETUDIANTS(mailUniv, mailPerso, nom, prenom, numero, mdp, formation, promotion, dateInscription, code, typeCode, dateMail) VALUES(:mailUniv, :mailPerso, :nom, :prenom, :numero, :mdp, :formation, :promotion, :dateInscription, :code, :typeCode, :dateMail)');
 		$req->execute(array(

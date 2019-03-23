@@ -451,7 +451,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 			</div>
 			<?php endforeach; ?>
 			
-			
+		</div>
 
 
 		<script type="text/javascript" src="../../js/jquery.js"></script>

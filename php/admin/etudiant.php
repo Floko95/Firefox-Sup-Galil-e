@@ -547,7 +547,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 				</div>
 			<?php endif; ?>
 		</div>
-		
+
 		<script type="text/javascript" src="../../js/jquery.js"></script>
 		<script type="text/javascript" src="../../js/alerte.js"></script>
 	</body>
