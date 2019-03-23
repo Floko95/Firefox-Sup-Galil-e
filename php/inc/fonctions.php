@@ -20,13 +20,14 @@ function envoyerMail($destinataire, $id, $type, $code) {
 	$mail->addAddress($destinataire, 'Mr. Brown'); // to email and name
 	if ($type == 1) {
 		$mail->Subject = 'BDE : Validation de votre compte';
+		$message = 'Afin de valider votre inscription, veuillez cliquer sur ce lien\n\nhttp://localhost/Firefox-Sup-Galil-e/php/verification.php?id='.$id.'&code='.$code;
 	} else if ($type == 2) {
 		$mail->Subject = 'BDE :Réinitialisation du mot de passe';
+		$message = 'Afin de choisir un nouveau mot de passe, veuillez cliquer sur ce lien\n\nhttp://localhost/Firefox-Sup-Galil-e/php/modification.php?id='.$id.'&code='.$code;
 	}
 	
-	$mail->msgHTML("Allez ici, veuillez cliquer sur ce lien\n\nhttp://localhost/Firefox-Sup-Galil-e/php/verification.php?id=".$id."&code=".$code); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
-	$mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
-	// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+	$mail->msgHTML($message);
+	$mail->AltBody = 'HTML messaging not supported';
 
 	if(!$mail->send()){
 		echo "Mailer Error: " . $mail->ErrorInfo;
