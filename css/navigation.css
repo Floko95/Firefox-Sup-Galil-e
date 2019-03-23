@@ -16,6 +16,9 @@ nav {
 	background-color: #161743;
 	top: 0px;
 	left: 0px;
+	font-variant: small-caps;
+	font-family: Andale Mono, monospace;
+	font-weight: bold;
 }
 
 nav ul {
