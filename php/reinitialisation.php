@@ -66,7 +66,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 				<!-- Affichage des erreurs -->
 				<?php if(!empty($errors)): ?>
 					<div class="alert alert-danger">
-						<p>La réinitialisation du mot de passe a échoué.</p>
+						<strong>La réinitialisation du mot de passe a échoué.</strong>
 						<ul>
 							<?php foreach ($errors as $error): ?>
 								<li><?= $error; ?></li>

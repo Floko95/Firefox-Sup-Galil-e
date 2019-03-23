@@ -1,3 +1,13 @@
+a, a:visited {
+	color: #008AF6;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0056B3;
+	text-decoration: underline;
+}
+
 nav {
 	position: fixed;
 	z-index: 10;
@@ -41,7 +51,6 @@ nav ul ul {
 }
 
 nav ul ul a {
-	
 	padding: 0px;
 	width: 100%;
 }
@@ -73,7 +82,7 @@ nav span {
 	margin-left: 28px;
 }
 
-nav a {
+nav a, nav a:visited {
 	box-sizing: border-box;
 	float: left;
 	height: 100%;
@@ -356,4 +365,7 @@ nav #right {
 	border-left: 2px solid #051020;
 	border-bottom: 2px solid #051020;
 }
-	
+
+#connexion input[type=mail] + #connexion input[type=text], #connexion input[type=password] { 
+	margin-top: -10px;
+}

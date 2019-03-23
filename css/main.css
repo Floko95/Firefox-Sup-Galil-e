@@ -40,24 +40,3 @@ html body .title{
 		text-align: center;
 	}
 }
-
-p
-{
-	box-sizing: border-box;
-	height: auto;
-	width: auto;
-	display: inline-block;
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-top: 0px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	color: #f23434;
-	font-size: 18px;
-	font-weight: bold;
-	font-variant: small-caps;
-	font-family: Andale Mono, monospace;
-	padding-left: 20px;
-	padding-right: 20px;
-	border: 1px solid #f23434;
-}

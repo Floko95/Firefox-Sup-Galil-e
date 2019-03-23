@@ -246,8 +246,6 @@ if (isset($_POST['supprimerCompte']) && $_POST['supprimerCompte'] == 'Valider') 
 		$success['comptesSupprimés'] = 'Les comptes des étudiants selectionnés ont bien été supprimés';
 	}
 }
-// Accepter
-// Refuser
 ?>
 
 <?php
@@ -339,14 +337,13 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 	</head>
 	<body>
 
+		<?php require_once '../navigation.php'; ?>
 		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once 'inc/menu.php'; ?>
 		
 
 		<div id="page">
-			<div id="head">
-				Accueil
-			</div>
+		
 			<div id="title">
 				Rôles
 			</div>

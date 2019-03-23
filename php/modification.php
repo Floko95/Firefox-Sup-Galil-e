@@ -72,7 +72,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 					<!-- Affichage des erreurs -->
 					<?php if(!empty($errors)): ?>
 						<div class="alert alert-danger">
-							<p>La modification du mot de passe a échoué.</p>
+							<strong>La modification du mot de passe a échoué.</strong>
 							<ul>
 								<?php foreach ($errors as $error): ?>
 									<li><?= $error; ?></li>

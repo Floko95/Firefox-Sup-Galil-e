@@ -134,7 +134,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 				<!-- Affichage des erreurs -->
 				<?php if(!empty($errors)): ?>
 					<div class="alert alert-danger">
-						<p>Vous n'avez pas rempli le formulaire correctement.</p>
+						<strong>Vous n'avez pas rempli le formulaire correctement.</strong>
 						<ul>
 							<?php foreach ($errors as $error): ?>
 								<li><?= $error; ?></li>
