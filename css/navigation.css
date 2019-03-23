@@ -208,6 +208,10 @@ nav #right {
 	background-image: url(../img/nav-profil-blanc.png);
 }
 
+#profil:hover #bonjour {
+	color: #FFFFFF;
+}
+
 
 
 /* Responsive */
@@ -371,4 +375,16 @@ nav #right {
 
 #connexion input[type=mail] + #connexion input[type=text], #connexion input[type=password] { 
 	margin-top: -10px;
+}
+
+#bonjour {
+	width: 100px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-top: 6px;
+	padding-right: 5px;
+	margin-left: 50px;
+	font-size: 17px;
+	color: #161743;
 }
