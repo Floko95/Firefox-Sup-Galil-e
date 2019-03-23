@@ -20,7 +20,7 @@ require_once '../inc/fonctions.php';
 
 <?php
 # On récupère les différents rôles pour les afficher
-$req = $bdd->prepare('SELECT * FROM ROLES'); // tous ceux qui ont un droit peuvent tout voir ? ORDER BY nb droits ?
+$req = $bdd->prepare('SELECT * FROM ROLES NATURAL LEFT JOIN attributionDroitsAuxRoles GROUP BY idRoles ORDER BY COUNT(*) DESC, idRoles ASC');
 $req->execute();
 $roles = $req->fetchAll();
 $nbRoles = count($roles);
@@ -102,7 +102,7 @@ if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
 		}
 		$success['creationRole'] = "Le rôle a bien été créé";
 		# On met à jour les rôles
-		$req = $bdd->prepare('SELECT * FROM ROLES');
+		$req = $bdd->prepare('SELECT * FROM ROLES NATURAL LEFT JOIN attributionDroitsAuxRoles GROUP BY idRoles ORDER BY COUNT(*) DESC, idRoles ASC');
 		$req->execute();
 		$roles = $req->fetchAll();
 		$nbRoles = count($roles);
@@ -154,7 +154,7 @@ for ($i=0; $i < $nbRoles; $i++) {
 			$req->execute(array($roles[$i]['idRoles']));
 			$success['roleSupprimé'] = "Ce rôle a bien été supprimé";
 			# On met à jour les rôles
-			$req = $bdd->prepare('SELECT * FROM ROLES');
+			$req = $bdd->prepare('SELECT * FROM ROLES NATURAL LEFT JOIN attributionDroitsAuxRoles GROUP BY idRoles ORDER BY COUNT(*) DESC, idRoles ASC');
 			$req->execute();
 			$roles = $req->fetchAll();
 			$nbRoles = count($roles);

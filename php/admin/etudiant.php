@@ -26,7 +26,7 @@ if (isset($_GET['id'])){
 	$etudiant = $req->fetch();
 	if ($etudiant) {
 		$id = intval($_GET['id']);
-		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?'); // Par odre de nb de droits possédés
+		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES NATURAL LEFT JOIN attributionDroitsAuxRoles WHERE id = ? GROUP BY idRoles ORDER BY COUNT(*) DESC, idRoles ASC');
 		$req->execute(array($id));
 		$rolesPossedes = $req->fetchAll();
 	}
@@ -40,7 +40,7 @@ $reqDroit = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NAT
 $reqPossedeTout = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants A1 NATURAL JOIN attributionDroitsAuxRoles B1 WHERE A1.id = ? 
 	AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants A2 NATURAL JOIN attributionDroitsAuxRoles B2 WHERE A2.id = ? AND B1.idDroits = B2.idDroits)');
 # Requête pour savoir quels rôles l'étudiant a peut attribuer à l'étudiant b
-$reqQuelsRoles = $bdd->prepare('SELECT * FROM ROLES R WHERE R.idRoles NOT IN (2,3,4,5)
+$reqQuelsRoles = $bdd->prepare('SELECT * FROM ROLES R WHERE R.idRoles NOT IN (2,3,4,5,6)
 	AND NOT EXISTS (SELECT * FROM attributionDroitsAuxRoles A1 WHERE R.idRoles = A1.idRoles
 	AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants B1 NATURAL JOIN attributionDroitsAuxRoles A2 WHERE B1.id = ? AND A1.idDroits = A2.idDroits))
 	AND NOT EXISTS (SELECT * FROM attributionRolesAuxEtudiants B2 WHERE B2.id = ? AND B2.idRoles = R.idRoles)');
@@ -115,7 +115,7 @@ if (isset($_POST['attribuerRole']) && $_POST['attribuerRole'] == 'Valider') {
 			'idRoles' => $data['idRoles']));
 		$success['roleAttribué'] = "Le rôle a bien été attribué";
 		# On met à jour les rôles possédés
-		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?');
+		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES NATURAL LEFT JOIN attributionDroitsAuxRoles WHERE id = ? GROUP BY idRoles ORDER BY COUNT(*) DESC, idRoles ASC');
 		$req->execute(array($id));
 		$rolesPossedes = $req->fetchAll();
 	}
