@@ -12,7 +12,7 @@ $etudiants = $req->fetchAll();
 		<td><?php echo text($etudiant['prenom']) ?></td>
 		<td><?php echo text($etudiant['formation']) ?></td>
 		<td><?php echo text($etudiant['promotion']) ?></td>
-		<td><a href="etudiant.php?id=<?php echo $etudiant['id']; ?>"><img src="../../img/id-card.png"></a></td>
+		<td class="identite"><a href="etudiant.php?id=<?php echo $etudiant['id']; ?>"><img src="../../img/id-card.png"></a></td>
 		<td><?php if ($etudiant['etat'] == 3) { echo '<img src="../../img/speaker-off.png">'; } ?></td>
 	</tr>
 	<?php endforeach; ?>

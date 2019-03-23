@@ -60,8 +60,9 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
-                <link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
 	<body>
 	
@@ -73,17 +74,17 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 				
 				<!-- Affichage des erreurs -->
 				<?php if (isset($_SESSION['flash'])): ?>
-					<?php foreach($_SESSION['flash'] as $type => $message): ?>
-						<p class="green">
-							<?= $message; ?>
-						</p>
-					<?php endforeach; ?>
-					<?php unset($_SESSION['flash']); ?>
+					<div class="alert alert-success">
+						<?php foreach($_SESSION['flash'] as $type => $message): ?>
+							<strong><?= $message; ?></strong><br>
+						<?php endforeach; ?>
+						<?php unset($_SESSION['flash']); ?>
+					</div>
 				<?php endif; ?>
 				
 				<?php if(!empty($errors)): ?>
 					<div class="alert alert-danger">
-						<p>La connexion a échoué.</p>
+						<strong>La connexion a échoué.</strong>
 						<ul>
 							<?php foreach ($errors as $error): ?>
 								<li><?= $error; ?></li>
@@ -121,6 +122,6 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Valider') {
 
 	</body>
 	<footer>
-    <?php require_once ('footer.html') ?>
+    
   </footer>
 </html>

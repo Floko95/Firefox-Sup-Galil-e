@@ -6,7 +6,6 @@ html>body
 	height:100%;
 	margin: 0px;
 	padding: 0px;
-	border-top: 2px solid #EA6018;
 	background: #1E1E2E;
 	font-variant: small-caps;
 	font-family: Andale Mono, monospace;
@@ -25,11 +24,12 @@ hr
 {
 	width: 60%;
 	padding:0px;
-	border: 1px solid #EA6018;
+	border: 1px solid #161743;
 }
 
-nav{
-	margin-top: 0px;
+#menu nav{
+	position: relative;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 85px;
@@ -40,49 +40,68 @@ nav{
 	color: #FFF;
 }
 
-nav ul{
+#menu nav ul{
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
 }
 
-nav li{
+#menu nav li{
 	width: 100%;
 	height: 60px;
 	list-style-type: none;
 	background-position: center;
 	background-repeat: no-repeat;
+	padding: 0px;
 }
 
-#menu-role{
-	background-image: url(../img/organigram.png);
+#menu nav a {
+	height: auto;
+	width: 100%;
+	padding: 0px 0px;
+	margin: 0px;
 }
-#menu-role:hover{
-	background-image: url(../img/organigram-blue.png);
+
+#menu nav a ~ a {
+	padding: 0px 0px;
+	margin-left: 0px;
+}
+
+#menu-roles{
+	background-image: url(../img/menu-roles.png);
+}
+#menu-roles:hover{
+	background-image: url(../img/menu-roles-orange.png);
 }
 #menu-etudiant{
-	background-image: url(../img/id-card.png);
+	background-image: url(../img/menu-etudiant.png);
 }
 #menu-etudiant:hover{
-	background-image: url(../img/id-card-blue.png);
+	background-image: url(../img/menu-etudiant-orange.png);
 }
-#menu-calendrier{
-	background-image: url(../img/calendar.png);
+#menu-actualites{
+	background-image: url(../img/menu-actualites.png);
 }
-#menu-calendrier:hover{
-	background-image: url(../img/calendar-blue.png);
+#menu-actualites:hover{
+	background-image: url(../img/menu-actualites-orange.png);
 }
 #menu-boutique{
-	background-image: url(../img/shopping-cart.png);
+	background-image: url(../img/menu-boutique.png);
 }
 #menu-boutique:hover{
-	background-image: url(../img/shopping-cart-blue.png);
+	background-image: url(../img/menu-boutique-orange.png);
+}
+#menu-tournoi{
+	background-image: url(../img/menu-tournoi.png);
+}
+#menu-tournoi:hover{
+	background-image: url(../img/menu-tournoi-orange.png);
 }
 #menu-minijeu{
-	background-image: url(../img/console-controller.png);
+	background-image: url(../img/menu-minijeu.png);
 }
 #menu-minijeu:hover{
-	background-image: url(../img/console-controller-blue.png);
+	background-image: url(../img/menu-minijeu-orange.png);
 }
 
 #page
@@ -90,18 +109,7 @@ nav li{
 	float: right;
 	height: auto;
 	width: calc(100% - 130px);
-}
-
-#head
-{
-	box-sizing: border-box;
-	padding-top: 20px;
-	padding-left: 30px;
-	padding-right: 30px;
-	height: 70px;
-	width: 100%;
-	color: #FFF;
-	font-size: 25px;
+	margin-top: 50px;
 }
 
 #title
@@ -147,6 +155,13 @@ nav li{
 	color: #CCC;
 	cursor: pointer;
 	text-align: left;
+}
+
+.plus {
+	background-image: url(../img/plus.png);
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 35px;
 }
 
 #creerRoleMiddle
@@ -300,6 +315,14 @@ h1{
 	margin: 0px;
 	margin-bottom: 10px;
 	color: #EA6018;
+}
+
+.identite {
+	visibility: hidden;
+}
+
+tr:hover .identite {
+	visibility: visible;
 }
 
 

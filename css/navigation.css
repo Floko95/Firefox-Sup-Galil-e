@@ -1,75 +1,358 @@
+a, a:visited {
+	color: #008AF6;
+	text-decoration: none;
+}
 
+a:hover {
+	color: #0056B3;
+	text-decoration: underline;
+}
 
-nav{
+nav {
 	position: fixed;
 	z-index: 10;
 	width: 100%;
+	height: 35px;
 	background-color: #161743;
-	font-size: 16px;
-	text-align: center;
-	margin-bottom: 10px
+	top: 0px;
+	left: 0px;
+	font-variant: small-caps;
+	font-family: Andale Mono, monospace;
+	font-weight: bold;
 }
 
-nav ul{
+nav ul {
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
+	height: 100%;
+	width: 100%;
 }
 
-nav .nav-tab{
-	/*float: left;*/
-	display: inline-block;
-	list-style-type: none; /* Suppression des puces */
-	padding-top: 4px;
-	height: 37px;
-	background: #EA6018;
+nav li {
+	float: left;
+	list-style-type: none;
+	height: 100%;
+	min-width: 40px;
+	width: auto;
+	padding-right: 5px;
+	background-position: 15px 5px;
+	background-repeat: no-repeat;
+}
+
+nav ul ul {
+	display: none;
+	position: absolute;
+	width: 140px;
+	height: auto;
+	padding-left: 5px;
+	top: 35px;
+	left: 50px;
+	background: #161743;
+	border-right: 2px solid #051020;
 	border-bottom: 2px solid #051020;
-	border-top: 1px solid #051020;
 }
 
-nav a{
+nav ul ul a {
+	padding: 0px;
+	width: 100%;
+}
+
+nav ul ul li {
+	display: none;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: left;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+nav ul ul li:hover {
+	background-image: url(../img/nav-triangle.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+
+/*
+nav ul li:active > ul
+{
+	display: block;
+}*/
+
+nav span {
+	margin-left: 28px;
+}
+
+nav a, nav a:visited {
+	box-sizing: border-box;
+	float: left;
+	height: 100%;
 	display: inline-block;
-	color: #102030;
+	padding: 4px 0px;
+	padding-left: 5px;
+	font-size: 17px;
+	color: #161743;
 	text-decoration: none;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background-position: left;
+	background-repeat: no-repeat;
+}
+
+nav a ~ a {
+	padding: 4px 0px;
+	margin-left: 15px;
 }
 
 nav a:hover{
 	color: #FFFFFF;
 }
 
-
-#contact-tab{
-	border-radius: 0px 30px 30px 0px;
-	border-right: 2px solid #051020;
-}
-
-#facebook-tab{
-	padding-top: 7px;
-	padding-right: 0px;
-	height: 37px;
-	text-align: center;
-}
-#facebook_logo{
-	background-color: #FFFFFF;
-	height: 21px;
-	width: 20px;
-	padding: 2px;
-	border-radius: 10%
-
-}
-
-a:hover #facebook_logo{
-	background-color:#102030;
-}
-
-#connect-tab{
-	float: right;
-	border-radius: 30px 0px 0px 30px;
-	border-left: 2px solid #051020;
+nav #left {
+	box-sizing: border-box;
+	float: left;
+	height: 100%;
+	width: auto;
+	padding-right: 5px;
 	background: #EA6018;
-	font-size: 22px;
-	cursor: pointer;
+	border-radius: 0px 30px 30px 0px;
+	border-top: 1px solid #051020;
+	border-right: 2px solid #051020;
+	border-bottom: 2px solid #051020;
 }
+
+nav #right {
+	box-sizing: border-box;
+	float: right;
+	height: 100%;
+	min-width: 50px;
+	width: auto;
+	background: #EA6018;
+	border-radius: 30px 0px 0px 30px;
+	border-top: 1px solid #051020;
+	border-left: 2px solid #051020;
+	border-bottom: 2px solid #051020;
+}
+
+#accueil {
+	background-image: url(../img/nav-accueil.png);
+	background-position: 5px 5px;
+}
+
+#accueil:hover {
+	background-image: url(../img/nav-accueil-blanc.png);
+}
+
+#hamburger {
+	display: none;
+	cursor: pointer;
+	background-image: url(../img/nav-hamburger.png);
+	background-position: center;
+}
+
+#equipe {
+	background-image: url(../img/nav-equipe.png);
+}
+
+#equipe:hover, #h-equipe {
+	background-image: url(../img/nav-equipe-blanc.png);
+}
+
+#actualites {
+	background-image: url(../img/nav-actualites.png);
+}
+
+#actualites:hover, #h-actualites {
+	background-image: url(../img/nav-actualites-blanc.png);
+}
+
+#boutique {
+	background-image: url(../img/nav-boutique.png);
+}
+
+#boutique:hover, #h-boutique {
+	background-image: url(../img/nav-boutique-blanc.png);
+}
+
+#forum {
+	background-image: url(../img/nav-forum.png);
+}
+
+#forum:hover, #h-forum {
+	background-image: url(../img/nav-forum-blanc.png);
+}
+
+#admin {
+	background-image: url(../img/nav-admin.png);
+}
+
+#admin:hover, #h-admin {
+	background-image: url(../img/nav-admin-blanc.png);
+}
+
+#contact {
+	background-image: url(../img/nav-contact.png);
+}
+
+#contact:hover, #h-contact {
+	background-image: url(../img/nav-contact-blanc.png);
+}
+
+#profil {
+	cursor: pointer;
+	background-image: url(../img/nav-profil.png);
+}
+
+#profil:hover {
+	background-image: url(../img/nav-profil-blanc.png);
+}
+
+#profil:hover #bonjour {
+	color: #FFFFFF;
+}
+
+
+
+/* Responsive */
+
+@media only screen and (max-width: 1050px) { 
+	#contact li span {
+		display: none;
+	}
+	#contact {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 990px) { 
+	#admin li span {
+		display: none;
+	}
+	#admin {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 930px) { 
+	#forum li span {
+		display: none;
+	}
+	#forum {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 870px) { 
+	#boutique li span {
+		display: none;
+	}
+	#boutique {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 810px) { 
+	#actualites li span {
+		display: none;
+	}
+	#actualites {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 750px) { 
+	#equipe li span {
+		display: none;
+	}
+	#equipe {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 690px) { 
+	#accueil li span {
+		display: none;
+	}
+	#accueil {
+		background-position: center;
+	}
+}
+
+/* Réduction de l'espace inter-image */
+
+@media only screen and (max-width: 550px) { 
+	nav a ~ a {
+		padding: 0px 0px;
+		margin-left: 0px;
+	}
+}
+
+/* Debut du hamburger */
+
+@media only screen and (max-width: 450px) { 
+	#contact {
+		display: none;
+	}
+	#admin {
+		display: none;
+	}
+	#hamburger, #h-contact li{
+		display: block;
+	}
+	#hamburger, #h-admin li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 400px) { 
+	#forum {
+		display: none;
+	}
+	#h-forum li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 370px) { 
+	#boutique {
+		display: none;
+	}
+	#h-boutique li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 340px) { 
+	#actualites {
+		display: none;
+	}
+	#h-actualites li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 310px) { 
+	#equipe {
+		display: none;
+	}
+	#h-equipe li{
+		display: block;
+	}
+}
+
+/* Barre de menu fixe si la hauteur de l'écran est assez grande */
+
+@media only screen and (max-height: 250px) { 
+	nav {
+		position: absolute;
+	}
+}
+
+
+
+
+/* PANNEAU DE CONNEXION */
 
 #connexion{
 	display:none;
@@ -77,7 +360,7 @@ a:hover #facebook_logo{
 	z-index: 10;
 	height: auto;
 	width: 210px;
-	top: 37px;
+	top: 33px;
 	padding: 15px;
 	padding-top: 20px;
 	font-size: 14px;
@@ -90,22 +373,18 @@ a:hover #facebook_logo{
 	border-bottom: 2px solid #051020;
 }
 
-
-
-
- @media screen and (max-width: 728px) {
-	nav {
-		position: relative;
-	}
-}
-/*Debug*/
-
-
-/* html body nav [class|=row]
-{
-	border: 5px white solid;
-=======
- 	width: 190px;
->>>>>>> c70c8052497d11a698fed136e0f68f2da43255ee
+#connexion input[type=mail] + #connexion input[type=text], #connexion input[type=password] { 
+	margin-top: -10px;
 }
 
+#bonjour {
+	width: 100px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-top: 6px;
+	padding-right: 5px;
+	margin-left: 50px;
+	font-size: 17px;
+	color: #161743;
+}

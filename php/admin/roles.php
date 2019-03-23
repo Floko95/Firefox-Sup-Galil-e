@@ -7,10 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 else {
 	require_once '../inc/serveur.php';
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND EXISTS (SELECT * FROM attributionRolesAuxEtudiants WHERE id = ?)'); // tous ceux qui ont un droit ?
-	$req->execute(array($_SESSION['id'], $_SESSION['id']));
+	$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ?');
+	$req->execute(array($_SESSION['id']));
 	$data = $req->fetch();
-	if (!$data) {
+	if ($data[0] == 0) {
 		header ('Location: ../index.php');
 		exit();
 	}
@@ -246,8 +246,6 @@ if (isset($_POST['supprimerCompte']) && $_POST['supprimerCompte'] == 'Valider') 
 		$success['comptesSupprimés'] = 'Les comptes des étudiants selectionnés ont bien été supprimés';
 	}
 }
-// Accepter
-// Refuser
 ?>
 
 <?php
@@ -339,14 +337,13 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 	</head>
 	<body>
 
+		<?php require_once '../navigation.php'; ?>
 		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once 'inc/menu.php'; ?>
 		
 
 		<div id="page">
-			<div id="head">
-				Accueil
-			</div>
+		
 			<div id="title">
 				Rôles
 			</div>
@@ -360,7 +357,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 			if($data[0] > 0): 
 			?>
 			<div id="contenu">
-				<div id ="contenuTitle">
+				<div class="plus" id ="contenuTitle">
 					Créer un nouveau rôle
 				</div>
 				<div id="creerRoleMiddle">
@@ -414,14 +411,27 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 							$req->execute();
 							$nb = $req->fetch();
 						} elseif ($role['idRoles'] == 3) {
-							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat >= 2 AND formation IS NULL');
-							$req->execute();
+							$annee = date("Y");
+							$annee1 = $annee;
+							$annee2 = $annee;
+							if (date("m") >= 10) {
+								$annee1++;
+							}
+							if (date("m") >= 8) {
+								$annee2++;
+							}
+							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat >= 2 AND
+								((formation = "CP2I" AND promotion < ?)
+								OR
+								(formation != "CP2I" AND promotion < ?))
+							');
+							$req->execute(array($annee1, $annee2));
 							$nb = $req->fetch();
-						} elseif ($role['idRoles'] == 4) {
+						} elseif ($role['idRoles'] == 5) {
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat = 1');
 							$req->execute();
 							$nb = $req->fetch();
-						} elseif ($role['idRoles'] == 5) {
+						} elseif ($role['idRoles'] == 6) {
 							$req = $bdd->prepare('SELECT COUNT(*) FROM ETUDIANTS WHERE etat = -1');
 							$req->execute();
 							$nb = $req->fetch();

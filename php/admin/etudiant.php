@@ -7,10 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 else {
 	require_once '../inc/serveur.php';
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND EXISTS (SELECT * FROM attributionRolesAuxEtudiants WHERE id = ?)'); // tous ceux qui ont un droit ?
-	$req->execute(array($_SESSION['id'], $_SESSION['id']));
+	$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ?');
+	$req->execute(array($_SESSION['id']));
 	$data = $req->fetch();
-	if (!$data) {
+	if ($data[0] == 0) {
 		header ('Location: ../index.php');
 		exit();
 	}
@@ -26,7 +26,7 @@ if (isset($_GET['id'])){
 	$etudiant = $req->fetch();
 	if ($etudiant) {
 		$id = intval($_GET['id']);
-		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?');
+		$req = $bdd->prepare('SELECT * FROM attributionRolesAuxEtudiants NATURAL JOIN ROLES WHERE id = ?'); // Par odre de nb de droits possédés
 		$req->execute(array($id));
 		$rolesPossedes = $req->fetchAll();
 	}
@@ -370,13 +370,12 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 	</head>
 	<body>
 		
+		<?php require_once '../navigation.php'; ?>
 		<?php require_once '../inc/erreurs.php'; ?>
 		<?php require_once 'inc/menu.php'; ?>
 
 		<div id="page">
-			<div id="head">
-				Accueil
-			</div>
+
 			<div id="title">
 				Etudiant
 			</div>
@@ -406,19 +405,19 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						?>
 						<?php 
 						echo text($etudiant['prenom']).' '.strtoupper(text($etudiant['nom']));
-						if ($droit7[0] > 0 && $etudiant['etat'] >= 1) {
-							echo ' <button><img src="../../img/gears.png"></button>';
+						if ($droit7[0] > 0) {
+							echo ' <button><img src="../../img/modifier.png"></button>';
 						}
 						?> 
 						<?php 
 						if ($etudiant['etat'] == 0 || $etudiant['etat'] == 1) {
-							echo '<img src="../../img/sands-of-time.png">';
+							echo '<img src="../../img/etat-1.png">';
 						} elseif ($etudiant['etat'] == 2) {
-							echo '<img src="../../img/speaker.png">';
+							echo '<img src="../../img/etat-2.png">';
 						} elseif ($etudiant['etat'] == 3) {
-							echo '<img src="../../img/speaker-off32.png">';
+							echo '<img src="../../img/etat-3.png">';
 						} else {
-							echo '<img src="../../img/padlock.png">';
+							echo '<img src="../../img/etat--1.png">';
 						}
 						echo '<br><form action="" method="post">';
 						if ($droit8[0] > 0 && $etudiant['etat'] >= 2 && $droitTout[0] == 0) {

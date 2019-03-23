@@ -1,5 +1,6 @@
 var page_actuelle = 1;
 var totm;
+
 $("#prev").css("display", "none");//page 1 , on cache le bouton précédent
 
 function init_totm(nb)
@@ -7,6 +8,7 @@ function init_totm(nb)
 	totm = nb;
 	console.log("totm = " +totm);
 }
+
 $('#nb_page').change(function(){
 	console.log($(this).val());
 	affichage($('#a_recup').val(),page_actuelle,$(this).val());
@@ -64,3 +66,21 @@ function affichage(idtopic, page,nbm){
 };
 
 affichage($('#a_recup').val(), page_actuelle,$('#nb_page').val())//premier affichage quand on entre sur la page
+
+$('.forum-g .fa-sort-up').click(function(){
+	if (document.getElementBy("forum-g").style.display == "block"){
+		document.getElementById("forum-g").style.display = "none";
+	}
+	else{
+		document.getElementById("forum-g").style.display = "block";
+	}
+});
+
+$('.forum-s .fa-sort-up').click(function(){
+	if (document.getElementBy("forum-s").style.display == "block"){
+		document.getElementById("forum-s").style.display = "none";
+	}
+	else{
+		document.getElementById("forum-s").style.display = "block";
+	}
+});

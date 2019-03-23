@@ -1,9 +1,10 @@
 ﻿h3 {
-	font-size: 20px;
+	font-size: 30px;
 	width: 90%;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 5px;
 	background: #EA6018;
 	box-shadow: 0px 0px 2px 1px #111;
 	border-radius: 5px;
@@ -35,17 +36,21 @@ input[type=text], input[type=mail], input[type=password] {
 	border-radius: 5px;
 	color: #000;
 	display: block;
-	margin-top: -10px;
+	font-size: 15px;
+	padding: 4px 0px;
 }
 
 input[type=submit] {
 	margin-top: 5px;
+	padding-top: 2px;
 	padding-left: 20px;
 	padding-right: 20px;
+	padding-bottom: 2px;
 	background: #161743;
 	color: #FFF;
 	border: 0px;
 	border-radius: 10px;
+	font-size: 15px;
 }
 
 input[type=submit]:hover {
@@ -58,6 +63,10 @@ input[type=submit]:disabled {
 	cursor: default;
 }
 
+select, input[type=number] {
+	font-size: 16px;
+	padding: 2px 2px;
+}
 
 input:focus {
 	outline: none;
@@ -85,6 +94,9 @@ input:focus {
 	background-image: none;
 }
 
+#rangAncienCP2I {
+	display: none;
+}
 
 
 
@@ -97,11 +109,15 @@ input:focus {
 
 
 
-
-
-
-
-
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+.clearfix {display: block;}
 
 #formulaire-responsive {
 	max-width:600px /*-- à modifier en fonction de la largeur désirée --*/;
@@ -111,6 +127,7 @@ input:focus {
 	padding-top: 10px;
 	padding-bottom: 5px;
     width:95%;
+	height: auto;
 	background: #ddd;
 	border: 1px solid #CCC;
 	border-radius: 5px;
@@ -139,3 +156,30 @@ input:focus {
 		width: 50%;
 	}
 }
+
+
+
+
+
+
+
+
+.alert{padding:15px;margin-bottom:0px;border:1px solid transparent;border-radius:4px}
+.alert h4{margin-top:0;color:inherit}
+.alert .alert-link{font-weight:700}
+.alert>p,.alert>ul{margin-bottom:0}
+.alert>p+p{margin-top:5px}
+.alert-dismissable,.alert-dismissible{padding-right:35px}
+.alert-dismissable .close,.alert-dismissible .close{position:relative;top:-2px;right:-21px;color:inherit}
+.alert-success{color:#3c763d;background-color:#dff0d8;border-color:#d6e9c6}
+.alert-success hr{border-top-color:#c9e2b3}
+.alert-success .alert-link{color:#2b542c}
+.alert-info{color:#31708f;background-color:#d9edf7;border-color:#bce8f1}
+.alert-info hr{border-top-color:#a6e1ec}
+.alert-info .alert-link{color:#245269}
+.alert-warning{color:#8a6d3b;background-color:#fcf8e3;border-color:#faebcc}
+.alert-warning hr{border-top-color:#f7e1b5}
+.alert-warning .alert-link{color:#66512c}
+.alert-danger{color:#a94442;background-color:#f2dede;border-color:#ebccd1}
+.alert-danger hr{border-top-color:#e4b9c0}
+.alert-danger .alert-link{color:#843534}

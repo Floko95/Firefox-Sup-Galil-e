@@ -54,6 +54,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	</head>
@@ -71,7 +72,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 					<!-- Affichage des erreurs -->
 					<?php if(!empty($errors)): ?>
 						<div class="alert alert-danger">
-							<p>La modification du mot de passe a échoué.</p>
+							<strong>La modification du mot de passe a échoué.</strong>
 							<ul>
 								<?php foreach ($errors as $error): ?>
 									<li><?= $error; ?></li>
