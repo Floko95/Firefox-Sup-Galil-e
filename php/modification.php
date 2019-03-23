@@ -10,35 +10,39 @@ if (isset($_SESSION['id'])) {
 
 <?php // Faire en sorte qu'un code dure 1h max
 
-if (!empty($_GET['id']) && !empty($_GET['code']) ) {
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND code = ? AND typeCode = 2');
-	$req->execute(array($_GET['id'], $_GET['code']));
+if (!empty($_GET['id']) && !empty($_GET['code'])) {
+	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND typeCode = 2');
+	$req->execute(array($_GET['id']));
 	$etudiant = $req->fetch();
 	if ($etudiant) {
-		if (isset($_POST['modification']) && $_POST['modification'] == 'Valider') {
+		# On vérifie que le code soit bon
+		if (password_verify($_GET['code'], $etudiant['code'])) {
+			if (isset($_POST['modification']) && $_POST['modification'] == 'Valider') {
 
-			$errors = array();
+				$errors = array();
 
-			if (empty($_POST['mdp']) || strlen($_POST['mdp']) < 6) {
-				$errors['mdp'] = "Le mot de passe doit contenir au minimum 6 caractères";
-			} elseif ($_POST['mdp'] != $_POST['confirmation']){
-				$errors['mdp'] = "Les deux mots de passe sont différents";
-			} else {
-				# On met à jour le mot de passe de l'étudiant
-				$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
-				$req = $bdd->prepare('UPDATE ETUDIANTS SET mdp = ? WHERE id = ?');
-				$req->execute(array($mdp, $_GET['id']));
+				if (empty($_POST['mdp']) || strlen($_POST['mdp']) < 6) {
+					$errors['mdp'] = "Le mot de passe doit contenir au minimum 6 caractères";
+				} elseif ($_POST['mdp'] != $_POST['confirmation']){
+					$errors['mdp'] = "Les deux mots de passe sont différents";
+				} else {
+					# On met à jour le mot de passe de l'étudiant
+					$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
+					$req = $bdd->prepare('UPDATE ETUDIANTS SET mdp = ? WHERE id = ?');
+					$req->execute(array($mdp, $_GET['id']));
 
-				# On supprime le code pour qu'il ne puisse pas être réutilisé
-				$req = $bdd->prepare('UPDATE ETUDIANTS SET code = NULL, typeCode = 0, dateMail = NULL WHERE id = ?');
-				$req->execute(array($_GET['id']));
+					# On supprime le code pour qu'il ne puisse pas être réutilisé
+					$req = $bdd->prepare('UPDATE ETUDIANTS SET code = NULL, typeCode = 0, dateMail = NULL WHERE id = ?');
+					$req->execute(array($_GET['id']));
 
-				session_start();
-				$_SESSION['flash']['alerte'] = 'Le mot de passe a bien été modifié, vous pouvez désormais vous connecter';
-				header('Location: connexion.php');
-				exit();
+					$_SESSION['flash']['alerte'] = 'Le mot de passe a bien été modifié, vous pouvez désormais vous connecter';
+					header('Location: connexion.php');
+					exit();
+				}
+
 			}
-
+		} else {
+			$errors['lienMort'] = "Le lien n'est pas valide";
 		}
 	} else {
 		$errors['lienMort'] = "Le lien n'est pas valide";
@@ -67,12 +71,12 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 				
 			<?php if(empty($errors['lienMort'])): ?>
 				<form action="" method="post">
-					<h3>Choisir un nouveau mot de passe</h3>
+					<h3>Choisir un nouveau mot de passe</h3>				
 					
 					<!-- Affichage des erreurs -->
 					<?php if(!empty($errors)): ?>
 						<div class="alert alert-danger">
-							<strong>La modification du mot de passe a échoué.</strong>
+							<strong>Vous n'avez pas rempli le formulaire correctement.</strong>
 							<ul>
 								<?php foreach ($errors as $error): ?>
 									<li><?= $error; ?></li>
@@ -81,7 +85,6 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 						</div>
 					<?php endif; ?>
 				
-		
 					<!-- Formulaire de modification du mot de passe -->
 					<div class="rang-form">
 						<div class="colonne">
@@ -93,7 +96,7 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 					<div class="rang-form">
 						<div class="colonne">
 							<label for="confirmation">Confirmation du mot de passe :</label>
-							<input type="password" name="confirmation" placeholder="********" maxlength="30" required />
+							<input type="password" name="confirmation" placeholder="******" maxlength="30" required />
 						</div>
 					</div>
 					
@@ -104,11 +107,11 @@ if (!empty($_GET['id']) && !empty($_GET['code']) ) {
 					</div>
 				</form>
 			<?php else: ?>
-				<div class="rang-form">
-					<div class="colonne">
-						<p>Ce lien n'est pas ou n'est plus valide.</p><br>
+				<div class="alert alert-danger">
+					<center><strong>
+						Ce lien n'est pas ou n'est plus valide.<br>
 						<a href="index.php">Retour à l'accueil</a>
-					</div>
+					</strong></center>
 				</div>
 			<?php endif; ?>		
 		</div>	

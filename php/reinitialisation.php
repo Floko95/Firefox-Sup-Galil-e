@@ -25,18 +25,18 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 			# On génère un code de confirmation
 			require_once 'inc/fonctions.php';
 			$code = chaineAleatoire(15);
+			$code_hash = password_hash($code, PASSWORD_BCRYPT);
 			$date = date('Y-m-d H:i:s');
 
 			# On insère ce code dans la table étudiants
 			$req = $bdd->prepare('UPDATE ETUDIANTS SET code = ?, typeCode = ?, dateMail = ? WHERE mailUniv = ?');
-			$req->execute(array($code, 2, $date, $_POST['mailUniv']));
+			$req->execute(array($code_hash, 2, $date, $_POST['mailUniv']));
 
 			# On envoie un mail à l'étudiant contenant le code de validation de réinitialisation de mot de passe
 			$id = $etudiant['id'];
-			mail($_POST['mailUniv'], "BDE : réinitialisation de votre mot de passe", "Afin de choisir un nouveau mot de passe, veuillez cliquer sur ce lien\n\nhttp:://modification.php?id=$id&code=$code");
-
+			envoyerMail($_POST['mailUniv'], $id, 2, $code);
+			
 			# On redirige l'étudiant vers la page d'accueil
-			session_start();
 			$_SESSION['flash']['alerte'] = 'Un lien de confirmation vous a été envoyé sur votre adresse mail universitaire afin de choisir un nouveau mot de passe';
 			header('Location: index.php');
 			exit();
@@ -66,7 +66,7 @@ if (isset($_POST['reinitialisation']) && $_POST['reinitialisation'] == 'Valider'
 				<!-- Affichage des erreurs -->
 				<?php if(!empty($errors)): ?>
 					<div class="alert alert-danger">
-						<strong>La réinitialisation du mot de passe a échoué.</strong>
+						<strong>La modification du mot de passe a échoué.</strong>
 						<ul>
 							<?php foreach ($errors as $error): ?>
 								<li><?= $error; ?></li>

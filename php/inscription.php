@@ -10,7 +10,6 @@ if (isset($_SESSION['id'])) {
 
 <?php
 // L'adresse perso peut etre réutilisée ...
-// hacher le code ?
 
 if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 
@@ -65,6 +64,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		require_once 'inc/fonctions.php';
 
 		$code = chaineAleatoire(15);
+		$code_hash = password_hash($code, PASSWORD_BCRYPT);
 		$mdp = password_hash($_POST['mdp'], PASSWORD_BCRYPT);
 		$date = date('Y-m-d H:i:s');
 		
@@ -84,7 +84,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 			'formation' => $_POST['formation'],
 			'promotion' => $_POST['promotion'],
 			'dateInscription' => $date,
-			'code' => $code,
+			'code' => $code_hash,
 			'typeCode' => 1,
 			'dateMail' => $date));
 			
@@ -106,7 +106,6 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 		$id = $etudiant['id'];
 		envoyerMail($_POST['mailUniv'], $id, 1, $code);
 
-		session_start();
 		$_SESSION['flash']['alerte'] = 'Le compte a bien été créé, un lien de confirmation vous a été envoyé sur votre adresse mail universitaire';
 		header('Location: index.php');
 		exit();
@@ -193,7 +192,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Valider') {
 							$annee++;
 						}
 						?>
-						<input type="number" min="2000" max=<?php echo $annee+4 ?>  step="1" value=<?php echo $annee ?> />
+						<input type="number" name="promotion" min="2000" max=<?php echo $annee+4 ?>  step="1" value=<?php echo $annee ?> />
 					</div>
 				</div>
 

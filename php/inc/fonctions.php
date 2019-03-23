@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 function envoyerMail($destinataire, $id, $type, $code) {
-	require $_SERVER['DOCUMENT_ROOT'] . 'bde6/mail/Exception.php';
-	require $_SERVER['DOCUMENT_ROOT'] . 'bde6/mail/PHPMailer.php';
-	require $_SERVER['DOCUMENT_ROOT'] . 'bde6/mail/SMTP.php';
+	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/Exception.php';
+	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/PHPMailer.php';
+	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/SMTP.php';
 
 	$mail = new PHPMailer;
 	$mail->isSMTP(); 
@@ -24,7 +24,7 @@ function envoyerMail($destinataire, $id, $type, $code) {
 		$mail->Subject = 'BDE :Réinitialisation du mot de passe';
 	}
 	
-	$mail->msgHTML("Afin de valider votre compte, veuillez cliquer sur ce lien\n\nhttp://localhost/bde6/php/verification.php?id=".$id."&code=".$code); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+	$mail->msgHTML("Allez ici, veuillez cliquer sur ce lien\n\nhttp://localhost/Firefox-Sup-Galil-e/php/verification.php?id=".$id."&code=".$code); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
 	$mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
 	// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
