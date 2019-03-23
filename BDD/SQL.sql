@@ -1,4 +1,26 @@
-﻿DROP TABLE IF EXISTS etudiants;
+﻿DROP TABLE IF EXISTS attributionDroitsAuxRoles;
+CREATE TABLE attributionDroitsAuxRoles (
+idRoles int unsigned NOT NULL,
+idDroits int unsigned NOT NULL,
+CONSTRAINT PK_aDAR PRIMARY KEY (idRoles, idDroits),
+CONSTRAINT FK_aDAR_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE,
+CONSTRAINT FK_aDAR_idDroits FOREIGN KEY (idDroits) REFERENCES droits (idDroits)  ON DELETE CASCADE
+);
+
+
+DROP TABLE IF EXISTS attributionRolesAuxEtudiants;
+CREATE TABLE attributionRolesAuxEtudiants (
+id int unsigned NOT NULL,
+idRoles int unsigned NOT NULL,
+CONSTRAINT PK_aRAE PRIMARY KEY (id, idRoles),
+CONSTRAINT FK_aRAE_id FOREIGN KEY (id) REFERENCES etudiants (id) 
+ON DELETE CASCADE,
+CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles)
+ON DELETE CASCADE
+);
+
+
+DROP TABLE IF EXISTS etudiants;
 CREATE TABLE etudiants (
 id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 mailUniv varchar(70) NOT NULL,
@@ -16,12 +38,14 @@ typeCode int(1) NOT NULL,
 dateMail timestamp
 );
 
+
 DROP TABLE IF EXISTS droits;
 CREATE TABLE droits (
 idDroits int unsigned NOT NULL PRIMARY KEY,
 droit varchar(35) NOT NULL UNIQUE,
 descriptionDroit varchar(255)
 );
+
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
@@ -31,29 +55,6 @@ descriptionRole varchar(255),
 supprimable int (1) DEFAULT 0
 );
 
-DROP TABLE IF EXISTS attributionDroitsAuxRoles;
-CREATE TABLE attributionDroitsAuxRoles (
-idRoles int unsigned NOT NULL,
-idDroits int unsigned NOT NULL,
-CONSTRAINT PK_aDAR PRIMARY KEY (idRoles, idDroits),
-CONSTRAINT FK_aDAR_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE,
-CONSTRAINT FK_aDAR_idDroits FOREIGN KEY (idDroits) REFERENCES droits (idDroits)  ON DELETE CASCADE
-);
-
-DROP TABLE IF EXISTS attributionRolesAuxEtudiants;
-CREATE TABLE attributionRolesAuxEtudiants (
-id int unsigned NOT NULL,
-idRoles int unsigned NOT NULL,
-CONSTRAINT PK_aRAE PRIMARY KEY (id, idRoles),
-CONSTRAINT FK_aRAE_id FOREIGN KEY (id) REFERENCES etudiants (id) 
-ON DELETE CASCADE,
-CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles)
-ON DELETE CASCADE
-);
-
---
--- Structure de la table `topics`
---
 
 DROP TABLE IF EXISTS topics;
 CREATE TABLE topics (
@@ -66,11 +67,6 @@ CREATE TABLE topics (
   KEY FK_topics_id (id) 
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table topics
---
---vidé
---
 
 DROP TABLE IF EXISTS tags;
 CREATE TABLE IF NOT EXISTS tags (
@@ -81,11 +77,13 @@ CREATE TABLE IF NOT EXISTS tags (
   KEY FK_tags_idTags (idTopics)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `tags`
---
---vidé
---
+
+CREATE TABLE TOURNOI (
+filiere varchar(20) PRIMARY KEY,
+score int DEFAULT 0 NOT NULL,
+visible int(1) DEFAULT 0 NOT NULL
+);
+
 
 INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(1, 'Créer un rôle', 'Permet de créer un rôle et de lui attribuer des droits'),
@@ -100,7 +98,9 @@ INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(10, 'Accéder à tout le forum', 'L\'étudiant pourra voir toutes les sections du forum, et pas seulement celles de sa formation'),
 	(11, 'Rendre muet un étudiant', 'L\'étudiant ne pourra plus discuter sur le forum, mais pourra toujours voir les messages'),
 	(12, 'Supprimer un topic du forum', ''),
-	(13, 'Supprimer un message du forum', '');
+	(13, 'Supprimer un message du forum', ''),
+	
+	(16, 'Gérer le tournoi', '');
 	
 
 INSERT INTO ROLES (idRoles, role, descriptionRole) VALUES 
@@ -125,5 +125,15 @@ INSERT INTO attributionDroitsAuxRoles (idRoles, idDroits) VALUES
 	(1, 10),
 	(1, 11),
 	(1, 12),
-	(1, 13);
+	(1, 13),
 	
+	(1, 16);
+	
+	
+INSERT INTO TOURNOI (filiere) VALUES 
+	('CP2I'),
+	('Energétique'),
+	('Informatique'),
+	('Mathématiques'),
+	('Télécommunications'),
+	('Instrumentation');

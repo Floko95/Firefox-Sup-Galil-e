@@ -33,7 +33,7 @@ hr
 	margin-left: auto;
 	margin-right: auto;
 	width: 85px;
-	height: calc(100% - 100px);
+	height: auto;
 	background: #FFF;
 	border-radius: 5px;
 	box-shadow: 0px 0px 2px 1px #111;
@@ -258,13 +258,18 @@ hr
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 tr {
-color: #FFF;
-font-size: 16px;
+	color: #FFF;
+	font-size: 16px;
+}
+
+th {
+	font-size: 35px;
+	padding: 15px 0px;
 }
 
 tr + tr{
@@ -308,6 +313,12 @@ input[type=text], input[type=search], textarea{
 	border: 1px solid #CCC;
 	border-radius: 5px;
 	color: #DDD;
+}
+
+input[type="number"] {
+	width: 70px;
+	text-align: center;
+	margin-bottom: 3px;
 }
 
 h1{
