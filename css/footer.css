@@ -5,15 +5,9 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    background-color: #EA6018;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    /* margin-left: 3%;
-    margin-right: 3%;
-    padding-left: 10%;
-    padding-right: 10%;
-    */padding-top: 2%;/*
-    padding-bottom: 2%; */
+    background-color: #f5d6b5;
+
+
 }
 
 .page-footer .col-sm-4
@@ -22,11 +16,6 @@
    
 }
 
-.page-footer br
-{
-    /* margin-top: 1em;  */
-   
-}
 
 .page-footer .retour {
     margin-top: 12px; 

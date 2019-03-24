@@ -74,14 +74,8 @@ nav ul ul li:hover {
 	background-repeat: no-repeat;
 }
 
-
-/*
-nav ul li:active > ul
-{
-	display: block;
-}*/
-
 nav span {
+	display: block;
 	margin-left: 28px;
 }
 
@@ -89,7 +83,7 @@ nav a, nav a:visited {
 	box-sizing: border-box;
 	float: left;
 	height: 100%;
-	display: inline-block;
+	display: block;
 	padding: 4px 0px;
 	padding-left: 5px;
 	font-size: 17px;
@@ -214,133 +208,6 @@ nav #right {
 
 
 
-/* Responsive */
-
-@media only screen and (max-width: 1050px) { 
-	#contact li span {
-		display: none;
-	}
-	#contact {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 990px) { 
-	#admin li span {
-		display: none;
-	}
-	#admin {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 930px) { 
-	#forum li span {
-		display: none;
-	}
-	#forum {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 870px) { 
-	#boutique li span {
-		display: none;
-	}
-	#boutique {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 810px) { 
-	#actualites li span {
-		display: none;
-	}
-	#actualites {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 750px) { 
-	#equipe li span {
-		display: none;
-	}
-	#equipe {
-		background-position: center;
-	}
-}
-
-@media only screen and (max-width: 690px) { 
-	#accueil li span {
-		display: none;
-	}
-	#accueil {
-		background-position: center;
-	}
-}
-
-/* Réduction de l'espace inter-image */
-
-@media only screen and (max-width: 550px) { 
-	nav a ~ a {
-		padding: 0px 0px;
-		margin-left: 0px;
-	}
-}
-
-/* Debut du hamburger */
-
-@media only screen and (max-width: 450px) { 
-	#contact {
-		display: none;
-	}
-	#admin {
-		display: none;
-	}
-	#hamburger, #h-contact li{
-		display: block;
-	}
-	#hamburger, #h-admin li{
-		display: block;
-	}
-}
-
-@media only screen and (max-width: 400px) { 
-	#forum {
-		display: none;
-	}
-	#h-forum li{
-		display: block;
-	}
-}
-
-@media only screen and (max-width: 370px) { 
-	#boutique {
-		display: none;
-	}
-	#h-boutique li{
-		display: block;
-	}
-}
-
-@media only screen and (max-width: 340px) { 
-	#actualites {
-		display: none;
-	}
-	#h-actualites li{
-		display: block;
-	}
-}
-
-@media only screen and (max-width: 310px) { 
-	#equipe {
-		display: none;
-	}
-	#h-equipe li{
-		display: block;
-	}
-}
-
 /* Barre de menu fixe si la hauteur de l'écran est assez grande */
 
 @media only screen and (max-height: 250px) { 
@@ -348,7 +215,6 @@ nav #right {
 		position: absolute;
 	}
 }
-
 
 
 
@@ -380,7 +246,7 @@ nav #right {
 }
 
 #bonjour {
-	max-width: 250px;
+	max-width: 220px;
 	width: auto;
 	white-space: nowrap;
 	overflow: hidden;
