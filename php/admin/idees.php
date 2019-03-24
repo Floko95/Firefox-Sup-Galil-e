@@ -31,7 +31,7 @@ if ($data[0] > 0) {
 ?>
 
 <?php
-# Suppression d'un idée
+# Suppression d'une idée
 if (isset($_POST['supprimerIdees']) && $_POST['supprimerIdees'] == 'Valider') {
 	
 	$errors = array();
