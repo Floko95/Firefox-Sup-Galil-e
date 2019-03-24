@@ -15,9 +15,14 @@
 		<?php require_once ('navigation.php') ?>
 		
 		<div style="top:0;z-index: -100;position: sticky;">
-			<video width="100%" autoplay muted loop style="margin-top: -3%">
-				<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
-			</video> 
+			<div id="topVideo">
+				<video width="100%" autoplay muted loop style="margin-top: -3%">
+					<source src="../img/composition_planete_tournante_compresse.mp4" type="video/mp4">
+				</video>
+			</div>
+			<div id="topImage">
+				<img src="../img/pic07.gif" width="100%">
+			</div>
 		</div>
 
 		<?php require_once 'inc/erreurs.php'; ?>
