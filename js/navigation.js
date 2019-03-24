@@ -135,4 +135,5 @@ function responsive() {
 
 }
 // On lie l'événement resize à la fonction
+responsive();
 window.addEventListener('resize', responsive, false);
