@@ -257,3 +257,24 @@ nav #right {
 	font-size: 17px;
 	color: #161743;
 }
+
+
+
+/* Vidéo sur l'index pour les grands écrans, image pour les petits */
+
+#topVideo {
+	display: none;
+}
+
+#topImage {
+	display: block;
+}
+
+@media only screen and (min-width: 500px) {
+	#topVideo {
+		display: block;
+	}
+	#topImage {
+		display: none;
+	}
+}
