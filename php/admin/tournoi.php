@@ -61,6 +61,7 @@ if (isset($_POST['modificationTournoi']) && $_POST['modificationTournoi'] == 'Va
 				$req->execute(array($_POST['nb'.$data['filiere']], $data['filiere']));
 			}
 		}
+		$success['donneesModifiees'] = "Les scores ont bien été mis à jour";
 	}
 }
 ?>
