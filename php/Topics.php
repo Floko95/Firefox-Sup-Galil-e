@@ -67,7 +67,7 @@
     <div class="offset-md-2 col-md-2 add-topic">
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
     </div>
-	<div class="offset-md-4 col-md-2 add-topic">
+	<div class="offset-md-5 col-md-2 add-topic">
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
     </div>
 </div>
@@ -159,8 +159,6 @@
 		<?php endforeach; ?>
 	</div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br>
   <footer>
     <?php require_once ('footer.html') ?>
   </footer>
