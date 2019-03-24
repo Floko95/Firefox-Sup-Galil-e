@@ -103,6 +103,8 @@ function responsive() {
 			if (ecart >= (60 + j * 10)) {
 				$( 'nav a ~ a' ).css( "padding", "4px 0px" );
 				$( 'nav a ~ a' ).css( "margin-left", "15px" );
+				$( '#menu nav a ~ a' ).css( "padding", "0px 0px" );
+				$( '#menu nav a ~ a' ).css( "margin-left", "0px" );
 			}
 			else {
 				break;
