@@ -58,11 +58,6 @@
 
 <div class ="top-page"></div>
 
-
-<div class="row title">
-	<div class="col">Forum Général</div>
-</div>
-
 <div class="row forum-s">
     <div class="offset-md-2 col-md-2 add-topic">
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
@@ -71,10 +66,21 @@
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
     </div>
 </div>
-<div class="row">
+
+<div class="row title">
+	<div class="offset-md-2 col-md-8">
+		<div class="row">
+			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up"></span></div>
+			<div class="col-md-9">Forum Général</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row" id="general-messages">
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
-			<div class=" col-md-8 general-categorie">Forum Général</div>
+			<div class=" col-md-8 general-categorie">Forum</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
 			<div class=" col-md-2 date-categorie">Date de dernière modifiaction</div>
 		</div>
@@ -116,13 +122,18 @@
 	$topics = $req->fetchAll();?>
 	
 <div class="row title">
-	<div class="col">Forum Informatique</div>
+	<div class="offset-md-2 col-md-8">
+		<div class="row">
+			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up"></span></div>
+			<div class="col-md-9">Forum Informatique</div>
+		</div>
+	</div>
 </div>
 
-<div class="row forum-s">
+
+<div class="row" id="informatique-messages">
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
-			<div class=" col-md-1 general-categorie"><span class="fas fa-sort-up"></span></div>
 			<div class=" col-md-7 general-categorie">Forum</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
 			<div class=" col-md-2 date-categorie">Date de création</div>
@@ -162,6 +173,7 @@
   <footer>
     <?php require_once ('footer.html') ?>
   </footer>
+  <script type="text/javascript" src="../js/forum.js"></script>
 </body>
 
 </html>
