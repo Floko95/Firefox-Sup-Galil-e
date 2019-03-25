@@ -58,7 +58,7 @@
 
 <div class ="top-page"></div>
 
-<div class="row forum-s">
+<div class="row">
     <div class="offset-md-2 col-md-2 add-topic">
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
     </div>
@@ -67,53 +67,55 @@
     </div>
 </div>
 
+
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row">
-			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up"></span></div>
-			<div class="col-md-9">Forum Général</div>
+			<div class="offset-md-4 col-md-3 block">Forum Général</div>
 		</div>
 	</div>
 </div>
 
-
-<div class="row" id="general-messages">
+<div class="row" >
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
-			<div class=" col-md-8 general-categorie">Forum</div>
+			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class=" col-md-7 general-categorie">Forum</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
 			<div class=" col-md-2 date-categorie">Date de dernière modifiaction</div>
 		</div>
-		<?php foreach($topics as $topic):
-		$req = $bdd->prepare('SELECT * from tags where idTopics= ?');
-		$req->execute(array($topic['idTopics']));
-		$tags= $req->fetchAll();
-		?>
-		
-		<div class="row topic">
-            <div class=" col-md-6 topic-subject">
-				<form method="post" action="Forum.php">
-				<input type="hidden" value="
-				<?php echo $topic['idTopics']; ?>" name="a_recup"/>
-				<button type="submit" value="
-				<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></button>
+		<div id="general-messages">
+			<?php foreach($topics as $topic):
+			$req = $bdd->prepare('SELECT * from tags where idTopics= ?');
+			$req->execute(array($topic['idTopics']));
+			$tags= $req->fetchAll();
+			?>
 			
-				</form>
-			</div>
-            <div class="col-md-2 tag">
-				<?php
-				$i=0;
-				foreach($tags as $tag) {
-					if($i<5)
-						echo $tag['tag'].' ';
-					$i++;
-				}?>
+			<div class="row topic">
+				<div class=" col-md-6 topic-subject">
+					<form method="post" action="Forum.php">
+					<input type="hidden" value="
+					<?php echo $topic['idTopics']; ?>" name="a_recup"/>
+					<button type="submit" value="
+					<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></button>
 				
-            </div>
-			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '. $topic['nom']; ?></div>
-			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+					</form>
+				</div>
+				<div class="col-md-2 tag">
+					<?php
+					$i=0;
+					foreach($tags as $tag) {
+						if($i<5)
+							echo $tag['tag'].' ';
+						$i++;
+					}?>
+					
+				</div>
+				<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '. $topic['nom']; ?></div>
+				<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+			</div>
+			<?php endforeach; ?>
 		</div>
-		<?php endforeach; ?>
 	</div>
 </div>
 <!-- ------------------------------------FORUM FILIERE------------------------- -->
@@ -124,50 +126,51 @@
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row">
-			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up"></span></div>
-			<div class="col-md-9">Forum Informatique</div>
+			<div class="offset-md-4 col-md-3 block">Forum Informatique</div>
 		</div>
 	</div>
 </div>
 
 
-<div class="row" id="informatique-messages">
+<div class="row">
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
+			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
 			<div class=" col-md-7 general-categorie">Forum</div>
 			<div class=" col-md-2 auteur-categorie">Auteur</div>
 			<div class=" col-md-2 date-categorie">Date de création</div>
 		</div>
 		
 		
-		
-		<?php foreach($topics as $topic):
-		$req = $bdd->prepare('SELECT * from tags where idTopics= ?');
-		$req->execute(array($topic['idTopics']));
-		$tags= $req->fetchAll();
-		?>
-		<div class="row topic">
-            <div class=" col-md-6 topic-subject"><form method="post" action="Forum.php">
-			<input type="hidden" value="
-			<?php echo $topic['idTopics']; ?>" name="a_recup"/>
-			<button type="submit" value="
-			<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></</button>
-			
-			</form></div>
-			<div class="col-md-2 tag">
-			<?php
-			$i=0;
-			foreach($tags as $tag) {
-				if($i<5)
-					echo $tag['tag'].' ';
-				$i++;
-			}?>
+		<div id="informatique-messages">
+			<?php foreach($topics as $topic):
+			$req = $bdd->prepare('SELECT * from tags where idTopics= ?');
+			$req->execute(array($topic['idTopics']));
+			$tags= $req->fetchAll();
+			?>
+			<div class="row topic">
+				<div class=" col-md-6 topic-subject"><form method="post" action="Forum.php">
+				<input type="hidden" value="
+				<?php echo $topic['idTopics']; ?>" name="a_recup"/>
+				<button type="submit" value="
+				<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></</button>
 				
-            </div>
-			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '.$topic['nom']; ?></div>
-			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+				</form></div>
+				<div class="col-md-2 tag">
+				<?php
+				$i=0;
+				foreach($tags as $tag) {
+					if($i<5)
+						echo $tag['tag'].' ';
+					$i++;
+				}?>
+					
+				</div>
+				<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '.$topic['nom']; ?></div>
+				<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+			</div>
+			<?php endforeach; ?>
 		</div>
-		<?php endforeach; ?>
 	</div>
 </div>
   <footer>
