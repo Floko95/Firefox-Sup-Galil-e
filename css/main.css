@@ -37,6 +37,14 @@ html body .title{
 	word-break: normal;
 }
 
+html body .block .title{
+	color: black;
+}
+
+html body .title .block{
+	color: black;
+}
+
 @media screen and (max-width: 728px) {
 
 	html body .top-page{
