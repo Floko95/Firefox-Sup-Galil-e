@@ -61,6 +61,7 @@ if (isset($_POST['modificationTournoi']) && $_POST['modificationTournoi'] == 'Va
 				$req->execute(array($_POST['nb'.$data['filiere']], $data['filiere']));
 			}
 		}
+		$success['donneesModifiees'] = "Les scores ont bien été mis à jour";
 	}
 }
 ?>
@@ -103,7 +104,7 @@ $formations = $req->fetchAll();
 						<?php foreach ($formations as $formation): ?>
 						<tr style="font-size: 20px;">
 							<td><?php echo $formation['filiere']; ?></td>
-							<td><input type="number" name=<?php echo 'nb'.$formation['filiere']; ?> value=<?php echo $formation['score']; ?> <?php if ($droit16 == false): ?>disabled<?php endif; ?> /></td>
+							<td><input type="number" name=<?php echo 'nb'.$formation['filiere']; ?> value=<?php echo $formation['score']; ?> <?php if ($droit16 == false): ?>readonly<?php endif; ?> /></td>
 							<td><input type="checkbox" name="visible[]" value=<?php echo $formation['filiere']; ?> <?php if ($formation['visible'] == 1): ?>checked<?php endif; ?> <?php if ($droit16 == false): ?>disabled<?php endif; ?> ></td>
 						</tr>
 						<?php endforeach; ?>
