@@ -482,7 +482,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						<?php 
 						if (count($rolesPossedes) > 0) { 
 							foreach ($rolesPossedes as $rolePossede){
-								echo '- '.$rolePossede['role'].'<br>';
+								echo '- '.text($rolePossede['role']).'<br>';
 							}
 						} else { 
 							echo 'Aucun rôle n\'est possédé par cet étudiant';
@@ -498,7 +498,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 							<select name="nomRole">
 								<?php 
 								foreach ($rolesAjoutables as $roleAjoutable){
-									echo '<option>'.$roleAjoutable['role'];
+									echo '<option>'.text($roleAjoutable['role']);
 								}
 								?>
 							</select>

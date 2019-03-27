@@ -18,6 +18,26 @@ CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON D
 );
 
 
+DROP TABLE IF EXISTS IDEES;
+CREATE TABLE IDEES (
+idIdees int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id int unsigned NOT NULL,
+ideeTitre varchar(50) NOT NULL,
+idee varchar(1000) NOT NULL,
+dateIdee timestamp,
+CONSTRAINT FK_idees_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
+);
+
+
+DROP TABLE IF EXISTS MINIJEU;
+CREATE TABLE MINIJEU (
+id int unsigned NOT NULL PRIMARY KEY,
+score int unsigned NOT NULL,
+dateScore timestamp,
+CONSTRAINT FK_minijeu_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
+);
+
+
 DROP TABLE IF EXISTS etudiants;
 CREATE TABLE etudiants (
 id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -83,22 +103,11 @@ score int DEFAULT 0 NOT NULL,
 visible int(1) DEFAULT 0 NOT NULL
 );
 
-DROP TABLE IF EXISTS IDEES;
-CREATE TABLE IDEES (
-idIdees int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id int unsigned NOT NULL,
-idee varchar(255) NOT NULL,
-dateIdee timestamp,
-CONSTRAINT FK_idees_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
-);
 
-DROP TABLE IF EXISTS MINIJEU;
-CREATE TABLE MINIJEU (
-id int unsigned NOT NULL PRIMARY KEY,
-score int unsigned NOT NULL,
-idee varchar(255) NOT NULL,
-dateScore timestamp,
-CONSTRAINT FK_minijeu_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
+DROP TABLE IF EXISTS IMAGES;
+CREATE TABLE IMAGES (
+idImages int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+image varchar(35) NOT NULL
 );
 
 DROP TABLE IF EXISTS actualite;
