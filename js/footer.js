@@ -1,26 +1,27 @@
 $(window).bind("load", function() { 
        
     var footerHeight = 0,
-        bodyHeight = 0,
         footerTop = 0,
         $footer = $("#page-footer");
-        $body = $("body");
         
     positionFooter();
     
-    function positionFooter() {
-    
+    function positionFooter() { 
+            console.log("repositionnement du footer");
              footerHeight = $footer.height();
-             bodyHeight = $body.height();
              footerTop = ($(window).height()-footerHeight-100);
     
             if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+                console.log("absolue : "+footerTop);
                 $footer.css({
+                    
                      position: "absolute",
                      top: footerTop
                 })
             } else {
+                console.log("static : "+footerTop);
                 $footer.css({
+                    
                      position: "static"
                 })
             }
