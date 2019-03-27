@@ -1,10 +1,9 @@
 
 .page-footer
 {
-    display: table-row;
-    position: absolute;
-    bottom: 0;
+    position: relative;
     width: 100%;
+    bottom: 0;
     text-align: center;
     background-color: #f5d6b5;
 }
