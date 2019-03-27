@@ -1,29 +1,29 @@
 
-.page-footer
+html #page-footer
 {
-    display: table-row;
-    position: absolute;
-    bottom: 0;
+    color: black;
+    position: relative;
     width: 100%;
+    height: 120px;
     text-align: center;
     background-color: #f5d6b5;
 }
 
-.page-footer .col-sm-4
+#page-footer .col-sm-4
 {
     color: black;
    
 }
 
 
-.page-footer .retour {
+#page-footer .retour {
     margin-top: 12px; 
    
 }
 
 
 
-.page-footer textarea
+#page-footer textarea
 {
     margin-top: 2em;
     border-radius: 1em;
@@ -32,12 +32,12 @@
     margin-bottom: 1em;
     }   
 
-.page-footer h4
+#page-footer h4
   {
     text-align: center;
 }
 
-.page-footer a
+#page-footer a
 {
    color: black;
 }
