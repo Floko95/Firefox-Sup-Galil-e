@@ -101,6 +101,16 @@ dateScore timestamp,
 CONSTRAINT FK_minijeu_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS actualite;
+CREATE TABLE actualite (
+	idActualite INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idEtudiant INT NOT NULL,
+	creator VARCHAR(255),
+	title VARCHAR(255) NOT NULL,
+	content TEXT NOT NULL	
+);
+
+
 INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(1, 'Créer un rôle', 'Permet de créer un rôle et de lui attribuer des droits'),
 	(2, 'Supprimer un rôle', 'Permet de supprimer un rôle précédemment créé'),
