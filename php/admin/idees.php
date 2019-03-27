@@ -96,7 +96,7 @@ $idees = $req->fetchAll();
 						</tr>
 						<?php foreach ($idees as $idee): ?>
 						<tr style="font-size: 20px;">
-							<td><?php echo $idee['idee']; ?></td>
+							<td><?php echo text($idee['idee']); ?></td>
 							<td><?php echo $idee['dateIdee']; ?></td>
 							<?php if ($droit18 == true): ?>
 							<td><input type="checkbox" name="idees[]" value=<?php echo $idee['idIdees']; ?> ></td>
