@@ -59,7 +59,7 @@ if (isset($_POST['supprimerIdees']) && $_POST['supprimerIdees'] == 'Valider') {
 
 <?php
 # On récupère les différentes idées
-$req = $bdd->prepare('SELECT idIdees, idee, dateIdee FROM IDEES ORDER BY dateIdee DESC');
+$req = $bdd->prepare('SELECT idIdees, idee, dateIdee FROM IDEES ORDER BY dateIdee DESC LIMIT 200');
 $req->execute();
 $idees = $req->fetchAll();
 ?>

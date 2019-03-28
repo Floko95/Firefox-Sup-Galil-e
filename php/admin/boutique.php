@@ -69,6 +69,7 @@ $articles = $req->fetchAll();
 				Boutique
 			</div>
 			
+			<?php if($droit15 == true): ?>
 			<div id="contenu">
 				<div class="plus" id ="contenuTitle">
 					Ajouter un nouvel article
@@ -92,6 +93,7 @@ $articles = $req->fetchAll();
 					</form>
 				</div>
 			</div>
+			<?php endif; ?>
 			
 			<div id="contenu">
 				sss
