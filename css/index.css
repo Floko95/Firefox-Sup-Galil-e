@@ -7,7 +7,10 @@
 
 .photo-individu{
     border-radius: 50%;
-    height: 150px;
+}
+
+.desc_img{
+    text-align: center;
 }
 
 .photo-group{

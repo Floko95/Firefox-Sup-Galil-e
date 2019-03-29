@@ -36,23 +36,23 @@
 				</div>
 				<div class="row">
 					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" alt="Presidente" class="photo-individu">
+						<img src="../img/face_test.jpg" height=200px width=200px alt="Presidente" class="photo-individu img-circle">
 					</div>
 					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" alt="Presidente" class="photo-individu">
+						<img src="../img/face_test.jpg" alt="Presidente" height=200px width=200px class="photo-individu">
 					</div>
 					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" alt="Presidente" class="photo-individu">
+						<img src="../img/face_test.jpg" alt="Presidente" height=200px width=200px class="photo-individu">
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-1 offset-md-2 ">
+				<div class="row ">
+					<div class="col-md-1 offset-md-2 desc_img">
 						Président(e)
 					</div>
-					<div class="col-md-1 offset-md-2 ">
+					<div class="col-md-1 offset-md-2 desc_img">
 						Trésorier
 					</div>
-					<div class="col-md-1 offset-md-2 ">
+					<div class="col-md-1 offset-md-2 desc_img">
 						Secrétaire
 					</div>
 				</div>
