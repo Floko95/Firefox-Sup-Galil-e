@@ -72,12 +72,12 @@ $('#general-bouton').click(function(){
 	if($('#general-messages').css('display') == 'none'){
 		console.log('Display Forum\n');
 		$('#general-messages').show();
-		$('#general-bouton').html('<span class="fas fa-sort-up"></span>');
+		$('#general-bouton').html('<span class="fas fa-sort-up fa-2x"></span>');
 	}
 	else{
 		console.log('Hide Forum\n');
 		$('#general-messages').hide();
-		$('#general-bouton').html('<span class="fas fa-sort-down"></span>');
+		$('#general-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
 	}
 });
 
@@ -85,12 +85,12 @@ $('#informatique-bouton').click(function(){
 	if($('#informatique-messages').css('display') == 'none'){
 		console.log('Display Forum\n');
 		$('#informatique-messages').show();
-		$('#informatique-bouton').html('<span class="fas fa-sort-up"></span>');
+		$('#informatique-bouton').html('<span class="fas fa-sort-up fa-2x"></span>');
 	}
 	else{
 		console.log('Hide Forum\n');
 		$('#informatique-messages').hide();
-		$('#informatique-bouton').html('<span class="fas fa-sort-down"></span>');
+		$('#informatique-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
 	}
 });
 /* 
