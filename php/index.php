@@ -64,9 +64,43 @@
 			</div>
 		</div>
 		
-		<div class="row orange-row" id="Evenements">
+		<div class="row orange-row" id="Actualité">	
 			<div class="col">
-				Here will stand Facebook Event
+				<div class="row title actu-title">
+					<div class="col"> Actualités</div>
+				</div>
+				<div class="row">
+					<div class="offset-md-1 col-md-10">
+						<?php 
+							$req = $bdd->prepare('SELECT creator, title, content FROM actualite ORDER BY idActualite DESC');
+							$req->execute();
+							for($i=0; $i<4;$i++):
+								$actu = $req->fetch();
+								if(isset($actu['title'])):
+						?>
+						<div class="row actualite">
+							<div class="col">
+								<div class="row">
+									<div class="col-md-2 creator">
+										<?php echo $actu['creator']; ?> :
+									</div>
+									<div class="col-md-9 title">
+										<?php echo $actu['title']; ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="offset-md-2 col-ms-9 content"><?php echo $actu['content']; ?></div>
+								</div>
+								
+								
+								
+							</div>
+						</div>
+							<?php
+								endif; 
+							endfor;?>
+					</div>
+				</div>
 			</div>
 		</div>
 
