@@ -173,7 +173,6 @@ hr
 	width: 100%;
 	font-size: 25px;
 	color: #CCC;
-	cursor: pointer;
 	text-align: left;
 }
 
@@ -182,6 +181,7 @@ hr
 	background-position: left;
 	background-repeat: no-repeat;
 	padding-left: 35px;
+	cursor: pointer;
 }
 
 #creerRoleMiddle
@@ -327,6 +327,7 @@ label{
 
 input[type=text], input[type=search]{
 	height: 25px;
+	text-align: center;
 }
 
 input[type=text], input[type=search], textarea{
@@ -357,6 +358,10 @@ h1{
 
 tr:hover .identite {
 	visibility: visible;
+}
+
+.hidden {
+	display: none;
 }
 
 
