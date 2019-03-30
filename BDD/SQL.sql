@@ -122,14 +122,14 @@ CREATE TABLE ACTUALITES (
 );
 
 
-DROP TABLE IF EXISTS BOUTIQUE;
-CREATE TABLE BOUTIQUE (
-	idBoutique int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+DROP TABLE IF EXISTS ARTICLES;
+CREATE TABLE ARTICLES (
+	idArticles int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	idImages int unsigned,
 	article varchar(100) NOT NULL UNIQUE,
 	descriptionArticle varchar(1000),
 	prix float(5,2) NOT NULL,
-	CONSTRAINT FK_boutique_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+	CONSTRAINT FK_articles_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
 );
 
 
