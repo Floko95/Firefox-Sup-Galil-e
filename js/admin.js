@@ -45,16 +45,45 @@ for (i = 0; i < roles.length; i++) {
 }
 
 // Affichage du contenu pour créer un rôle, un article, un club, une actualité...
-$('#contenuTitle').click(function(){
-	if (document.getElementById('creerRoleMiddle').style.display == 'block'){
-		document.getElementById('creerRoleMiddle').style.display = 'none';
-	}
-	else {
-		document.getElementById('creerRoleMiddle').style.display = 'block';
-	}
-});
+if (document.getElementById('creerRoleMiddle')) {
+	$('#contenuTitle').click(function(){
+		if (document.getElementById('creerRoleMiddle').style.display == 'block'){
+			document.getElementById('creerRoleMiddle').style.display = 'none';
+		}
+		else {
+			document.getElementById('creerRoleMiddle').style.display = 'block';
+		}
+	});
+}
 
 // AJAX lorsqu'on choisit une image pour créer une actualité, un article ou un club
 $('#selectImage').click(function(){ 
 	$('#apercuImage').load('inc/afficher-image.php?image=' + $('#selectImage').val());
+});
+
+// Bouton de modification du profil d'un étudiant
+$('#boutonReglage').click(function(){ 
+	var i;
+	var div;
+	div = document.getElementsByClassName('visible');
+	for (i=0; i<div.length; i++) {
+		if (div[i].style.display == "none") {
+			div[i].style.display = "block";
+		} else {
+			div[i].style.display = "none";
+		}
+	}
+	div = document.getElementsByClassName('hidden');
+	for (i=0; i<div.length; i++) {
+		if (div[i].style.display == "block") {
+			div[i].style.display = "none";
+		} else {
+			div[i].style.display = "block";
+		}
+	}
+	if (document.getElementById('boutonModifier').style.display == "none") {
+		document.getElementById('boutonModifier').style.display = "block";
+	} else {
+		document.getElementById('boutonModifier').style.display = "none";
+	}
 });
