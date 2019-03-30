@@ -327,7 +327,6 @@ input[type=text], input[type=search], textarea{
 	box-sizing: border-box;
 	width: 300px;
 	background: #474B70;
-	resize:none;
 	border: 1px solid #CCC;
 	border-radius: 5px;
 	color: #DDD;
