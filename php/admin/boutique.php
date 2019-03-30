@@ -38,7 +38,7 @@ if (isset($_POST['creationArticle']) && $_POST['creationArticle'] == 'Valider') 
 	
 	# Si on ne possède pas le droit de gestion de la boutique (droit n°15)
 	if ($droit15 == false) {
-		$errors['droitBoutiqueManquant'] = "Vous n'êtes pas autorisé à ajouter ou retirer des articles de la boutique";
+		$errors['droitArticleManquant'] = "Vous n'êtes pas autorisé à ajouter ou retirer des articles de la boutique";
 	}
 	
 	# Si le nom de l'article n'est pas bon (vide, trop grand, déjà utilisé)
@@ -47,7 +47,7 @@ if (isset($_POST['creationArticle']) && $_POST['creationArticle'] == 'Valider') 
 	} else if (strlen($_POST['article']) > 100) {
 		$errors['article'] = "Le nom de l'article doit faire moins de 100 caractères";
 	} else {
-		$req = $bdd->prepare('SELECT COUNT(*) FROM BOUTIQUE WHERE article = ?');
+		$req = $bdd->prepare('SELECT COUNT(*) FROM ARTICLES WHERE article = ?');
 		$req->execute(array($_POST['article']));
 		$data = $req->fetch();
 		if ($data[0] > 0) {
@@ -85,7 +85,7 @@ if (isset($_POST['creationArticle']) && $_POST['creationArticle'] == 'Valider') 
 	
 	# S'il n'y a pas d'erreur, on ajoute l'article
 	if (empty($errors)) {
-		$req = $bdd->prepare('INSERT INTO BOUTIQUE(idImages, article, descriptionArticle, prix) VALUES(:idImages, :article, :descriptionArticle, :prix)');
+		$req = $bdd->prepare('INSERT INTO ARTICLES(idImages, article, descriptionArticle, prix) VALUES(:idImages, :article, :descriptionArticle, :prix)');
 		$req->execute(array(
 			'idImages' => $idImages,
 			'article' => $_POST['article'],
@@ -98,16 +98,36 @@ if (isset($_POST['creationArticle']) && $_POST['creationArticle'] == 'Valider') 
 
 <?php
 # Retirer les articles sélectionnés
-
+if (isset($_POST['supprimerArticles']) && $_POST['supprimerArticles'] == 'Valider') {
+	
+	$errors = array();
+	
+	# Si on ne possède pas le droit de gestion de la boutique (droit n°15)
+	if ($droit15 == false) {
+		$errors['droitArticleManquant'] = "Vous n'êtes pas autorisé à ajouter ou retirer des articles de la boutique";
+	}
+	
+	# S'il n'y a pas d'article à retirer
+	if (!isset($_POST['articles'])) {
+		$errors['aucunArticleSelectionne'] = "Aucun article n'a été sélectionné";
+	}
+	
+	# S'il n'y a pas d'erreur, on retire les articles sélectionnés
+	if (empty($errors)) {
+		foreach($_POST['articles'] as $valeur) {
+			$req = $bdd->prepare('DELETE FROM ARTICLES WHERE idArticles = ?');
+			$req->execute(array($valeur));
+		}
+		$success['articlesRetires'] = "Les articles sélectionnés ont bien été retirés";
+	}
+}
 ?>
 
 <?php
 # On récupère les différents articles
-/*
-$req = $bdd->prepare('SELECT * FROM BOUTIQUE ORDER BY prix DESC');
+$req = $bdd->prepare('SELECT * FROM ARTICLES ORDER BY idArticles DESC');
 $req->execute();
 $articles = $req->fetchAll();
-*/
 ?>
 
 <?php
@@ -167,7 +187,38 @@ $images = $req->fetchAll();
 			<?php endif; ?>
 			
 			<div id="contenu">
-				sss
+				<form action="boutique.php" method="post">
+					<table>
+						<tr>
+							<th>Article</td>
+							<th>Image</td>
+							<th style="width:85px">Prix</td>
+							<?php if ($droit15 == true): ?>
+							<th><img src="../../img/supprimer.png"></td>
+							<?php endif; ?>
+						</tr>
+						<?php foreach ($articles as $article): ?>
+						<tr>
+							<td style="font-size: 20px;"><?php echo text($article['article']); ?></td>
+							<td><img src="<?php 
+												$req = $bdd->prepare('SELECT * FROM IMAGES WHERE idImages = ?');
+												$req->execute(array($article['idImages']));
+												$img = $req->fetch();
+												if ($img['image'] != NULL) {
+													echo '../../img/imports/'.$img['image'];
+												}
+											?>" style="max-height: 150px; max-width: 250px" ></td>
+							<td style="font-size: 20px;"><?php echo text($article['prix']); ?></td>
+							<?php if ($droit15 == true): ?>
+							<td><input type="checkbox" name="articles[]" value=<?php echo $article['idArticles']; ?> ></td>
+							<?php endif; ?>
+						</tr>
+						<?php endforeach; ?>
+					</table>
+					<?php if ($droit15 == true): ?>
+					<button type="submit" name="supprimerArticles" value="Valider">Supprimer les articles sélectionnées</button>
+					<?php endif; ?>
+				</form>
 			</div>
 		</div>
 

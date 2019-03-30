@@ -178,10 +178,10 @@ $images = $req->fetchAll();
 				<form action="images.php" method="post">
 					<table>
 						<tr>
-							<th>Nom</td>
+							<th>Nom de l'image</td>
 							<th>Image</td>
 							<?php if ($droit17 == true): ?>
-							<th>Supprimer</td>
+							<th><img src="../../img/supprimer.png"></td>
 							<?php endif; ?>
 						</tr>
 						<?php foreach($images as $image): ?>
