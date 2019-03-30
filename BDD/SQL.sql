@@ -159,10 +159,11 @@ INSERT INTO DROITS (idDroits, droit, descriptionDroit) VALUES
 	(13, 'Supprimer un message du forum', ''),
 	(14, 'Gérer les actualités', 'Permet de créer et supprimer des actualités'),
 	(15, 'Gérer la boutique', 'Permet de créer et supprimer des articles dans la boutique'),
-	(16, 'Gérer le tournoi', 'Permet de modifier les scores des évènements inter-filières');
-	(17, 'Ajouter une image', 'Permet d\'ajouter une image pour l\'utiliser dans la boutique ou les actualités');
-	(18, 'Gérer la boîte à idées', 'Permet de supprimer les idées postées dans la boîte à idées');
-	(19, 'Gérer le mini-jeu', 'Permet de supprimer des records et de réinitialiser tous les records');
+	(16, 'Gérer le tournoi', 'Permet de modifier les scores des évènements inter-filières'),
+	(17, 'Ajouter une image', 'Permet d\'ajouter une image pour l\'utiliser dans la boutique ou les actualités'),
+	(18, 'Gérer la boîte à idées', 'Permet de supprimer les idées postées dans la boîte à idées'),
+	(19, 'Gérer le mini-jeu', 'Permet de supprimer des records et de réinitialiser tous les records'),
+	(20, 'Gérer les clubs', 'Permet de créer et supprimer des clubs');
 	
 
 INSERT INTO ROLES (idRoles, role, descriptionRole) VALUES 
@@ -193,7 +194,8 @@ INSERT INTO attributionDroitsAuxRoles (idRoles, idDroits) VALUES
 	(1, 16),
 	(1, 17),
 	(1, 18),
-	(1, 19);
+	(1, 19),
+	(1, 20);
 	
 	
 INSERT INTO TOURNOI (filiere) VALUES 
