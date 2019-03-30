@@ -87,6 +87,12 @@ hr
 #menu-actualites:hover{
 	background-image: url(../img/menu-actualites-orange.png);
 }
+#menu-clubs{
+	background-image: url(../img/menu-clubs.png);
+}
+#menu-clubs:hover{
+	background-image: url(../img/menu-clubs-orange.png);
+}
 #menu-boutique{
 	background-image: url(../img/menu-boutique.png);
 }
