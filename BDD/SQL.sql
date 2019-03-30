@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS IDEES;
 CREATE TABLE IDEES (
 	idIdees int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	id int unsigned NOT NULL,
-	ideeTitre varchar(50) NOT NULL,
-	idee varchar(1000) NOT NULL,
+	idee varchar(50) NOT NULL,
+	ideeDescription varchar(1000) NOT NULL,
 	dateIdee timestamp,
 	CONSTRAINT FK_idees_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
 );
