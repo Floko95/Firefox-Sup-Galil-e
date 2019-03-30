@@ -526,6 +526,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						<option>INFO
 						<option>MACS
 						<option>TELE
+						<option>INST
 					</select><br>
 					<button type="submit" name="rechercheEtudiant" value="Valider">Rechercher</button>
 				</form>

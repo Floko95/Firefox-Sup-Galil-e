@@ -54,7 +54,7 @@ if (isset($_POST['creationActualite']) && $_POST['creationActualite'] == 'Valide
 	}
 	
 	# Si la description est trop longue
-	if (!empty($_POST['descriptionActualité']) && strlen($_POST['descriptionActualité']) > 1000) {
+	if (!empty($_POST['descriptionActualite']) && strlen($_POST['descriptionActualite']) > 1000) {
 		$errors['descriptionActualité'] = "La description de l'actualité doit faire au plus 1000 caractères";
 	}
 	
