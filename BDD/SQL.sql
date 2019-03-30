@@ -115,8 +115,8 @@ CREATE TABLE ACTUALITES (
 	id int unsigned NOT NULL,
 	idImages int unsigned,
 	createur varchar(100),
-	actualiteTitre varchar(100) NOT NULL,
-	actualite varchar(500) NOT NULL,
+	actualite varchar(100) NOT NULL,
+	descriptionActualite varchar(1000),
 	CONSTRAINT FK_actualites_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE,
 	CONSTRAINT FK_actualites_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
 );
@@ -126,9 +126,20 @@ DROP TABLE IF EXISTS BOUTIQUE;
 CREATE TABLE BOUTIQUE (
 	idBoutique int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	idImages int unsigned,
-	article varchar(100) NOT NULL,
+	article varchar(100) NOT NULL UNIQUE,
+	descriptionArticle varchar(1000),
 	prix float(5,2) NOT NULL,
 	CONSTRAINT FK_boutique_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+);
+
+
+DROP TABLE IF EXISTS CLUBS;
+CREATE TABLE CLUBS (
+	idClubs int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idImages int unsigned,
+	club varchar(100) NOT NULL UNIQUE,
+	descriptionClub varchar(1000),
+	CONSTRAINT FK_clubs_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
 );
 
 
