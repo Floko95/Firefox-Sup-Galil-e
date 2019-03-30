@@ -1,122 +1,134 @@
 ﻿DROP TABLE IF EXISTS attributionDroitsAuxRoles;
 CREATE TABLE attributionDroitsAuxRoles (
-idRoles int unsigned NOT NULL,
-idDroits int unsigned NOT NULL,
-CONSTRAINT PK_aDAR PRIMARY KEY (idRoles, idDroits),
-CONSTRAINT FK_aDAR_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE,
-CONSTRAINT FK_aDAR_idDroits FOREIGN KEY (idDroits) REFERENCES droits (idDroits)  ON DELETE CASCADE
+	idRoles int unsigned NOT NULL,
+	idDroits int unsigned NOT NULL,
+	CONSTRAINT PK_aDAR PRIMARY KEY (idRoles, idDroits),
+	CONSTRAINT FK_aDAR_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE,
+	CONSTRAINT FK_aDAR_idDroits FOREIGN KEY (idDroits) REFERENCES droits (idDroits)  ON DELETE CASCADE
 );
 
 
 DROP TABLE IF EXISTS attributionRolesAuxEtudiants;
 CREATE TABLE attributionRolesAuxEtudiants (
-id int unsigned NOT NULL,
-idRoles int unsigned NOT NULL,
-CONSTRAINT PK_aRAE PRIMARY KEY (id, idRoles),
-CONSTRAINT FK_aRAE_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE,
-CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE
+	id int unsigned NOT NULL,
+	idRoles int unsigned NOT NULL,
+	CONSTRAINT PK_aRAE PRIMARY KEY (id, idRoles),
+	CONSTRAINT FK_aRAE_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE,
+	CONSTRAINT FK_aRAE_idRoles FOREIGN KEY (idRoles) REFERENCES roles (idRoles) ON DELETE CASCADE
 );
 
 
 DROP TABLE IF EXISTS IDEES;
 CREATE TABLE IDEES (
-idIdees int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id int unsigned NOT NULL,
-ideeTitre varchar(50) NOT NULL,
-idee varchar(1000) NOT NULL,
-dateIdee timestamp,
-CONSTRAINT FK_idees_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
+	idIdees int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int unsigned NOT NULL,
+	ideeTitre varchar(50) NOT NULL,
+	idee varchar(1000) NOT NULL,
+	dateIdee timestamp,
+	CONSTRAINT FK_idees_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
 );
 
 
 DROP TABLE IF EXISTS MINIJEU;
 CREATE TABLE MINIJEU (
-id int unsigned NOT NULL PRIMARY KEY,
-score int unsigned NOT NULL,
-dateScore timestamp,
-CONSTRAINT FK_minijeu_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
+	id int unsigned NOT NULL PRIMARY KEY,
+	score int unsigned NOT NULL,
+	dateScore timestamp,
+	CONSTRAINT FK_minijeu_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE
 );
 
 
 DROP TABLE IF EXISTS etudiants;
 CREATE TABLE etudiants (
-id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-mailUniv varchar(70) NOT NULL,
-mailPerso varchar(70),
-nom varchar(30) NOT NULL,
-prenom varchar(30) NOT NULL,
-numero int unsigned NOT NULL,
-mdp varchar(255) NOT NULL,
-formation varchar(4) DEFAULT NULL,
-promotion year(4) DEFAULT NULL,
-dateInscription timestamp NOT NULL,
-etat int(1) DEFAULT 0,
-code varchar(255),
-typeCode int(1) NOT NULL,
-dateMail timestamp
+	id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	mailUniv varchar(70) NOT NULL,
+	mailPerso varchar(70),
+	nom varchar(30) NOT NULL,
+	prenom varchar(30) NOT NULL,
+	numero int unsigned NOT NULL,
+	mdp varchar(255) NOT NULL,
+	formation varchar(4) DEFAULT NULL,
+	promotion year(4) DEFAULT NULL,
+	dateInscription timestamp NOT NULL,
+	etat int(1) DEFAULT 0,
+	code varchar(255),
+	typeCode int(1) NOT NULL,
+	dateMail timestamp
 );
 
 
 DROP TABLE IF EXISTS droits;
 CREATE TABLE droits (
-idDroits int unsigned NOT NULL PRIMARY KEY,
-droit varchar(35) NOT NULL UNIQUE,
-descriptionDroit varchar(255)
+	idDroits int unsigned NOT NULL PRIMARY KEY,
+	droit varchar(35) NOT NULL UNIQUE,
+	descriptionDroit varchar(255)
 );
 
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
-idRoles int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-role varchar(30) NOT NULL UNIQUE,
-descriptionRole varchar(255),
-supprimable int (1) DEFAULT 0
+	idRoles int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	role varchar(30) NOT NULL UNIQUE,
+	descriptionRole varchar(255),
+	supprimable int (1) DEFAULT 0
 );
 
 
 DROP TABLE IF EXISTS topics;
 CREATE TABLE topics (
-  idTopics int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  id int(10) UNSIGNED NOT NULL,
-  topic varchar(255) NOT NULL,
-  dateCreation timestamp NOT NULL,
-  general tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 si topic réservé au génral, 0 si réservé à la filière du créateur',
-  PRIMARY KEY (idTopics),
-  KEY FK_topics_id (id) 
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+	idTopics int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int(10) unsigned NOT NULL,
+	topic varchar(255) NOT NULL,
+	dateCreation timestamp NOT NULL,
+	general tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 si topic réservé au génral, 0 si réservé à la filière du créateur',
+	CONSTRAINT FK_topics_id FOREIGN KEY (id) REFERENCES etudiants (id)
+);
 
 
 DROP TABLE IF EXISTS tags;
 CREATE TABLE IF NOT EXISTS tags (
-  idTags int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  idTopics int(10) UNSIGNED NOT NULL,
-  tag varchar(20) NOT NULL,
-  PRIMARY KEY (idTags),
-  KEY FK_tags_idTags (idTopics)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+	idTags int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idTopics int(10) unsigned NOT NULL,
+	tag varchar(20) NOT NULL,
+	CONSTRAINT FK_tags_idTopics FOREIGN KEY (idTopics) REFERENCES topics (idTopics)
+);
 
 
 DROP TABLE IF EXISTS TOURNOI;
 CREATE TABLE TOURNOI (
-filiere varchar(20) PRIMARY KEY,
-score int DEFAULT 0 NOT NULL,
-visible int(1) DEFAULT 0 NOT NULL
+	filiere varchar(20) PRIMARY KEY,
+	score int DEFAULT 0 NOT NULL,
+	visible int(1) DEFAULT 0 NOT NULL
 );
 
 
 DROP TABLE IF EXISTS IMAGES;
 CREATE TABLE IMAGES (
-idImages int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-image varchar(35) NOT NULL
+	idImages int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	image varchar(35) NOT NULL UNIQUE
 );
 
-DROP TABLE IF EXISTS actualite;
-CREATE TABLE actualite (
-	idActualite INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	idEtudiant INT NOT NULL,
-	creator VARCHAR(255),
-	title VARCHAR(255) NOT NULL,
-	content TEXT NOT NULL	
+
+DROP TABLE IF EXISTS ACTUALITES;
+CREATE TABLE ACTUALITES (
+	idActualites int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int unsigned NOT NULL,
+	idImages int unsigned,
+	createur varchar(100),
+	actualiteTitre varchar(100) NOT NULL,
+	actualite varchar(500) NOT NULL,
+	CONSTRAINT FK_actualites_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE,
+	CONSTRAINT FK_actualites_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+);
+
+
+DROP TABLE IF EXISTS BOUTIQUE;
+CREATE TABLE BOUTIQUE (
+	idBoutique int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idImages int unsigned,
+	article varchar(100) NOT NULL,
+	prix float(5,2) NOT NULL,
+	CONSTRAINT FK_boutique_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
 );
 
 
