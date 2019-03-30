@@ -216,7 +216,7 @@ $images = $req->fetchAll();
 						<?php endforeach; ?>
 					</table>
 					<?php if ($droit15 == true): ?>
-					<button type="submit" name="supprimerArticles" value="Valider">Supprimer les articles sélectionnées</button>
+					<button type="submit" name="supprimerArticles" value="Valider">Supprimer les articles sélectionnés</button>
 					<?php endif; ?>
 				</form>
 			</div>
