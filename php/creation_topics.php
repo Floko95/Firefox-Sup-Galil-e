@@ -24,7 +24,7 @@
 	$data = $reqAdmin->fetch();
 
 
-	if ($data[0] == 1)//si on est un admin
+	if ($data[0] >0)//si on est un admin
 	{
 		$forums[1] = "INFO";
 		$forums[2] = "ENER";
