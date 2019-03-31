@@ -64,7 +64,7 @@ $reqAdmin->execute(array($_SESSION['id'], 9));
 $data = $reqAdmin->fetch();
 
 
-if ($data[0] >)//si on est un admin
+if ($data[0] >0)//si on est un admin
 {
 	$forums[1] = "INFO";
 	$forums[2] = "ENER";
