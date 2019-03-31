@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!(isset($_SESSION['id']))) {
+	header ('Location: index.php');
+	exit();
+}
+?>
+
+<?php require_once 'inc/serveur.php' ;?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -8,8 +19,6 @@
 </head>
 
 <body>
-<?php require_once 'inc/serveur.php' ?>
-<?php session_start(); ?>
 
 <?php require_once ('navigation.php') ?>
 <!-- Barre de navigation -->
@@ -63,7 +72,7 @@
         <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
     </div>
 	<div class="offset-md-5 col-md-2 add-topic">
-        <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
+        <a href="boite_a_idees.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
     </div>
 </div>
 
@@ -113,20 +122,32 @@
 			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '. $topic['nom']; ?></div>
 			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
 			
-			<?php endforeach; ?>
+			
 		</div>
+		<?php endforeach; ?>
 	</div>
 </div>
 <!-- ------------------------------------FORUM FILIERE------------------------- -->
-<?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=0 ORDER BY dateCreation DESC');
-	$req->execute();
-	$topics = $req->fetchAll();?>
+
+
+
+
+
+
+
+
+
+<?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=0 AND formation = ? ORDER BY dateCreation DESC');
+	$req->execute(array($_SESSION['formation']));
+	$topics = $req->fetchAll();
+	//on affiche le forum de la fillière de la personne connectée , toutes fillières confondues : info,cp2i, etc
+	?>
 	
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
 			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
-			<div class="col-md-10 ">Forum Informatique</div>
+			<div class="col-md-10 ">Forum <?php echo $_SESSION['formation']; ?></div>
 		</div>
 	</div>
 </div>
@@ -170,6 +191,74 @@
 		<?php endforeach; ?>
 	</div>
 </div>
+
+<!-- ------------------------------------FORUM CP2i------------------------- -->
+
+
+<?php $reqrole = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants  WHERE id = ? AND idRoles = 4');		//4 = role "ancien cp2i"
+$reqrole->execute(array($_SESSION['id']));
+$check_cp2i = $reqrole->fetch();
+?>
+
+<?php if($_SESSION['formation'] != 'CP2I' and ($check_cp2i[0] != 0) ): // si l'éleve n'est pas un cp2i MAIS qu'il est un ancien cp2i, alors on affiche le forum cp2i ?> 
+
+<?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=0 AND formation = "CP2I" ORDER BY dateCreation DESC');
+	$req->execute();
+	$topics = $req->fetchAll();?>
+	
+<div class="row title">
+	<div class="offset-md-2 col-md-8">
+		<div class="row block">
+			<div class="col-md-1" id="cp2i-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class="col-md-10 ">Forum CP2I</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row" id="cp2i-messages">
+	<div class="offset-md-2 col-md-8 block">
+		<div class="row info-categorie">
+			<div class=" col-md-8 general-categorie">Forum</div>
+			<div class=" col-md-2 auteur-categorie">Auteur</div>
+			<div class=" col-md-2 date-categorie">Date de création</div>
+		</div>
+		
+
+		<?php foreach($topics as $topic):
+		$req = $bdd->prepare('SELECT * from tags where idTopics= ?');
+		$req->execute(array($topic['idTopics']));
+		$tags= $req->fetchAll();
+		?>
+		<div class="row topic">
+			<div class=" col-md-6 topic-subject"><form method="post" action="Forum.php">
+			<input type="hidden" value="
+			<?php echo $topic['idTopics']; ?>" name="a_recup"/>
+			<button type="submit" value="
+			<?php echo $topic['topic']; ?>"><?php echo $topic['topic']; ?></</button>
+			
+			</form></div>
+			<div class="col-md-2 tag">
+			<?php
+			$i=0;
+			foreach($tags as $tag) {
+				if($i<5)
+					echo $tag['tag'].' ';
+				$i++;
+			}?>
+				
+			</div>
+			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '.$topic['nom']; ?></div>
+			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</div>
+<?php endif; ?>
+<!-- ------------------------------------FORUM ADMIN------------------------- -->
+<!----working on it ;) ----------------->
+
+
   <footer>
     <?php require_once ('footer.html') ?>
   </footer>

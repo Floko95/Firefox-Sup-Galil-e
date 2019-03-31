@@ -93,6 +93,19 @@ $('#informatique-bouton').click(function(){
 		$('#informatique-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
 	}
 });
+$('#cp2i-bouton').click(function(){
+	if($('#cp2i-messages').css('display') == 'none'){
+		console.log('Display cp2i\n');
+		$('#cp2i-messages').show();
+		$('#cp2i-bouton').html('<span class="fas fa-sort-up fa-2x"></span>');
+	}
+	else{
+		console.log('Hide cp2i\n');
+		$('#cp2i-messages').hide();
+		$('#cp2i-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
+	}
+});
+/* forum admin to be coming soon*/
 /* 
 $('.forum-g .fa-sort-up').click(function(){
 	if (document.getElementBy("forum-g").style.display == "block"){
