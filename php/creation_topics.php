@@ -13,10 +13,44 @@
 
 
 	<?php
-		$req = $bdd->prepare('SELECT formation FROM etudiants WHERE id = :id');
-			$req->bindValue(':id',intval($_SESSION['id']));
-			$req->execute();
-			$f = $req->fetch();
+			
+			
+			
+	//sélections des fillières à afficher pour les boutons radio
+	$forums[0] = "general";
+
+	$reqAdmin = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
+	$reqAdmin->execute(array($_SESSION['id'], 9));
+	$data = $reqAdmin->fetch();
+
+
+	if ($data[0] == 1)//si on est un admin
+	{
+		$forums[1] = "INFO";
+		$forums[2] = "ENER";
+		$forums[3] = "CP2I";
+		$forums[4] = "MACS";
+		$forums[5] = "TELE";
+		$forums[6] = "INST";
+	
+	}
+
+	else
+	{
+		$forums[1] = $_SESSION['formation'];
+
+
+		$reqrole = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants  WHERE id = ? AND idRoles = 4');		//4 = role "ancien cp2i"
+		$reqrole->execute(array($_SESSION['id']));
+		$check_cp2i = $reqrole->fetch();
+
+
+		if($_SESSION['formation'] != 'CP2I' and ($check_cp2i[0] != 0) )
+		{
+			$forums[2] = "CP2I";
+		}// si l'éleve n'est pas un cp2i MAIS qu'il est un ancien cp2i, alors on affiche le forum cp2i
+}
+
 			?>
 
 	<div class="row top-page">
@@ -34,8 +68,11 @@
 					<label for="tags">Tags</label><br>
 					<input type="text" name="tags" required ><br
 					<label for="categorie">Catégorie du topic</label><br>
-					<input type="radio" name="categorie" value="general"/>Général<br>
-					<input type="radio" name="categorie" value="filliere"/> Fillière <?php echo $f['formation'];?><br>
+					
+					<?php foreach($forums as $forum):?>
+					<input type="radio" name="categorie" value="<?php echo $forum;?>"/> Fillière <?php echo $forum;?><br> 
+					<?php endforeach;?>
+					
 					<br>
 					<label for="msg">Votre message</label><br>
 					<textarea required name="ecriture"> Message</textarea><br>
