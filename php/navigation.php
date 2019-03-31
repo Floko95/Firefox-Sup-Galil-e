@@ -85,6 +85,7 @@ require_once 'inc/fonctions.php';
 					<input type="submit" name="connexion" value="Valider" />						
 				</form>
 			<?php else: ?>
+				<a href="/Firefox-Sup-Galil-e/php/profil.php">Voir mon profil</a><br><br>
 				<a href="/Firefox-Sup-Galil-e/php/deconnexion.php">Déconnexion</a>
 			<?php endif; ?>
 		</div>
