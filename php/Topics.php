@@ -114,13 +114,13 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
-			<div class="col-md-1 arrow-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
 			<div class="col-md-10">Forum Général</div>
 		</div>
 	</div>
 </div>
 
-<div class="row messages">
+<div class="row" id="general-messages" >
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum</div>
@@ -168,7 +168,7 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
-			<div class="col-md-1  arrow-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
 			<div class="col-md-10 ">Forum Informatique</div>
 		</div>
 		<?php endforeach; ?>
@@ -176,7 +176,7 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 </div>
 
 
-<div class="row messages">
+<div class="row" id="informatique-messages">
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum</div>
