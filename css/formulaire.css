@@ -20,6 +20,11 @@ label {
 	color: #1E1E2E;
 }
 
+legend {
+	color: #161743;
+	font-weight: bold;
+}
+
 ::placeholder {
 	padding-left: 10px;
 	opacity: 0.5;
