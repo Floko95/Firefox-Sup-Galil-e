@@ -8,8 +8,7 @@ if (!isset($_SESSION['id'])) {
 	$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ?');
 	$req->execute(array($_SESSION['id']));
 	$etudiant = $req->fetch();
-	$_SESSION['etat'] = $etudiant['etat'];
-	if ($_SESSION['etat'] == -1) {
+	if (!$etudiant || $etudiant['etat'] == -1) {
 		session_destroy;
 		session_start;
 		$_SESSION['flash']['alerte'] = 'Votre compte vient tout juste d\'être banni par un administrateur, vous avez été déconnecté et ne pouvez plus vous connecter';
@@ -20,13 +19,22 @@ if (!isset($_SESSION['id'])) {
 	$_SESSION['nom'] = $etudiant['nom'];
 	$_SESSION['formation'] = $etudiant['formation'];
 	$_SESSION['promotion'] = $etudiant['promotion'];
+	$_SESSION['etat'] = $etudiant['etat'];
 }
+require_once 'inc/fonctions.php';
 ?>
 
 <?php
-# ...
+# Changement de formation d'un CP2I
 ?>
 
+<?php
+# Changement de promotion
+?>
+
+<?php
+# Changement de mot de passe
+?>
 
 <!DOCTYPE html>
 <html>
@@ -40,8 +48,8 @@ if (!isset($_SESSION['id'])) {
 		<?php require_once ('navigation.php') ?>
 		
 		<div id="formulaire-responsive" class="clearfix inscription-form">
-			<form action="inscription.php" method="post">
-				<h3>S'inscrire</h3>
+			<form action="profil.php" method="post">
+				<h3>Mon compte</h3>
 				
 				<!-- Affichage des erreurs -->
 				<?php if(!empty($errors)): ?>
@@ -58,19 +66,16 @@ if (!isset($_SESSION['id'])) {
 				<!-- Formulaire d'inscription -->
 				<div class="rang-form">
 					<div class="demi-colonne">
-						<label for="prenom">Prénom :</label>
-						<input type="text" name="prenom" placeholder="Jean" maxlength="30" required />
+						<label for="prenom">Prénom : </label> <?php echo text($_SESSION['prenom']); ?>
 					</div>
 					<div class="demi-colonne">
-						<label for="nom">Nom :</label>
-						<input type="text" name="nom" placeholder="Dupont" maxlength="30" required />
+						<label for="nom">Nom : </label> <?php echo text($_SESSION['nom']); ?>
 					</div>
 				</div>
 
 				<div class="rang-form">
 					<div class="colonne">
-						<label for="numero">Numéro d'étudiant :</label>
-						<input type="text" name="numero" placeholder="12345678" pattern="^([0-9]{8})$" required />
+						<label for="numero">Numéro d'étudiant : </label> <?php echo text($etudiant['numero']); ?>
 					</div>
 				</div>
 				
