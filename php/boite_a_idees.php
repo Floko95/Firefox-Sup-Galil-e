@@ -33,11 +33,11 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 		
 	if (empty($errors))
 	{
-	$req = $bdd->prepare('INSERT INTO idees(id,idee,dateIdee,ideeTitre) VALUES(:id , :idee , :date, :t)');
+	$req = $bdd->prepare('INSERT INTO idees(id,idee,dateIdee,ideeDescription) VALUES(:id , :idee , :date, :t)');
 		$req->execute(array(	'id' => intval($_SESSION['id']),
-								'idee' => $_POST['envoi_idee'],
+								'idee' => $_POST['ideeTitre'],
 								'date' => $date,
-								't'    => $_POST['ideeTitre']));
+								't'    => $_POST['envoi_idee']));
 		header('Location: Topics.php');
 		exit();
 	}

@@ -53,6 +53,16 @@ if (!(isset($_SESSION['id']))) {
 ?>
 
 
+<div class ="top-page"></div>
+
+<div class="row">
+    <div class="offset-md-2 col-md-2 add-topic">
+        <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
+    </div>
+	<div class="offset-md-5 col-md-2 add-topic">
+        <a href="boite_a_idees.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
+    </div>
+</div>
 
 <!-- ------------------------------------FORUM------------------------- -->
 <?php 
@@ -99,23 +109,13 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 	$req->execute(array($forum));
 	$topics = $req->fetchAll();?>
 
-<div class ="top-page"></div>
-
-<div class="row">
-    <div class="offset-md-2 col-md-2 add-topic">
-        <a href="creation_topics.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Créer topic</a>
-    </div>
-	<div class="offset-md-5 col-md-2 add-topic">
-        <a href="boite_a_idees.php" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span> Boîte à idées</a>
-    </div>
-</div>
 
 
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
 			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
-			<div class="col-md-10">Forum Général</div>
+			<div class="col-md-10">Forum <?php echo $forum?></div>
 		</div>
 	</div>
 </div>
@@ -156,34 +156,15 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '. $topic['nom']; ?></div>
 			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
 			
-			<?php endforeach; ?>
-		</div>
-	</div>
-</div>
-<!-- ------------------------------------FORUM FILIERE------------------------- -->
-<?php $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE general=0 ORDER BY dateCreation DESC');
-	$req->execute();
-	$topics = $req->fetchAll();?>
-	
-<div class="row title">
-	<div class="offset-md-2 col-md-8">
-		<div class="row block">
-			<div class="col-md-1" id="informatique-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
-			<div class="col-md-10 ">Forum Informatique</div>
+		
 		</div>
 		<?php endforeach; ?>
 	</div>
 </div>
+<?php endforeach; ?>
 
 
-<div class="row" id="informatique-messages">
-	<div class="offset-md-2 col-md-8 block">
-		<div class="row info-categorie">
-			<div class=" col-md-8 general-categorie">Forum</div>
-			<div class=" col-md-2 auteur-categorie">Auteur</div>
-			<div class=" col-md-2 date-categorie">Date de création</div>
-		</div>
-		
+
 
   <footer>
     <?php require_once ('footer.html') ?>
