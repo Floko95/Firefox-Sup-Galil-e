@@ -160,6 +160,14 @@ nav #right {
 	background-image: url(../img/nav-actualites-blanc.png);
 }
 
+#clubs {
+	background-image: url(../img/nav-clubs.png);
+}
+
+#clubs:hover, #h-clubs {
+	background-image: url(../img/nav-clubs-blanc.png);
+}
+
 #boutique {
 	background-image: url(../img/nav-boutique.png);
 }
