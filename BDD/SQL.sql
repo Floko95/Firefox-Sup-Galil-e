@@ -84,6 +84,24 @@ CREATE TABLE topics (
 	CONSTRAINT FK_topics_id FOREIGN KEY (id) REFERENCES etudiants (id)
 );
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `idMessages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL,
+  `idTopics` int(10) UNSIGNED NOT NULL,
+  `message` varchar(2000) NOT NULL,
+  `dateEnvoi` timestamp NOT NULL,
+  PRIMARY KEY (`idMessages`),
+  KEY `FK_messages_id` (`id`),
+  KEY `FK_messages_idTopics` (`idTopics`)
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+
 
 DROP TABLE IF EXISTS tags;
 CREATE TABLE IF NOT EXISTS tags (
@@ -205,3 +223,25 @@ INSERT INTO TOURNOI (filiere) VALUES
 	('Mathématiques'),
 	('Télécommunications'),
 	('Instrumentation');
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`idMessages`, `id`, `idTopics`, `message`, `dateEnvoi`) VALUES
+(13, 3, 2, 'J\'ai perdu mon sac,qqun l\'a trouvé?', '2019-03-11 09:02:59'),
+(14, 1, 2, 'T\'abuses, ca fait la 5ème fois que tu l\'oublies au bde', '2019-03-11 11:03:23'),
+(15, 3, 2, 'Ouais,dsl, merci en tout cas!', '2019-03-11 11:04:36'),
+(16, 4, 3, 'Je voulais partir en corée,mais le SRI ne m\'a pas nominé ,alors qu\'il a même pas demandé l\'avis d\'hamon. Scandale!', '2019-03-11 11:12:25'),
+(17, 1, 4, 'Il était dur le partiel, 19 étudiants en rattrapage c\'est pas normal', '2019-03-11 11:25:26'),
+(18, 1, 4, 'en plus on sait meme pas quand seront les rattrapages\r\n', '2019-03-11 11:25:43'),
+(19, 8, 5, 'Le nouveau bar du bde est enfin construit, il manque encore quelques retouches mais passez le voir!', '2019-03-11 11:29:29'),
+(20, 1, 6, 'déja,quand -est ce qu\'il faut rendre le dossier : quel dossier? et à qui?', '2019-03-11 11:32:53'),
+(21, 5, 1, '~ Qui sommes-nous? ~\r\nUn groupe de 10 étudiants de l’école d’ingénieurs Sup Galilée participant au projet Horizon Japon.\r\nNous partagerons avec vous notre séjour au Japon et les différentes activités réalisées par les étudiants.\r\nVous pouvez également nous suivre sur :\r\nSnapchat @horizonjapon https://www.snapchat.com/add/horizonjapon\r\nInstagram @horizonjapon\r\nhttps://www.instagram.com/horizonjapon', '2019-03-11 13:57:22'),
+(22, 5, 1, 'Les inscriptions sont maintenant terminées, les étudiants ont été sélectionnés, félicitation à eux!', '2019-03-11 13:59:40'),
+(23, 5, 1, 'Vous aussi soutenez le projet en achetant nos crèpes tous les lundis et vendredis, ainsi que des chips à la crevette ,le tout pour participer au financement du projet', '2019-03-11 14:01:26'),
+(24, 4, 1, 'ya des gateaux aussi desfois', '2019-03-11 14:02:00'),
+(25, 1, 1, 'Quand est-ce que vous partez?', '2019-03-11 14:03:35'),
+(26, 4, 1, '23 avril ', '2019-03-11 14:04:12'),
+(27, 0, 1, 'ok, a dans un mois', '2019-03-11 14:09:43'),
+(30, 1, 1, 'ok,a dans un mois', '2019-03-11 14:15:36');
