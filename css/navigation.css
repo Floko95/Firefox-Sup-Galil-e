@@ -46,8 +46,9 @@ nav ul ul {
 	height: auto;
 	padding-left: 5px;
 	top: 35px;
-	left: 50px;
+	left: 40px;
 	background: #161743;
+	border-left: 2px solid #051020;
 	border-right: 2px solid #051020;
 	border-bottom: 2px solid #051020;
 }
@@ -69,7 +70,7 @@ nav ul ul li {
 
 nav ul ul li:hover {
 	background-image: url(../img/nav-triangle.png);
-	background-position: top right;
+	background-position: right;
 	background-repeat: no-repeat;
 }
 
@@ -168,6 +169,14 @@ nav #right {
 	background-image: url(../img/nav-clubs-blanc.png);
 }
 
+#inscription {
+	background-image: url(../img/nav-inscription.png);
+}
+
+#inscription:hover, #h-inscription {
+	background-image: url(../img/nav-inscription-blanc.png);
+}
+
 #boutique {
 	background-image: url(../img/nav-boutique.png);
 }
@@ -215,6 +224,180 @@ nav #right {
 
 
 
+
+
+
+
+/* Responsive */
+
+@media only screen and (max-width: 1080px) { 
+	#bonjour {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 900px) { 
+	#contact li span {
+		display: none;
+	}
+	#contact {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 845px) { 
+	#admin li span {
+		display: none;
+	}
+	#admin {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 810px) { 
+	#boutique li span {
+		display: none;
+	}
+	#boutique {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 750px) { 
+	#forum li span {
+		display: none;
+	}
+	#forum {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 750px) { 
+	#inscription li span {
+		display: none;
+	}
+	#inscription {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 710px) { 
+	#clubs li span {
+		display: none;
+	}
+	#clubs {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 680px) { 
+	#actualites li span {
+		display: none;
+	}
+	#actualites {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 610px) { 
+	#equipe li span {
+		display: none;
+	}
+	#equipe {
+		background-position: center;
+	}
+}
+
+@media only screen and (max-width: 560px) { 
+	#accueil li span {
+		display: none;
+	}
+	#accueil {
+		background-position: center;
+	}
+}
+
+/* Réduction de l'espace inter-image */
+
+@media only screen and (max-width: 515px) { 
+	nav a ~ a {
+		padding: 0px 0px;
+		margin-left: 0px;
+	}
+}
+
+/* Debut du hamburger */
+
+@media only screen and (max-width: 410px) { 
+	#contact {
+		display: none;
+	}
+	#admin {
+		display: none;
+	}
+	#inscription {
+		display: none;
+	}
+	#hamburger, #h-contact li, #h-admin li, #h-inscription li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 370px) { 
+	#boutique {
+		display: none;
+	}
+	#h-boutique li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 330px) { 
+	#forum {
+		display: none;
+	}
+	#h-forum li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 290px) { 
+	#clubs {
+		display: none;
+	}
+	#h-clubs li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 250px) { 
+	#actualites {
+		display: none;
+	}
+	#h-actualites li{
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 210px) { 
+	#equipe {
+		display: none;
+	}
+	#h-equipe li{
+		display: block;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Barre de menu fixe si la hauteur de l'écran est assez grande */
 
 @media only screen and (max-height: 250px) { 
@@ -253,7 +436,7 @@ nav #right {
 }
 
 #bonjour {
-	max-width: 220px;
+	max-width: 170px;
 	width: auto;
 	white-space: nowrap;
 	overflow: hidden;
