@@ -33,24 +33,32 @@ require_once 'inc/fonctions.php';
 						<ul>
 							<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="h-equipe"><li><span>L'équipe</span></li></a>
 							<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="h-actualites"><li><span>Actualités</span></li></a>
-							<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#clubs" id="h-clubs"><li><span>Clubs</span></li></a>
 							<?php if(isset($_SESSION['id'])): ?>
 							<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="h-forum"><li><span>Forum</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
 							<?php if($possedeRole == true): ?>
 							<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="h-admin"><li><span>Gérer</span></li></a>
 							<?php endif; ?>
+							<?php endif; ?>
+							<?php if(!isset($_SESSION['id'])): ?>
+							<a href="/Firefox-Sup-Galil-e/php/inscription.php" id="h-inscription"><li><span>Créer un compte</span></li></a>
 							<?php endif; ?>
 							<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="h-contact"><li><span>Contact</span></li></a>
 						</ul>
 					</li>
 					<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="equipe"><li><span>L'équipe</span></li></a>
 					<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="actualites"><li><span>Actualités</span></li></a>
-					<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#clubs" id="clubs"><li><span>Clubs</span></li></a>
 					<?php if(isset($_SESSION['id'])): ?>
 					<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="forum"><li><span>Forum</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
 					<?php if($possedeRole == true): ?>
 					<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="admin"><li><span>Gérer</span></li></a>
 					<?php endif; ?>
+					<?php endif; ?>
+					<?php if(!isset($_SESSION['id'])): ?>
+						<a href="/Firefox-Sup-Galil-e/php/inscription.php" id="inscription"><li><span>Créer un compte</span></li></a>
 					<?php endif; ?>
 					<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="contact"><li><span>Contact</span></li></a>
 				</div>
@@ -77,6 +85,7 @@ require_once 'inc/fonctions.php';
 					<input type="submit" name="connexion" value="Valider" />						
 				</form>
 			<?php else: ?>
+				<a href="/Firefox-Sup-Galil-e/php/profil.php">Voir mon profil</a><br><br>
 				<a href="/Firefox-Sup-Galil-e/php/deconnexion.php">Déconnexion</a>
 			<?php endif; ?>
 		</div>

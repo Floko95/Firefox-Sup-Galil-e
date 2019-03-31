@@ -1,5 +1,7 @@
  <?php require_once 'inc/serveur.php' ;?>
- <?php session_start(); ?>
+ <?php 
+ session_cache_limiter('private, must-revalidate');
+ session_start(); ?>
 <?php require_once ('navigation.php');?>
 
 

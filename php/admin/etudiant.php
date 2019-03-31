@@ -361,6 +361,63 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 }
 ?>
 
+<?php
+# Modifier le profil d'un étudiant
+if (isset($_POST['modifierProfil']) && $_POST['modifierProfil'] == 'Valider') {
+
+	if (empty($_POST['prenom'])) {
+		$errors['prenom'] = "Prenom manquant";
+	} elseif (strlen($_POST['prenom']) > 30) {
+		$errors['prenom'] = "Le prénom doit faire moins de 30 caractères";
+	}
+
+	if (empty($_POST['nom'])) {
+		$errors['nom'] = "Nom manquant";
+	} elseif (strlen($_POST['nom']) > 30) {
+		$errors['nom'] = "Le nom doit faire moins de 30 caractères";
+	}
+
+	if (empty($_POST['numero'])) {
+		$errors['numero'] = "Numéro d'étudiant manquant";
+	} elseif (!preg_match('#^([0-9]{8})$#', $_POST['numero'])){
+		$errors['numero'] = "Numéro d'étudiant invalide (8 chiffres)";
+	}
+
+	if (empty($_POST['mailUniv'])) {
+		$errors['mailUniv'] = "Adresse mail universitaire manquante";
+	} elseif (!preg_match('#^([a-z]+.[a-z]+@edu.univ-paris13.fr)$#', $_POST['mailUniv'])){
+		$errors['mailUniv'] = "L'adresse mail universitaire doit respecter le format prenom.nom@edu.univ-paris13.fr";
+	} elseif (strlen($_POST['mailUniv']) > 70) {
+		$errors['mailUniv'] = "L'adresse mail universitaire doit faire moins de 70 caractères";
+	} else {
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE mailUniv = ? AND etat > 0 AND id != ?');
+		$req->execute(array($_POST['mailUniv'], $id));
+		$data = $req->fetch();
+		if ($data) {
+			$errors['mailUniv'] = "Cette adresse mail universitaire est déjà utilisée";
+		}
+	}
+
+	if (!empty($_POST['mailPerso']) && !filter_var($_POST['mailPerso'], FILTER_VALIDATE_EMAIL)) {
+		$errors['mailPerso'] = "Laisser le champ d'adresse mail personnelle vide ou entrer une adresse mail valide ";
+	} elseif (strlen($_POST['mailPerso']) > 70) {
+		$errors['mailPerso'] = "L'adresse personnelle doit faire moins de 70 caractères";
+	}
+
+	if (empty($errors)) {
+		$req = $bdd->prepare('DELETE FROM ETUDIANTS WHERE mailUniv = ? AND id != ?');
+		$req->execute(array($_POST['mailUniv'], $id));
+		$req = $bdd->prepare('UPDATE ETUDIANTS SET prenom = ?, nom = ?, numero = ?, mailUniv = ?, mailPerso = ?, formation = ?, promotion = ? WHERE id = ?');
+		$req->execute(array($_POST['prenom'], $_POST['nom'], $_POST['numero'], $_POST['mailUniv'], $_POST['mailPerso'], $_POST['formation'], $_POST['promotion'], $id));
+		// On envoie un mail à l'étudiant pour l'informer que ses informations personnelles ont été modifiées
+		# On met à jour les informations de l'étudiant
+		$req = $bdd->prepare('SELECT * FROM ETUDIANTS WHERE id = ? AND etat != 0');
+		$req->execute(array($id));
+		$etudiant = $req->fetch();
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -406,7 +463,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						<?php 
 						echo text($etudiant['prenom']).' '.strtoupper(text($etudiant['nom']));
 						if ($droit7[0] > 0) {
-							echo ' <button><img src="../../img/modifier.png"></button>';
+							echo ' <button id="boutonReglage"><img src="../../img/modifier.png"></button>';
 						}
 						?> 
 						<?php 
@@ -446,36 +503,59 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						
 					</div>
 					<h1>Informations personnelles :</h1>
-					<table style="width: 500px; margin-left: auto; margin-right: auto;">
-						<tr>
-							<td>Prénom</td>
-							<td><?php echo text($etudiant['prenom']) ?>
-						</tr>
-						<tr>
-							<td>Nom</td>
-							<td><?php echo text($etudiant['nom']) ?>
-						</tr>
-						<tr>
-							<td>Numéro étudiant</td>
-							<td><?php echo text($etudiant['numero']) ?>
-						</tr>
-						<tr>
-							<td>Mail universitaire</td>
-							<td><?php echo text($etudiant['mailUniv']) ?>
-						</tr>
-						<tr>
-							<td>Mail personnel</td>
-							<td><?php echo text($etudiant['mailPerso']) ?>
-						</tr>
-						<tr>
-							<td>Formation</td>
-							<td><?php echo text($etudiant['formation']) ?>
-						</tr>
-						<tr>
-							<td>Promotion</td>
-							<td><?php echo text($etudiant['promotion']) ?>
-						</tr>
-					</table>
+					<form action="" method="post">
+						<table style="width: 500px; margin-left: auto; margin-right: auto;">
+							<tr>
+								<td>Prénom</td>
+								<td class="visible"><?php echo text($etudiant['prenom']) ?></td>
+								<td class="hidden"><input type="text" name="prenom" value=<?php echo text($etudiant['prenom']) ?> /></td>
+							</tr>
+							<tr>
+								<td>Nom</td>
+								<td class="visible"><?php echo text($etudiant['nom']) ?></td>
+								<td class="hidden"><input type="text" name="nom" value=<?php echo text($etudiant['nom']) ?> /></td>
+							</tr>
+							<tr>
+								<td>Numéro étudiant</td>
+								<td class="visible"><?php echo text($etudiant['numero']) ?></td>
+								<td class="hidden"><input type="text" name="numero" value=<?php echo text($etudiant['numero']) ?> /></td>
+							</tr>
+							<tr>
+								<td>Mail universitaire</td>
+								<td class="visible"><?php echo text($etudiant['mailUniv']) ?></td>
+								<td class="hidden"><input type="text" name="mailUniv" value=<?php echo text($etudiant['mailUniv']) ?> /></td>
+							</tr>
+							<tr>
+								<td>Mail personnel</td>
+								<td class="visible"><?php echo text($etudiant['mailPerso']) ?></td>
+								<td class="hidden"><input type="text" name="mailPerso" <?php if(!empty($etudiant['mailPerso'])){ echo 'value='.text($etudiant['mailPerso']);} ?> /></td>
+							</tr>
+							<tr>
+								<td>Formation</td>
+								<td class="visible"><?php echo text($etudiant['formation']) ?></td>
+								<td class="hidden">
+									<select name="formation" id="formation" size="1">
+										<option <?php if($etudiant['formation'] == "CP2I"): ?>selected<?php endif; ?>>CP2I
+										<option <?php if($etudiant['formation'] == "ENER"): ?>selected<?php endif; ?>>ENER
+										<option <?php if($etudiant['formation'] == "INFO"): ?>selected<?php endif; ?>>INFO
+										<option <?php if($etudiant['formation'] == "MACS"): ?>selected<?php endif; ?>>MACS
+										<option <?php if($etudiant['formation'] == "TELE"): ?>selected<?php endif; ?>>TELE
+										<option <?php if($etudiant['formation'] == "INST"): ?>selected<?php endif; ?>>INST
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Promotion</td>
+								<td class="visible"><?php echo text($etudiant['promotion']) ?></td>
+								<td class="hidden">
+									<?php $annee = date("Y"); if (date("m") >= 7) { $annee++; } ?>
+									<input type="number" name="promotion" min="2000" max=<?php echo $annee+4 ?>  step="1" value=<?php echo text($etudiant['promotion']) ?> /></td>
+							</tr>
+						</table>
+						<div id="boutonModifier" style="display:none">
+							<button type="submit" name="modifierProfil" value="Valider">Modifier le profil de cet étudiant</button>
+						</div>
+					</form>
 					<?php if ($etudiant['etat'] >= 2): ?>
 						<hr>
 						<h1>Rôles possédés :</h1>
@@ -526,6 +606,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 						<option>INFO
 						<option>MACS
 						<option>TELE
+						<option>INST
 					</select><br>
 					<button type="submit" name="rechercheEtudiant" value="Valider">Rechercher</button>
 				</form>
@@ -549,6 +630,7 @@ if (isset($_POST['demuter']) && $_POST['demuter'] == 'Valider') {
 		</div>
 
 		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/admin.js"></script>
 		<script type="text/javascript" src="../../js/alerte.js"></script>
 	</body>
 </html>

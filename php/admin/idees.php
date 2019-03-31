@@ -91,7 +91,7 @@ $idees = $req->fetchAll();
 							<th>Idée</td>
 							<th>Date</td>
 							<?php if ($droit18 == true): ?>
-							<th>Supprimer</td>
+							<th><img src="../../img/supprimer.png"></td>
 							<?php endif; ?>
 						</tr>
 						<?php foreach ($idees as $idee): ?>

@@ -1,3 +1,4 @@
+// AJAX pour l'affichage des étudiants qui possèdent un rôle
 function afficheEtudiants(role){
 	if (document.getElementById('middle'+role).style.display == 'block'){
 		document.getElementById('middle'+role).style.display = 'none';
@@ -40,40 +41,49 @@ for (i = 0; i < roles.length; i++) {
 }
 
 for (i = 0; i < roles.length; i++) {
-	
-    $('#'+roles[i].id).click(function(){
-													afficheEtudiants(this.id);
-													/*if (!(rolesDejaOuvert[i])){
-														rolesDejaOuvert[i] = true;
-														console.log('#middle'+this.id);
-														$('#middle'+this.id).html('a'); //<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">
-														//....load
-													}*/
-												}); // roles[i].addEventListener("click", 
+    $('#'+roles[i].id).click(function(){ afficheEtudiants(this.id); });
 }
-$('#contenuTitle').click(function(){
-	if (document.getElementById('creerRoleMiddle').style.display == 'block'){
-		document.getElementById('creerRoleMiddle').style.display = 'none';
-	}
-	else {
-		document.getElementById('creerRoleMiddle').style.display = 'block';
-	}
+
+// Affichage du contenu pour créer un rôle, un article, un club, une actualité...
+if (document.getElementById('creerRoleMiddle')) {
+	$('#contenuTitle').click(function(){
+		if (document.getElementById('creerRoleMiddle').style.display == 'block'){
+			document.getElementById('creerRoleMiddle').style.display = 'none';
+		}
+		else {
+			document.getElementById('creerRoleMiddle').style.display = 'block';
+		}
+	});
+}
+
+// AJAX lorsqu'on choisit une image pour créer une actualité, un article ou un club
+$('#selectImage').click(function(){ 
+	$('#apercuImage').load('inc/afficher-image.php?image=' + $('#selectImage').val());
 });
 
-
-
-
-// AJAX :
-$(function() {
-        $('.roleTitle').click(function() {
-          $('#roleMiddle1').load('maj1.html', function() {
-            alert('La première zone a été mise à jour');
-          });
-        });
-
-        $('#majDeuxieme').click(function() {
-          $('#deuxieme').load('maj2.html', function() {
-            alert('La deuxième zone a été mise à jour');
-          });
-        });
-      });
+// Bouton de modification du profil d'un étudiant
+$('#boutonReglage').click(function(){ 
+	var i;
+	var div;
+	div = document.getElementsByClassName('visible');
+	for (i=0; i<div.length; i++) {
+		if (div[i].style.display == "none") {
+			div[i].style.display = "block";
+		} else {
+			div[i].style.display = "none";
+		}
+	}
+	div = document.getElementsByClassName('hidden');
+	for (i=0; i<div.length; i++) {
+		if (div[i].style.display == "block") {
+			div[i].style.display = "none";
+		} else {
+			div[i].style.display = "block";
+		}
+	}
+	if (document.getElementById('boutonModifier').style.display == "none") {
+		document.getElementById('boutonModifier').style.display = "block";
+	} else {
+		document.getElementById('boutonModifier').style.display = "none";
+	}
+});
