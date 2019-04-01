@@ -1,7 +1,7 @@
  <?php require_once 'inc/serveur.php' ;?>
  <?php 
  session_cache_limiter('private, must-revalidate');
- session_start(); ?>
+ require_once 'inc/check_ban.php'; ?>
 <?php require_once ('navigation.php');?>
 
 

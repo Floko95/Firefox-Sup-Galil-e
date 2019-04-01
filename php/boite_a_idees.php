@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['id'])) {
-	header ('Location: index.php');
-	exit();
-}
+require_once 'inc/check_ban.php';
 ?>
 <?php require_once 'inc/serveur.php'; ?>
 <?php 
@@ -33,11 +29,12 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 		
 	if (empty($errors))
 	{
-	$req = $bdd->prepare('INSERT INTO idees(id,idee,dateIdee,ideeTitre) VALUES(:id , :idee , :date, :t)');
+	$req = $bdd->prepare('INSERT INTO idees(id,idee,dateIdee,ideeDescription) VALUES(:id , :idee , :date, :t)');
 		$req->execute(array(	'id' => intval($_SESSION['id']),
-								'idee' => $_POST['envoi_idee'],
+								'idee' => $_POST['ideeTitre'],
 								'date' => $date,
-								't'    => $_POST['ideeTitre']));
+								't'    => $_POST['envoi_idee']));
+		$_SESSION['flash']['idee'] = "Votre suggestion à bien été envoyée.Merci de votre implication!";
 		header('Location: Topics.php');
 		exit();
 	}
@@ -75,7 +72,7 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 				<div class="rang-form">
 					<div class="colonne">
 						<label for="text">Titre de l'idée</label> <br/><br/>
-						<input type="text" name="ideeTitre" placeholder="30 carac max." maxlength="50" required />
+						<input type="text" name="ideeTitre" placeholder="50 carac max." maxlength="50" required />
 					</div>
 					<div class="colonne">
 						<label for="text">Votre idée (1000 caractères max.) :</label><br/> <br/> <br/>

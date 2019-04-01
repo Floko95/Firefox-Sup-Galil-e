@@ -60,7 +60,7 @@ else {
                             <div class="col"><?php echo $message['prenom'].' '.$message['nom']?></div>
                         </div>
                         <div class="row message-date">
-                            <div class="col-md">PostĂ© le : </div>
+                            <div class="col-md">Posté le : </div>
                             <div class="col-md"><?php echo $message['dateEnvoi']?></div>
                         </div>
                     </div>

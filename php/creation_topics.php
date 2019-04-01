@@ -8,7 +8,7 @@
 	</head>
 	<body>
 	<?php require_once 'inc/serveur.php' ;?>
-	<?php session_start(); ?>
+	<?php require_once 'inc/check_ban.php'; ?>
 	<?php require_once ('navigation.php'); ?>
 
 
