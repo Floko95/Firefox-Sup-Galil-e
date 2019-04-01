@@ -1,10 +1,25 @@
 <?php session_start(); ?>
 <?php require_once("inc/serveur.php"); ?>
 
+<?php
+# On récupère toutes les actualités
+$req = $bdd->prepare('SELECT * FROM ACTUALITES ORDER BY idActualites DESC LIMIT 10');
+$req->execute();
+$actualites = $req->fetchAll();
+?>
+
+<?php 
+# On récupère tous les clubs
+$req = $bdd->prepare('SELECT * FROM CLUBS ORDER BY idClubs ASC');
+$req->execute();
+$clubs = $req->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/footer.css">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 		<link rel="stylesheet" type="text/css" href="../css/index.css">
 		<link rel="stylesheet" type="text/css" href="../css/alerte.css" />
@@ -27,115 +42,82 @@
 
 		<?php require_once 'inc/erreurs.php'; ?>
 
-		<div class="row blue-row " id="Equipe">
-			<div class="col-md-12">
-				<div class="row">
-					<div class="offset-md-4 col-md-3 title">
-						L'équipe du BDE SupGalilée
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" height=200px width=200px alt="Presidente" class="photo-individu img-circle">
-					</div>
-					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" alt="Presidente" height=200px width=200px class="photo-individu">
-					</div>
-					<div class="col-md-1 offset-md-2">
-						<img src="../img/face_test.jpg" alt="Presidente" height=200px width=200px class="photo-individu">
-					</div>
-				</div>
-				<div class="row ">
-					<div class="col-md-1 offset-md-2 desc_img">
-						Président(e)
-					</div>
-					<div class="col-md-1 offset-md-2 desc_img">
-						Trésorier
-					</div>
-					<div class="col-md-1 offset-md-2 desc_img">
-						Secrétaire
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<img src="../img/group_test.jpg" alt="Equipe" class="photo-group">
-					</div>
-				</div>
+		<div class="section fond-bleu" id="s-equipe">
+			<div class="wrapper">
+				<h1 class="fond-blanc color-bleu">Equipe du BDE</h1>
 			</div>
+			<div class="rang-form">
+				<div class="quart-colonne">
+					<div class="membre">
+						<div class="membreRole">
+							Président
+						</div>
+						<img src="../img/président.jpg" width=100%>
+						<div class="membreNom">
+							Matthieu Desir
+						</div>
+					</div>
+				</div>
+				<div class="quart-colonne">
+					<div class="membre">
+						<div class="membreRole">
+							Vice-présidents
+						</div>
+						<img src="../img/vice-présidents.jpg" width=100%>
+						<div class="membreNom">
+							Pierre Lepagnol<br>
+							Camille Traina
+						</div>
+					</div>
+				</div>
+				<div class="quart-colonne">
+					<div class="membre">
+						<div class="membreRole">
+							Trésoriers
+						</div>
+						<img src="../img/trésoriers.jpg" width=100%>
+						<div class="membreNom">
+							Romain Fleurette<br>
+							Yannis Lefevre
+						</div>
+					</div>
+				</div>
+				<div class="quart-colonne">
+					<div class="membre">
+						<div class="membreRole">
+							Secrétaires
+						</div>
+						<img src="../img/secrétaires.jpg" width=100%>
+						<div class="membreNom">
+							Daniel Zegarra<br>
+							Miora Randrianantoanina
+						</div>
+					</div>
+				</div>
+				
+			</div><br>
+
 		</div>
 		
-		<div class="row orange-row" id="Actualité">	
-			<div class="col">
-				<div class="row title actu-title">
-					<div class="col"> Actualités</div>
-				</div>
-				<div class="row">
-					<div class="offset-md-1 col-md-10">
-						<?php 
-							$req = $bdd->prepare('SELECT creator, title, content FROM actualite ORDER BY idActualite DESC');
-							$req->execute();
-							for($i=0; $i<4;$i++):
-								$actu = $req->fetch();
-								if(isset($actu['title'])):
-						?>
-						<div class="row actualite">
-							<div class="col">
-								<div class="row">
-									<div class="col-md-2 creator">
-										<?php echo $actu['creator']; ?> :
-									</div>
-									<div class="col-md-9 title">
-										<?php echo $actu['title']; ?>
-									</div>
-								</div>
-								<div class="row">
-									<div class="offset-md-2 col-ms-9 content"><?php echo $actu['content']; ?></div>
-								</div>
-								
-								
-								
-							</div>
-						</div>
-							<?php
-								endif; 
-							endfor;?>
-					</div>
-				</div>
+		<div class="section fond-orange" id="s-equipe">
+			<div class="wrapper">
+				<h1 class="fond-blanc color-orange">Actualités</h1>
 			</div>
+			aa	<br><br><br><br><br><br><br>
 		</div>
-
-		<div class="row blue-row" id="Clubs">
-			<div class="col">
-				<div class="row title">
-					<div class="offset-md-4 col-md-4">Clubs & Associations</div>
-				</div>
-				<!--Club-->
-				<div class="row">
-					<div class="offset-md-1 col-md-10 club ">
-						<div class="row club-title">
-							<div class="col">
-								Fablab de SupGalilée
-							</div>
-						</div>
-						<div class="row club-content">
-							<div class="col-md-4">
-								<img src="../img/club_test.jpg" alt="Club_BlaBla" class="photo-club">
-							</div>
-							<div class="col-md-8 club-message">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-								Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</div>
-						</div>
-					</div>
-				</div>
+		
+		<div class="section fond-bleu" id="s-equipe">
+			<div class="wrapper">
+				<h1 class="fond-blanc color-bleu">Clubs</h1>
 			</div>
+			aa	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
+		
+		<footer>
+			<?php require_once ('footer.html') ?>
+		</footer>
+		
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript" src="../js/alerte.js"></script>
 	</body>
-	<footer>
-		<?php require_once ('footer.html') ?>
-	</footer>
 </html>
