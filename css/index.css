@@ -1,92 +1,86 @@
-.title{
-    margin-bottom: 10px;
-    font-size: 40px;
-    word-break: keep-all;
-    /*align-content:  center;*/
+.section {
+	width: 100%;
+	height: auto;
+	font-variant: small-caps;
+	font-family: Andale Mono, monospace;
+	padding-bottom: 50px;
+	border-top: 5px solid #f5d6b5;
 }
 
-.photo-individu{
-    border-radius: 50%;
+.fond-bleu {
+	background-color: #161743;
 }
 
-.desc_img{
-    text-align: center;
+.fond-orange {
+	background-color: #EA6018;
 }
 
-.photo-group{
-    margin-top: 20px;
-    border-radius: 20px;
-    height: 500px;
+.color-bleu {
+	color: #161743;
 }
 
-.row .row{
-    margin-bottom: 10px;
+.color-orange {
+	color: #EA6018;
 }
 
-.row.blue-row{
-    padding: 20px;
-    background-color: #271e53;
-    color: #797979;
+.fond-blanc {
+	background-color: #f5d6b5;
 }
 
-.row.orange-row{
-    padding: 20px;
-    background-color : #EA6018;
+.wrapper {
+	display: flex;
+	justify-content: center;
 }
 
-.blue-row [class|=col]{
-   text-align: center;
+h1 {
+	display: inline-block;
+	width: auto;
+	padding: 0px 10px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 45px;
+	text-align: center;
+	border-radius: 30px;
+	margin-top: -30px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
 }
 
-.orange-row [class|=col]{
-    text-align: center;
+@media only screen and (max-width: 340px) { 
+	h1 {
+		font-size: 30px;
+		margin-top: -22px;
+	}
 }
 
-#Evenements{
-    height: 300px;
+
+.membre {
+	width: 175px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid black;
+	background-color: #f5d6b5;
 }
 
-.club-title {
-    margin-bottom: 10px;
-    font-size: 20px;
-    background-color:#cfa551;
-    border-radius: 20px;
-    color: black;
-    font-style: italic;
-    
+.membreRole {
+	height: 30px;
+	width: 100%;
+	background: #27293D;
+	color: #f5d6b5;
+	font-size: 25px;
+	text-align: center;
+	border-bottom: 2px solid black;
 }
 
-.club-message{
-    background-color: #66ffcc;
-    border-radius: 10px;
+.membreNom {
+	height: auto;
+	width: 100%;
+	margin-top: -4px;
+	background: #27293D;
+	color: #f5d6b5;
+	font-size: 25px;
+	text-align: center;
+	border-top: 2px solid black;
 }
 
-html body .row .actu-title{
-    color: #271e53;
-}
-
-.creator{
-    text-align: center;
-    padding:1%;
-    font-weight : bold;
-}
-
-.actualite{
-    /* border: 2px black solid; */
-    box-shadow: 3px 2px 5px black;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: #de9554;
-    
-}
-
-.actualite .title{
-    color: black;
-    box-shadow: inset 3px 2px 10px black;
-    margin: 2px;
-    border-radius: 10px;
-}
-
-.content{
-    text-align: center;
-}

@@ -1,11 +1,20 @@
-a, a:visited {
+﻿a, a:visited {
 	color: #008AF6;
+	text-decoration: none;
+}
+
+footer a, footer a:visited {
+	color: #000;
 	text-decoration: none;
 }
 
 a:hover {
 	color: #0056B3;
 	text-decoration: underline;
+}
+
+footer a:hover {
+	color: #000;
 }
 
 nav {

@@ -137,10 +137,13 @@ input:focus {
 	border: 1px solid #CCC;
 	border-radius: 5px;
 }
+
 .rang-form {
+	display: inline-block;
 	width: 100%;
 }
-.demi-colonne, .colonne {
+
+.quart-colonne, .demi-colonne, .colonne {
 	box-sizing: border-box;
 	float: left;
 	position: relative;
@@ -162,7 +165,17 @@ input:focus {
 	}
 }
 
+@media only screen and (min-width: 500px) and (max-width: 900px) { 
+	.quart-colonne {
+		width: 50%;
+	}
+}
 
+@media only screen and (min-width: 900px) { 
+	.quart-colonne {
+		width: 25%;
+	}
+}
 
 
 
