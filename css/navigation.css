@@ -254,7 +254,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 845px) { 
+@media only screen and (max-width: 850px) { 
 	#admin li span {
 		display: none;
 	}
@@ -263,7 +263,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 810px) { 
+@media only screen and (max-width: 820px) { 
 	#boutique li span {
 		display: none;
 	}
@@ -272,7 +272,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 750px) { 
+@media only screen and (max-width: 765px) { 
 	#forum li span {
 		display: none;
 	}
@@ -281,7 +281,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 750px) { 
+@media only screen and (max-width: 770px) { 
 	#inscription li span {
 		display: none;
 	}
@@ -290,7 +290,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 710px) { 
+@media only screen and (max-width: 730px) { 
 	#clubs li span {
 		display: none;
 	}
@@ -299,7 +299,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 680px) { 
+@media only screen and (max-width: 700px) { 
 	#actualites li span {
 		display: none;
 	}
@@ -308,7 +308,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 610px) { 
+@media only screen and (max-width: 640px) { 
 	#equipe li span {
 		display: none;
 	}
@@ -317,7 +317,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 560px) { 
+@media only screen and (max-width: 590px) { 
 	#accueil li span {
 		display: none;
 	}
@@ -328,7 +328,7 @@ nav #right {
 
 /* Réduction de l'espace inter-image */
 
-@media only screen and (max-width: 515px) { 
+@media only screen and (max-width: 550px) { 
 	nav a ~ a {
 		padding: 0px 0px;
 		margin-left: 0px;
@@ -337,7 +337,7 @@ nav #right {
 
 /* Debut du hamburger */
 
-@media only screen and (max-width: 410px) { 
+@media only screen and (max-width: 445px) { 
 	#contact {
 		display: none;
 	}
@@ -352,7 +352,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 370px) { 
+@media only screen and (max-width: 400px) { 
 	#boutique {
 		display: none;
 	}
@@ -361,7 +361,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 330px) { 
+@media only screen and (max-width: 355px) { 
 	#forum {
 		display: none;
 	}
@@ -370,7 +370,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 290px) { 
+@media only screen and (max-width: 310px) { 
 	#clubs {
 		display: none;
 	}
@@ -379,7 +379,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 250px) { 
+@media only screen and (max-width: 265px) { 
 	#actualites {
 		display: none;
 	}
@@ -388,7 +388,7 @@ nav #right {
 	}
 }
 
-@media only screen and (max-width: 210px) { 
+@media only screen and (max-width: 220px) { 
 	#equipe {
 		display: none;
 	}
