@@ -84,23 +84,17 @@ CREATE TABLE topics (
 	CONSTRAINT FK_topics_id FOREIGN KEY (id) REFERENCES etudiants (id)
 );
 
--- --------------------------------------------------------
 
---
--- Structure de la table `messages`
---
-
-DROP TABLE IF EXISTS `messages`;
-CREATE TABLE IF NOT EXISTS `messages` (
-  `idMessages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id` int(10) UNSIGNED NOT NULL,
-  `idTopics` int(10) UNSIGNED NOT NULL,
-  `message` varchar(2000) NOT NULL,
-  `dateEnvoi` timestamp NOT NULL,
-  PRIMARY KEY (`idMessages`),
-  KEY `FK_messages_id` (`id`),
-  KEY `FK_messages_idTopics` (`idTopics`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS messages;
+CREATE TABLE IF NOT EXISTS messages (
+  idMessages int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id int UNSIGNED NOT NULL,
+  idTopics int UNSIGNED NOT NULL,
+  message varchar(2000) NOT NULL,
+  dateEnvoi timestamp NOT NULL,
+  CONSTRAINT FK_messages_id FOREIGN KEY(id) REFERENCES etudiants (id),
+  CONSTRAINT FK_messages_idTopics FOREIGN KEY (idTopics) REFERENCES topics (idTopics) ON DELETE CASCADE
+);
 
 
 DROP TABLE IF EXISTS tags;
@@ -136,7 +130,7 @@ CREATE TABLE ACTUALITES (
 	actualite varchar(100) NOT NULL,
 	descriptionActualite varchar(1000),
 	CONSTRAINT FK_actualites_id FOREIGN KEY (id) REFERENCES etudiants (id) ON DELETE CASCADE,
-	CONSTRAINT FK_actualites_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+	CONSTRAINT FK_actualites_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages) ON DELETE CASCADE
 );
 
 
@@ -147,7 +141,7 @@ CREATE TABLE ARTICLES (
 	article varchar(100) NOT NULL UNIQUE,
 	descriptionArticle varchar(1000),
 	prix float(5,2) NOT NULL,
-	CONSTRAINT FK_articles_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+	CONSTRAINT FK_articles_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages) ON DELETE CASCADE
 );
 
 
@@ -157,7 +151,7 @@ CREATE TABLE CLUBS (
 	idImages int unsigned,
 	club varchar(100) NOT NULL UNIQUE,
 	descriptionClub varchar(1000),
-	CONSTRAINT FK_clubs_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages)
+	CONSTRAINT FK_clubs_idImages FOREIGN KEY (idImages) REFERENCES IMAGES (idImages) ON DELETE CASCADE
 );
 
 
