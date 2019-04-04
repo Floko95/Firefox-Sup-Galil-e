@@ -117,7 +117,4 @@ if (!empty($_GET['id']) && !empty($_GET['code'])) {
 		</div>	
 			
 	</body>
-	<footer>
-    	<?php require_once ('footer.html') ?>
-  </footer>
 </html>
