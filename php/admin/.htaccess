@@ -1,0 +1,4 @@
+AuthName "Page d'administration protégée"
+AuthType Basic
+AuthUserFile "/var/www/html/bde/Firefox-Sup-Galil-e/.htpassword"
+Require valid-user
