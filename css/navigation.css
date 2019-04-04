@@ -1,4 +1,9 @@
-﻿a, a:visited {
+﻿@font-face {
+	font-family: "Andale Mono, monospace";
+	src: url('AndaleMono.ttf');
+}
+
+a, a:visited {
 	color: #008AF6;
 	text-decoration: none;
 }

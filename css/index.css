@@ -99,6 +99,7 @@ h1 {
 
 .actualiteContenu {
 	display: none;
+	font-variant: normal;
 }
 
 .actualiteDescription {
