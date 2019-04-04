@@ -65,8 +65,8 @@
 				<form action="Topics.php" method="post">
 					<label for="title">Titre du topic</label><br>
 					<input type="text" name="title" required/><br>
-					<label for="tags">Tags</label><br>
-					<input type="text" name="tags" required ><br
+					<label for="tags">Tags (5 max,séparés par des espaces, 15 caractères par tag)</label><br>
+					<input type="text" name="tags" required ><br>
 					<label for="categorie">Catégorie du topic</label><br>
 					
 					<?php foreach($forums as $forum):?>
