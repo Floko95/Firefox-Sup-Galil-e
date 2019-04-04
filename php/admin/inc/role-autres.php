@@ -6,7 +6,7 @@ require_once '../../inc/fonctions.php';
 $reqDroit = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN attributionDroitsAuxRoles WHERE id = ? AND idDroits = ?');
 if (isset($_GET['idRoles'])) {
 	$i = intval($_GET['idRoles']);
-	$req = $bdd->prepare('SELECT * FROM ETUDIANTS NATURAL JOIN attributionRolesAuxEtudiants WHERE idRoles = ?');
+	$req = $bdd->prepare('SELECT * FROM ETUDIANTS NATURAL JOIN attributionRolesAuxEtudiants WHERE idRoles = ? AND etat >= 2');
 	$req->execute(array($i));
 	$etudiants = $req->fetchAll();
 	$nbEtudiants = count($etudiants);

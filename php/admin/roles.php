@@ -436,7 +436,7 @@ if (isset($_POST['refuserInscription']) && $_POST['refuserInscription'] == 'Vali
 							$req->execute();
 							$nb = $req->fetch();
 						} else {
-							$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants WHERE idRoles = ?');
+							$req = $bdd->prepare('SELECT COUNT(*) FROM attributionRolesAuxEtudiants NATURAL JOIN ETUDIANTS WHERE idRoles = ? AND etat >= 2');
 							$req->execute(array($role['idRoles']));
 							$nb = $req->fetch();
 						}
