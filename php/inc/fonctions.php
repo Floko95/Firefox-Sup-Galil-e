@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 function envoyerMail($destinataire, $id, $type, $code) {
-	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/Exception.php';
-	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/PHPMailer.php';
-	require $_SERVER['DOCUMENT_ROOT'] . 'Firefox-Sup-Galil-e/mail/SMTP.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/Firefox-Sup-Galil-e/mail/Exception.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/Firefox-Sup-Galil-e/mail/PHPMailer.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/Firefox-Sup-Galil-e/mail/SMTP.php';
 
 	$mail = new PHPMailer;
 	$mail->isSMTP(); 

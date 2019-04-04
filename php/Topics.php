@@ -14,6 +14,7 @@ require_once 'inc/check_ban.php';
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/forum.css">
 	<link rel="stylesheet" type="text/css" href="../css/alerte.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
@@ -29,12 +30,13 @@ require_once 'inc/check_ban.php';
 <!-----------------------------------CREATION TOPIC---------------------------------------->
 <?php if(isset($_POST['ecriture']) and isset($_POST['categorie']) and trim($_POST['ecriture']!='') and isset($_POST['title']) and trim($_POST['title']!=''))
 {
-	$req = $bdd->prepare('INSERT INTO `topics`(`id`, `topic`, `dateCreation`, `filliere`) VALUES (:id,:top,:date,:f)');
+	$req = $bdd->prepare('INSERT INTO `topics`(`id`, `topic`, `dateCreation`, `filliere`,`dateDerniereModif`) VALUES (:id,:top,:date,:f, :d)');
 	$req->execute(array(
 			'id' => intval($_SESSION['id']),
 			'top' =>$_POST['title'],
 			'date' => date('Y-m-d H:i:s'),
-			'f' => $_POST['categorie']
+			'f' => $_POST['categorie'],
+			'd' => date('Y-m-d H:i:s'),
 			));
 		$id = $bdd->lastInsertId();
 	//Creation premier message----------------------------
@@ -104,7 +106,7 @@ else
 foreach($forums as $forum):
 
 
-$req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE filliere= ? ORDER BY dateCreation DESC');
+$req = $bdd->prepare('SELECT idTopics,topic,dateDerniereModif,nom,prenom FROM Topics NATURAL JOIN ETUDIANTS WHERE filliere= ? ORDER BY dateDerniereModif DESC');
 	$req->execute(array($forum));
 	$topics = $req->fetchAll();?>
 
@@ -153,7 +155,7 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateCreation,nom,prenom FROM Topics 
 				
 			</div>
 			<div class=" col-md-2 auteur-topic"><?php echo $topic['prenom'].' '. $topic['nom']; ?></div>
-			<div class=" col-md-2 date-topic"><?php echo $topic['dateCreation'];?> </div>
+			<div class=" col-md-2 date-topic"><?php echo $topic['dateDerniereModif'];?> </div>
 			
 		
 		</div>
