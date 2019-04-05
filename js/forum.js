@@ -68,46 +68,15 @@ function affichage(idtopic, page,nbm){
 affichage($('#a_recup').val(), page_actuelle,$('#nb_page').val())//premier affichage quand on entre sur la page
 
 
-$('#general-bouton').click(function(){
-	if($('#general-messages').css('display') == 'none'){
++$('.arrow-bouton').click(function(){
+	if($(this).parents().parents().parents().next('.messages').css('display') == 'none'){
 		console.log('Display Forum\n');
-		$('#general-messages').show();
-		$('#general-bouton').html('<span class="fas fa-sort-up fa-2x"></span>');
+		$(this).parents().parents().parents().next('.messages').show();
+		$(this).html('<span class="fas fa-sort-up fa-2x">V</span>');
 	}
 	else{
-		console.log('Hide Forum\n');
-		$('#general-messages').hide();
-		$('#general-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
+		console.log('Hide Forum \n'+$(this).next('.messages'));
+		$(this).parents().parents().parents().next('.messages').hide();
+		$(this).html('<span class="fas fa-sort-down fa-2x">/\\</span>');
 	}
 });
-
-$('#informatique-bouton').click(function(){
-	if($('#informatique-messages').css('display') == 'none'){
-		console.log('Display Forum\n');
-		$('#informatique-messages').show();
-		$('#informatique-bouton').html('<span class="fas fa-sort-up fa-2x"></span>');
-	}
-	else{
-		console.log('Hide Forum\n');
-		$('#informatique-messages').hide();
-		$('#informatique-bouton').html('<span class="fas fa-sort-down fa-2x"></span>');
-	}
-});
-/* 
-$('.forum-g .fa-sort-up').click(function(){
-	if (document.getElementBy("forum-g").style.display == "block"){
-		document.getElementById("forum-g").style.display = "none";
-	}
-	else{
-		document.getElementById("forum-g").style.display = "block";
-	}
-});
-
-$('.forum-s .fa-sort-up').click(function(){
-	if (document.getElementBy("forum-s").style.display == "block"){
-		document.getElementById("forum-s").style.display = "none";
-	}
-	else{
-		document.getElementById("forum-s").style.display = "block";
-	}
-}); */

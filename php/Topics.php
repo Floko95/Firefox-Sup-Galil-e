@@ -134,13 +134,13 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateDerniereModif,nom,prenom FROM To
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
-			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class="col-md-1 arrow-bouton"><span class="fas fa-sort-up fa-2x">V</span></div>
 			<div class="col-md-10">Forum <?php echo $forum?></div>
 		</div>
 	</div>
 </div>
 
-<div class="row" id="general-messages" >
+<div class="row messages" >
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum</div>
