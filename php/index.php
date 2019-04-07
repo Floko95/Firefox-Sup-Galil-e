@@ -1,16 +1,26 @@
 <?php session_start(); ?>
-<?php require_once("inc/serveur.php"); ?>
+<?php 
+require_once("inc/serveur.php");
+require_once 'inc/fonctions.php';
+ ?>
 
 <?php
 # On récupère toutes les actualités
-$req = $bdd->prepare('SELECT * FROM ACTUALITES ORDER BY idActualites DESC LIMIT 10');
+$req = $bdd->prepare('SELECT * FROM ACTUALITES NATURAL LEFT JOIN IMAGES ORDER BY idActualites DESC LIMIT 15');
 $req->execute();
 $actualites = $req->fetchAll();
 ?>
 
 <?php 
 # On récupère tous les clubs
-$req = $bdd->prepare('SELECT * FROM CLUBS ORDER BY idClubs ASC');
+$req = $bdd->prepare('SELECT * FROM CLUBS ORDER BY idClubs ASC LIMIT 20');
+$req->execute();
+$clubs = $req->fetchAll();
+?>
+
+<?php 
+# On récupère les données du tournoi
+$req = $bdd->prepare('SELECT * FROM TOURNOI ORDER BY score DESC');
 $req->execute();
 $clubs = $req->fetchAll();
 ?>
@@ -19,11 +29,11 @@ $clubs = $req->fetchAll();
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="../css/footer.css">
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
-		<link rel="stylesheet" type="text/css" href="../css/index.css">
-		<link rel="stylesheet" type="text/css" href="../css/alerte.css" />
-		<link rel="stylesheet" type="text/css" href="../css/formulaire.css">
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+		<link rel="stylesheet" type="text/css" href="/css/alerte.css" />
+		<link rel="stylesheet" type="text/css" href="/css/formulaire.css">
+		<link rel="stylesheet" type="text/css" href="/css/footer.css">
 	</head>
 	<body>
 	
@@ -99,25 +109,60 @@ $clubs = $req->fetchAll();
 
 		</div>
 		
-		<div class="section fond-orange" id="s-equipe">
+		<div class="section fond-orange" id="s-actualites">
 			<div class="wrapper">
 				<h1 class="fond-blanc color-orange">Actualités</h1>
 			</div>
-			aa	<br><br><br><br><br><br><br>
+			<?php foreach($actualites as $actualite): ?>
+			
+				<div class="rang-form">
+					<div class="colonne">
+						<div class="actualite" id=<?php echo 'actualite'.$actualite['idActualites']; ?>>
+							<h2><?php echo $actualite['actualite']; ?></h2>
+							<div class="actualiteContenu" id=<?php echo 'contenuactualite'.$actualite['idActualites']; ?>>
+								<?php if (!empty($actualite['idImages'])): ?>
+									<div class="actualiteImage">
+										<?php echo '<img src=../img/imports/'.$actualite['image'].'>'; ?>
+									</div>
+								<?php endif; ?>
+								<?php if (!empty($actualite['descriptionActualite'])): ?>
+									<div class="actualiteDescription">
+										<?php echo text($actualite['descriptionActualite']); ?>
+									</div>
+								<?php endif; ?>
+							</div>
+							<div class="actualiteCreateur">
+								<?php 
+								if (!empty(text($actualite['createur']))) {
+									echo 'par : '.text($actualite['createur']); 
+								} else {
+									$req = $bdd->prepare('SELECT prenom, nom FROM ETUDIANTS WHERE id = ?');
+									$req->execute(array($actualite['id']));
+									$data = $req->fetch();
+									echo 'par : '.$data['prenom'].' '.$data['nom'];
+								}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			<?php endforeach; ?>
 		</div>
 		
-		<div class="section fond-bleu" id="s-equipe">
+		<div class="section fond-bleu" id="s-clubs">
 			<div class="wrapper">
 				<h1 class="fond-blanc color-bleu">Clubs</h1>
 			</div>
 			aa	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 		
-		<footer>
+		<footer id="s-contact">
 			<?php require_once ('footer.html') ?>
 		</footer>
 		
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script type="text/javascript" src="../js/alerte.js"></script>
+		<script type="text/javascript" src="../js/index.js"></script>
 	</body>
 </html>
