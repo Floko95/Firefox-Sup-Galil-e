@@ -19,12 +19,8 @@ require_once 'inc/fonctions.php';
 <!DOCTYPE html>
 <html>
 	<head>
-
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-		<link rel="stylesheet" type="text/css" href="../css/navigation.css">
-		<link rel="shortcut icon" href="../img/bde-favicon.ico" />
-		<title>BDE SupGalilée</title>
+		<link rel="stylesheet" type="text/css" href="/Firefox-Sup-Galil-e/css/navigation.css">
 
 	</head>
 	<body>
@@ -32,39 +28,39 @@ require_once 'inc/fonctions.php';
 		<nav>
 			<ul>
 				<div id="left">
-					<a href="../php/index.php" id="accueil"><li><span>Accueil</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php" id="accueil"><li><span>Accueil</span></li></a>
 					<li id="hamburger">
 						<ul>
-							<a href="../php/index.php#equipe" id="h-equipe"><li><span>L'équipe</span></li></a>
-							<a href="../php/index.php#actualites" id="h-actualites"><li><span>Actualités</span></li></a>
-							<a href="../php/index.php#clubs" id="h-clubs"><li><span>Clubs</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="h-equipe"><li><span>L'équipe</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="h-actualites"><li><span>Actualités</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#clubs" id="h-clubs"><li><span>Clubs</span></li></a>
 							<?php if(isset($_SESSION['id'])): ?>
-							<a href="../php/Topics.php" id="h-forum"><li><span>Forum</span></li></a>
-							<a href="../php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="h-forum"><li><span>Forum</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="h-boutique"><li><span>Boutique</span></li></a>
 							<?php if($possedeRole == true): ?>
-							<a href="../php/admin/roles.php" id="h-admin"><li><span>Gérer</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="h-admin"><li><span>Gérer</span></li></a>
 							<?php endif; ?>
 							<?php endif; ?>
 							<?php if(!isset($_SESSION['id'])): ?>
-							<a href="../php/inscription.php" id="h-inscription"><li><span>Créer un compte</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/inscription.php" id="h-inscription"><li><span>Créer un compte</span></li></a>
 							<?php endif; ?>
-							<a href="../php/index.php#contact" id="h-contact"><li><span>Contact</span></li></a>
+							<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="h-contact"><li><span>Contact</span></li></a>
 						</ul>
 					</li>
-					<a href="../php/index.php#equipe" id="equipe"><li><span>L'équipe</span></li></a>
-					<a href="../php/index.php#actualites" id="actualites"><li><span>Actualités</span></li></a>
-					<a href="../php/index.php#clubs" id="clubs"><li><span>Clubs</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#equipe" id="equipe"><li><span>L'équipe</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#actualites" id="actualites"><li><span>Actualités</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#clubs" id="clubs"><li><span>Clubs</span></li></a>
 					<?php if(isset($_SESSION['id'])): ?>
-					<a href="../php/Topics.php" id="forum"><li><span>Forum</span></li></a>
-					<a href="../php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/Topics.php" id="forum"><li><span>Forum</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#boutique" id="boutique"><li><span>Boutique</span></li></a>
 					<?php if($possedeRole == true): ?>
-					<a href="../php/admin/roles.php" id="admin"><li><span>Gérer</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/admin/roles.php" id="admin"><li><span>Gérer</span></li></a>
 					<?php endif; ?>
 					<?php endif; ?>
 					<?php if(!isset($_SESSION['id'])): ?>
-						<a href="../php/inscription.php" id="inscription"><li><span>Créer un compte</span></li></a>
+						<a href="/Firefox-Sup-Galil-e/php/inscription.php" id="inscription"><li><span>Créer un compte</span></li></a>
 					<?php endif; ?>
-					<a href="../php/index.php#contact" id="contact"><li><span>Contact</span></li></a>
+					<a href="/Firefox-Sup-Galil-e/php/index.php#contact" id="contact"><li><span>Contact</span></li></a>
 				</div>
 				<div id="right">
 					<li id="profil">
@@ -89,12 +85,12 @@ require_once 'inc/fonctions.php';
 					<input type="submit" name="connexion" value="Valider" />						
 				</form>
 			<?php else: ?>
-				<a href="../php/profil.php">Voir mon profil</a><br><br>
-				<a href="../php/deconnexion.php">Déconnexion</a>
+				<a href="/Firefox-Sup-Galil-e/php/profil.php">Voir mon profil</a><br><br>
+				<a href="/Firefox-Sup-Galil-e/php/deconnexion.php">Déconnexion</a>
 			<?php endif; ?>
 		</div>
 		
-		<script type="text/javascript" src="../js/jquery.js"></script>
-		<script type="text/javascript" src="../js/navigation.js"></script>
+		<script type="text/javascript" src="/Firefox-Sup-Galil-e/js/jquery.js"></script>
+		<script type="text/javascript" src="/Firefox-Sup-Galil-e/js/navigation.js"></script>
 	</body>
 </html>
