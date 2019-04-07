@@ -3,7 +3,7 @@
 
 <?php
 # On récupère toutes les actualités
-$req = $bdd->prepare('SELECT * FROM ACTUALITES ORDER BY idActualites DESC LIMIT 10');
+$req = $bdd->prepare('SELECT * FROM ACTUALITE ORDER BY idActualite DESC LIMIT 10');
 $req->execute();
 $actualites = $req->fetchAll();
 ?>
@@ -110,7 +110,9 @@ $clubs = $req->fetchAll();
 			<div class="wrapper">
 				<h1 class="fond-blanc color-bleu">Clubs</h1>
 			</div>
-			aa	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<div class="wrapper">
+				aaddd	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</div>
 		</div>
 		
 		<footer>

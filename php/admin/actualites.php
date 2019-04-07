@@ -115,7 +115,7 @@ if (isset($_POST['supprimerActualites']) && $_POST['supprimerActualites'] == 'Va
 
 <?php
 # On récupère les différentes actualités
-$req = $bdd->prepare('SELECT * FROM ACTUALITES ORDER BY idActualites DESC');
+$req = $bdd->prepare('SELECT * FROM ACTUALITE ORDER BY idActualite DESC');
 $req->execute();
 $actualites = $req->fetchAll();
 ?>
