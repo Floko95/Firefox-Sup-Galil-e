@@ -84,10 +84,11 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 					</div>
 					<div class="colonne">
 						<label for="text">Votre idée (1000 caractères max) :</label><br>
-						<textarea required name="envoi_idee" maxlength="2000" style="max-width:95%;width:90%;;height:200px" maxlength="1000" ></textarea><br>
-					<input type="submit" name="idee" value="Valider"/>
+						<textarea required name="envoi_idee" maxlength="2000" style="max-width:95%;width:90%;;height:200px" maxlength="1000" ></textarea>
 					</div>
-					
+					<div class="colonne">
+						<input type="submit" name="idee" value="Valider"/>
+					</div>
 				</div>
 			</form>
 		</div>

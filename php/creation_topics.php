@@ -41,7 +41,7 @@ require_once 'inc/fonctions.php';
 		?>
 
 		<div id="formulaire-responsive" class="clearfix inscription-form">
-			<form action="inscription.php" method="post">
+			<form action="Topics.php" method="post">
 				<h3>Créer un nouveau topic</h3>
 
 				<div class="rang-form">
@@ -64,7 +64,7 @@ require_once 'inc/fonctions.php';
 						<textarea required name="ecriture" maxlength="2000" style="max-width:95%;width:90%; height:80px"></textarea>
 					</div>
 					<div class="colonne">
-						<input type="submit" name="connexion" value="Valider" />
+						<input type="submit" name="creationTopic" value="Valider" />
 					</div>
 				</div>
 			</form>
