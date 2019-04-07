@@ -39,6 +39,25 @@ require_once 'inc/check_ban.php';
 			'd' => date('Y-m-d H:i:s'),
 			));
 		$id = $bdd->lastInsertId();
+	//INSERTION tags
+	if(isset($_POST['tags']) and trim($_POST['ecriture']!=''))
+	{
+			$tags =preg_split('/ /', $_POST['tags'],6, PREG_SPLIT_NO_EMPTY);
+			for($i=0;$i<5;$i+=1)
+			{
+				if(!empty($tags[$i])){
+				if(strlen($tags[$i]) > 15 )
+				{
+					$tags[$i] = substr($tags[$i],0,15);
+				}
+				$req = $bdd->prepare('INSERT INTO `tags`(`idTopics`, `tag`) VALUES (:id,:t)');
+				$req->execute(array(
+									'id' => $id,
+									't' => $tags[$i]));
+									
+				}
+			}
+	}
 	//Creation premier message----------------------------
 	$req = $bdd->prepare('INSERT INTO `messages`(`id`, `idTopics`, `message`, `dateEnvoi`) VALUES (:id,:indtopic,:mess,:date)');
 			$req->execute(array(
@@ -115,13 +134,13 @@ $req = $bdd->prepare('SELECT idTopics,topic,dateDerniereModif,nom,prenom FROM To
 <div class="row title">
 	<div class="offset-md-2 col-md-8">
 		<div class="row block">
-			<div class="col-md-1" id="general-bouton"><span class="fas fa-sort-up fa-2x"></span></div>
+			<div class="col-md-1 arrow-bouton"><span class="fas fa-sort-up fa-2x">V</span></div>
 			<div class="col-md-10">Forum <?php echo $forum?></div>
 		</div>
 	</div>
 </div>
 
-<div class="row" id="general-messages" >
+<div class="row messages" >
 	<div class="offset-md-2 col-md-8 block">
 		<div class="row info-categorie">
 			<div class=" col-md-8 general-categorie">Forum</div>

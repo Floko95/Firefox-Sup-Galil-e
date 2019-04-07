@@ -1,7 +1,14 @@
 <?php
 require_once 'inc/check_ban.php';
 ?>
-<?php require_once 'inc/serveur.php'; ?>
+<?php require_once 'inc/serveur.php'; 
+	if ($_SESSION['etat'] == 3)
+		{
+			$_SESSION['flash']['alerte'] = 'Votre compte a été mute par un administrateur.Vous ne pouvez plus envoyer d\'idées';
+			header ('Location: Topics.php');
+		}
+
+		?>
 <?php 
 if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 {
@@ -14,6 +21,10 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 	}
 	elseif (strlen($_POST['envoi_idee']) > 1000 or strlen($_POST['ideeTitre']) > 50) {
 		$errors['champ'] = "Trop de caractères. 50 carac max pour le titre et 1000 Caractères max pour l'idée.";
+	}
+	elseif ($_SESSION['etat']==3)
+	{
+		$errors['mute'] = 'Votre compte vient tout juste d\'être mute par un administrateur.Vous ne pouvez plus envoyer d\'idées';
 	}
 	$req = $bdd->prepare('SELECT COUNT(*) FROM idees WHERE id = :id AND DATE_FORMAT(dateIdee,"%Y-%m-%d") = :day');
 		$req->execute(array(	'id' => intval($_SESSION['id']),
