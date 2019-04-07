@@ -12,6 +12,7 @@ require_once 'inc/check_ban.php';
 if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 {
 	$errors = array();
+	
 	$date = date('Y-m-d H:i:s');
 	if (trim($_POST['envoi_idee'])=='' or trim($_POST['ideeTitre'])=='') {
 		$errors['champ'] = "Champ(s) vide(s). Veuillez compléter le(s) champ(s) ci-dessous.";
@@ -24,7 +25,7 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 	{
 		$errors['mute'] = 'Votre compte vient tout juste d\'être mute par un administrateur.Vous ne pouvez plus envoyer d\'idées';
 	}
-	$req = $bdd->prepare('SELECT COUNT(*) FROM idees WHERE id = :id AND DATE_FORMAT(dateIdee,"%Y-%m-%d") = :day');
+	$req = $bdd->prepare('SELECT COUNT(*) FROM IDEES WHERE id = :id AND DATE_FORMAT(dateIdee,"%Y-%m-%d") = :day');
 		$req->execute(array(	'id' => intval($_SESSION['id']),
 								'day' => $date = date('Y-m-d')
 							 ));
@@ -36,14 +37,13 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 		
 		
 		
-	if (empty($errors))
-	{
-	$req = $bdd->prepare('INSERT INTO idees(id,idee,dateIdee,ideeDescription) VALUES(:id , :idee , :date, :t)');
+	if (empty($errors)) {
+		$req = $bdd->prepare('INSERT INTO IDEES(id,idee,dateIdee,ideeDescription) VALUES(:id , :idee , :date, :t)');
 		$req->execute(array(	'id' => intval($_SESSION['id']),
 								'idee' => $_POST['ideeTitre'],
 								'date' => $date,
 								't'    => $_POST['envoi_idee']));
-		$_SESSION['flash']['idee'] = "Votre suggestion à bien été envoyée.Merci de votre implication!";
+		$_SESSION['flash']['idee'] = "Votre suggestion à bien été envoyée. Merci de votre implication!";
 		header('Location: Topics.php');
 		exit();
 	}
@@ -79,12 +79,12 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 				
 				<div class="rang-form">
 					<div class="colonne">
-						<label for="text">Titre de l'idée</label> <br/><br/>
+						<label for="text">Titre de l'idée :</label><br>
 						<input type="text" name="ideeTitre" placeholder="50 carac max." maxlength="50" required />
 					</div>
 					<div class="colonne">
-						<label for="text">Votre idée (1000 caractères max.) :</label><br/> <br/> <br/>
-						<textarea required name="envoi_idee" style="width:80%;height:400px" maxlength="1000" ></textarea><br>
+						<label for="text">Votre idée (1000 caractères max) :</label><br>
+						<textarea required name="envoi_idee" maxlength="2000" style="max-width:95%;width:90%;;height:200px" maxlength="1000" ></textarea><br>
 					<input type="submit" name="idee" value="Valider"/>
 					</div>
 					
