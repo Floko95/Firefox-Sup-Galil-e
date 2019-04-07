@@ -7,14 +7,12 @@ require_once 'inc/check_ban.php';
 			$_SESSION['flash']['alerte'] = 'Votre compte a été mute par un administrateur.Vous ne pouvez plus envoyer d\'idées';
 			header ('Location: Topics.php');
 		}
-
 		?>
 <?php 
 if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 {
 	$errors = array();
 	$date = date('Y-m-d H:i:s');
-
 	if (trim($_POST['envoi_idee'])=='' or trim($_POST['ideeTitre'])=='') {
 		$errors['champ'] = "Champ(s) vide(s). Veuillez compléter le(s) champ(s) ci-dessous.";
 		
@@ -51,7 +49,6 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 	}
 	
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,6 +91,5 @@ if(isset($_POST['envoi_idee']) and isset($_POST['ideeTitre']))
 				</div>
 			</form>
 		</div>
-		
-
-					
+	</body>
+</html>
