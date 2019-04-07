@@ -76,7 +76,7 @@ if (isset($_POST['creationRole']) && $_POST['creationRole'] == 'Valider') {
 			$reqDroit->execute(array($_SESSION['id'], $i));
 			$data = $reqDroit->fetch();
 			if ($data[0] == 0) {
-				$errors['droitManquant'] = "Vous avez coché un droit que vous ne possédez pas";
+				$errors['droitManquant'] = "Vous avez cochÃ© un droit que vous ne possÃ©dez pas";
 				break;
 			}
 		}
