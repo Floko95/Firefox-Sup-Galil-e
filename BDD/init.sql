@@ -24,7 +24,7 @@ CREATE TABLE ETUDIANTS (
 	mailPerso varchar(70),
 	nom varchar(30) NOT NULL,
 	prenom varchar(30) NOT NULL,
-	numero int unsigned NOT NULL,
+	numero varchar(10),
 	mdp varchar(255) NOT NULL,
 	formation varchar(4) DEFAULT NULL,
 	promotion year(4) DEFAULT NULL,
